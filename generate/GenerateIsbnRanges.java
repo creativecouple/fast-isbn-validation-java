@@ -27,32 +27,41 @@ public class GenerateIsbnRanges {
         final String messageSerialNumber = first(doc, "MessageSerialNumber").getTextContent();
         final String messageDate = first(doc, "MessageDate").getTextContent();
 
-        out.println("package de.creativecouple.validation.isbn;\n" + "import java.util.HashMap;\n" + "/**\n"
-                + " * This file is auto-generated from ISBN range definitions given by the\n"
-                + " * <a href=\"https://www.isbn-international.org/\">international ISBN agency</a>.\n"
-                + " * @author Peter Liske (CreativeCouple)\n" + " */\n" + "final class ISBNRanges {");
-        out.println("static final String MESSAGE_SOURCE = \"" + messageSource.replaceAll("[\"\n]", "") + "\";");
-        out.println("static final String MESSAGE_SERIAL_NUMBER = \"" + messageSerialNumber.replaceAll("[\"\n]", "")
-                + "\";");
-        out.println("static final String MESSAGE_DATE = \"" + messageDate.replaceAll("[\"\n]", "") + "\";");
+        out.println("package de.creativecouple.validation.isbn;");
+        out.println("import java.util.HashMap;");
+        out.println("/**");
+        out.println(" * This file is auto-generated from ISBN range definitions given by the");
+        out.println(" * <a href=\"https://www.isbn-international.org/\">international ISBN agency</a>.");
+        out.println(" * @source " + messageSource);
+        out.println(" * @serial " + messageSerialNumber);
+        out.println(" * @version " + messageDate);
+        out.println(" * @author Peter Liske (CreativeCouple)");
+        out.println(" */");
+        out.println("final class ISBNRanges {");
 
         List<PrefixDefinition> rootRanges = byTag(doc, "EAN.UCC").stream().map(PrefixDefinition::of).collect(toList());
         List<PrefixDefinition> groupRanges = byTag(doc, "Group").stream().map(PrefixDefinition::of).collect(toList());
 
         for (PrefixDefinition def : groupRanges) {
-            out.println("private static final Range[] RULE_" + def.prefix.replace('-', '_') + " = new Range[]{");
+            out.println("static final Range[] RULE_" + def.prefix.replace('-', '_') + " = new Range[]{");
+            String numPrefix = def.prefix.replace("-", "");
             for (PrefixRule rule : def.rules) {
-                out.println("new Range(" + rule.width + "," + rule.lower + "," + rule.upper + "),");
+                int remaining = 12 - numPrefix.length() - rule.width;
+                out.println("new Range(" + rule.width + "," + numPrefix + fill(rule.lower, rule.width) + zero(remaining)
+                        + "L," + numPrefix + fill(rule.upper, rule.width) + nine(remaining) + "L),");
             }
             out.println("};");
         }
 
         for (PrefixDefinition def : rootRanges) {
-            out.println("private static final Range[] RULE_" + def.prefix.replace('-', '_') + " = new Range[]{");
+            out.println("static final Range[] RULE_" + def.prefix + " = new Range[]{");
+            String numPrefix = def.prefix;
             for (PrefixRule rule : def.rules) {
-                out.print("new Range(" + rule.width + "," + rule.lower + "," + rule.upper);
+                int remaining = 12 - numPrefix.length() - rule.width;
+                out.print("new Range(" + rule.width + "," + numPrefix + fill(rule.lower, rule.width) + zero(remaining)
+                        + "L," + numPrefix + fill(rule.upper, rule.width) + nine(remaining) + "L");
                 for (int entry = rule.lower; entry <= rule.upper; entry++) {
-                    String prefix = String.format("%s-%0" + rule.width + "d", def.prefix, entry);
+                    String prefix = def.prefix + "-" + fill(entry, rule.width);
                     if (prefixes.contains(prefix)) {
                         out.print(", RULE_" + prefix.replace('-', '_'));
                     } else {
@@ -66,11 +75,13 @@ public class GenerateIsbnRanges {
 
         out.println("static final Range[] ROOT = {");
         for (PrefixRule rule : groupPrefixes(rootRanges)) {
-            out.print("new Range(" + rule.width + "," + rule.lower + "," + rule.upper);
+            int remaining = 12 - rule.width;
+            out.print("new Range(" + rule.width + "," + fill(rule.lower, rule.width) + zero(remaining) + "L,"
+                    + fill(rule.upper, rule.width) + nine(remaining) + "L");
             for (int entry = rule.lower; entry <= rule.upper; entry++) {
-                String prefix = String.format("%0" + rule.width + "d", entry);
+                String prefix = fill(entry, rule.width);
                 if (prefixes.contains(prefix)) {
-                    out.print(", RULE_" + prefix.replace('-', '_'));
+                    out.print(", RULE_" + prefix);
                 } else {
                     out.print(", null");
                 }
@@ -173,6 +184,18 @@ public class GenerateIsbnRanges {
             }
         }
         return list;
+    }
+
+    static String fill(long value, int n) {
+        return String.format("%0" + n + "d", value);
+    }
+
+    static String zero(int n) {
+        return "0000000000000".substring(0, n);
+    }
+
+    static String nine(int n) {
+        return "9999999999999".substring(0, n);
     }
 
 }

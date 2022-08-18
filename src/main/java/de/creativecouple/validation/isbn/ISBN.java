@@ -12,7 +12,7 @@ public final class ISBN implements Serializable {
 
     private final String isbn13String;
 
-    private ISBN(String prefix, String group, String publisher, String title, char checkDigit) {
+    ISBN(String prefix, String group, String publisher, String title, char checkDigit) {
         this.prefix = prefix;
         this.group = group;
         this.publisher = publisher;
@@ -77,24 +77,11 @@ public final class ISBN implements Serializable {
     }
 
     public static ISBN valueOf(String isbn) throws IllegalArgumentException {
-        ISBNParser parser = new ISBNParser().parse(isbn);
-        return new ISBN(parser.prefix, parser.group, parser.publisher, parser.title, parser.checkDigit);
-    }
-
-    public static void validate(String isbn) throws IllegalArgumentException {
-        ISBNParser parser = new ISBNParser().parse(isbn);
-    }
-
-    public static String getIsbnDefinitionSource() {
-        return ISBNRanges.MESSAGE_SOURCE;
-    }
-
-    public static String getIsbnDefinitionSerialNumber() {
-        return ISBNRanges.MESSAGE_SERIAL_NUMBER;
-    }
-
-    public static String getIsbnDefinitionDate() {
-        return ISBNRanges.MESSAGE_DATE;
+        ISBN parsed = ISBNParser.parse(isbn);
+        if (parsed == null) {
+            throw new NumberFormatException("ISBN invalid: '" + isbn + "'");
+        }
+        return parsed;
     }
 
 }
