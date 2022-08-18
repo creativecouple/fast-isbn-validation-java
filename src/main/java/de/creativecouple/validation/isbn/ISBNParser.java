@@ -6,7 +6,7 @@ final class ISBNParser {
             100_000_000L, 10_000_000L, 1_000_000L, 100_000L, 10_000L, 1_000L, 100L, 10L, 1L };
 
     static ISBN parse(String isbnString) {
-        final char[] isbn = trimToIsbn(isbnString);
+        final char[] isbn = normalizeDashes(isbnString);
         if (isbn == null) {
             return null;
         }
@@ -69,13 +69,13 @@ final class ISBNParser {
         isbn[0] = '9';
     }
 
-    private static char[] trimToIsbn(CharSequence string) {
+    private static char[] normalizeDashes(CharSequence string) {
         char[] chars = new char[13];
         int charsPos = 0;
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
-            if (ch <= ' ' || ch == '-' || ch == '_' || ch == '\u2013' || ch == '\u2014' || ch == '\u2212') {
-                // remove whitespace and all unicode dashes (0x2d, 0x2013, 0x2014, 0x2212)
+            if (ch == '-' || ch == '_' || ch == '\u2013' || ch == '\u2014' || ch == '\u2212') {
+                // remove all unicode dashes (0x2d, 0x2013, 0x2014, 0x2212)
                 continue;
             }
             if (ch != 'x' && ch != 'X' && (ch < '0' || ch > '9')) {

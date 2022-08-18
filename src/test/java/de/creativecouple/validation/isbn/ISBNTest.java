@@ -8,8 +8,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ISBNTest {
 
     @Test
-    void testParseISBN13TrimmingWhitespace() {
-        ISBN isbn = ISBN.valueOf("  9780-6--399635-4-9-- ");
+    void testParseISBN_normalizingDashes() {
+        ISBN isbn = ISBN.valueOf("9-780-6--399635-4-9--");
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-0-6399635-4-9");
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
@@ -25,8 +25,8 @@ class ISBNTest {
     }
 
     @Test
-    void testParseSpecialDashes() {
-        ISBN isbn = ISBN.valueOf("  _9780-6\u2013\u201439__9635-4-9\u2212- ");
+    void testParseISBN_specialDashes() {
+        ISBN isbn = ISBN.valueOf("_9780-6\u2013\u201439__9635-4-9\u2212-");
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-0-6399635-4-9");
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
@@ -114,5 +114,7 @@ class ISBNTest {
         assertThatThrownBy(() -> ISBN.valueOf("X987654321")).isInstanceOf(NumberFormatException.class);
 
         assertThatThrownBy(() -> ISBN.valueOf("978~0*6399635#4+9")).isInstanceOf(NumberFormatException.class);
+
+        assertThatThrownBy(() -> ISBN.valueOf(" 978-0-6399635-4-9 ")).isInstanceOf(NumberFormatException.class);
     }
 }
