@@ -21,7 +21,7 @@ class ISBNTest {
         assertThat(isbn.getPublisher()).isEqualTo("6399635");
         assertThat(isbn.getPublisherPrefix()).isEqualTo("978-0-6399635");
         assertThat(isbn.getTitle()).isEqualTo("4");
-        assertThat(isbn.getCheckDigit()).isEqualTo('9');
+        assertThat(isbn.getCheckdigit()).isEqualTo('9');
     }
 
     @Test
@@ -38,7 +38,7 @@ class ISBNTest {
         assertThat(isbn.getPublisher()).isEqualTo("6399635");
         assertThat(isbn.getPublisherPrefix()).isEqualTo("978-0-6399635");
         assertThat(isbn.getTitle()).isEqualTo("4");
-        assertThat(isbn.getCheckDigit()).isEqualTo('9');
+        assertThat(isbn.getCheckdigit()).isEqualTo('9');
     }
 
     @Test
@@ -55,7 +55,7 @@ class ISBNTest {
         assertThat(isbn.getPublisher()).isEqualTo("4212");
         assertThat(isbn.getPublisherPrefix()).isEqualTo("979-8-4212");
         assertThat(isbn.getTitle()).isEqualTo("2181");
-        assertThat(isbn.getCheckDigit()).isEqualTo('4');
+        assertThat(isbn.getCheckdigit()).isEqualTo('4');
     }
 
     @Test
@@ -72,7 +72,7 @@ class ISBNTest {
         assertThat(isbn.getPublisher()).isEqualTo("947188");
         assertThat(isbn.getPublisherPrefix()).isEqualTo("978-3-947188");
         assertThat(isbn.getTitle()).isEqualTo("34");
-        assertThat(isbn.getCheckDigit()).isEqualTo('5');
+        assertThat(isbn.getCheckdigit()).isEqualTo('5');
     }
 
     @Test

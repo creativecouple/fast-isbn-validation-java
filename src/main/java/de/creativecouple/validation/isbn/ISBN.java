@@ -8,17 +8,17 @@ public final class ISBN implements Serializable {
     private final String group;
     private final String publisher;
     private final String title;
-    private final char checkDigit;
+    private final char checkdigit;
 
     private final String isbn13String;
 
-    ISBN(String prefix, String group, String publisher, String title, char checkDigit) {
+    ISBN(String prefix, String group, String publisher, String title, char checkdigit) {
         this.prefix = prefix;
         this.group = group;
         this.publisher = publisher;
         this.title = title;
-        this.checkDigit = checkDigit;
-        this.isbn13String = prefix + '-' + group + '-' + publisher + '-' + title + '-' + checkDigit;
+        this.checkdigit = checkdigit;
+        this.isbn13String = prefix + '-' + group + '-' + publisher + '-' + title + '-' + checkdigit;
     }
 
     public String getPrefix() {
@@ -53,8 +53,8 @@ public final class ISBN implements Serializable {
         return title;
     }
 
-    public char getCheckDigit() {
-        return checkDigit;
+    public char getCheckdigit() {
+        return checkdigit;
     }
 
     @Override
@@ -63,7 +63,7 @@ public final class ISBN implements Serializable {
     }
 
     public String toCompactString() {
-        return prefix + group + publisher + title + checkDigit;
+        return prefix + group + publisher + title + checkdigit;
     }
 
     @Override

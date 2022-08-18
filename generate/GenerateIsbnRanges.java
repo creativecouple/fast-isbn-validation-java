@@ -1,15 +1,7 @@
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import javax.xml.parsers.*;
+import java.util.*;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.System.in;
@@ -43,7 +35,7 @@ public class GenerateIsbnRanges {
         List<PrefixDefinition> groupRanges = byTag(doc, "Group").stream().map(PrefixDefinition::of).collect(toList());
 
         for (PrefixDefinition def : groupRanges) {
-            out.println("static final Range[] RULE_" + def.prefix.replace('-', '_') + " = new Range[]{");
+            out.println("private static final Range[] RULE_" + def.prefix.replace('-', '_') + " = new Range[]{");
             String numPrefix = def.prefix.replace("-", "");
             for (PrefixRule rule : def.rules) {
                 int remaining = 12 - numPrefix.length() - rule.width;
@@ -54,7 +46,7 @@ public class GenerateIsbnRanges {
         }
 
         for (PrefixDefinition def : rootRanges) {
-            out.println("static final Range[] RULE_" + def.prefix + " = new Range[]{");
+            out.println("private static final Range[] RULE_" + def.prefix + " = new Range[]{");
             String numPrefix = def.prefix;
             for (PrefixRule rule : def.rules) {
                 int remaining = 12 - numPrefix.length() - rule.width;
