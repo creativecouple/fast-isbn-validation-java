@@ -6,7 +6,7 @@ final class ISBNParser {
             100_000_000L, 10_000_000L, 1_000_000L, 100_000L, 10_000L, 1_000L, 100L, 10L, 1L };
 
     static ISBN parse(String isbnString) {
-        char[] isbn = trimToIsbn(isbnString);
+        final char[] isbn = trimToIsbn(isbnString);
         if (isbn == null) {
             return null;
         }
@@ -18,7 +18,7 @@ final class ISBNParser {
             if (longValue <= 0) {
                 return null;
             }
-            isbn = (String.valueOf(longValue) + (char) (calculateCheckDigit(longValue) + 48)).toCharArray();
+            convertToIsbn13(isbn, longValue);
         } else {
             longValue = validateChecksum13(isbn);
             if (longValue <= 0) {
@@ -59,12 +59,22 @@ final class ISBNParser {
                 isbn[12]);
     }
 
+    private static void convertToIsbn13(char[] isbn, long longValue) {
+        isbn[12] = (char) (calculateCheckDigit(longValue) + 48);
+        for (int i = 8; i >= 0; i--) {
+            isbn[i + 3] = isbn[i];
+        }
+        isbn[2] = '8';
+        isbn[1] = '7';
+        isbn[0] = '9';
+    }
+
     private static char[] trimToIsbn(CharSequence string) {
         char[] chars = new char[13];
         int charsPos = 0;
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
-            if (ch <= ' ' || ch == '-' || ch == '\u2013' || ch == '\u2014' || ch == '\u2212') {
+            if (ch <= ' ' || ch == '-' || ch == '_' || ch == '\u2013' || ch == '\u2014' || ch == '\u2212') {
                 // remove whitespace and all unicode dashes (0x2d, 0x2013, 0x2014, 0x2212)
                 continue;
             }
