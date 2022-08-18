@@ -5,9 +5,35 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.creativecouple.validation</groupId>
-    <artifactId>isbn</artifactId>
+    <artifactId>isbn-core</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
+
+    <name>ISBN Validation</name>
+    <description>simple and fast ISBN validation</description>
+    <url>https://github.com/creativecouple/isbn-validation-java</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Peter Liske</name>
+            <email>peter.liske@creativecouple.de</email>
+            <organization>CreativeCouple</organization>
+            <organizationUrl>https://creativecouple.de/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/creativecouple/isbn-validation-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:creativecouple/isbn-validation-java.git</developerConnection>
+        <url>https://github.com/creativecouple/isbn-validation-java</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,6 +70,46 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
