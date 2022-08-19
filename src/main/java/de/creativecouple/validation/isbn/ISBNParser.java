@@ -6,6 +6,9 @@ final class ISBNParser {
             100_000_000L, 10_000_000L, 1_000_000L, 100_000L, 10_000L, 1_000L, 100L, 10L, 1L };
 
     static ISBN parse(String isbnString) {
+        if (isbnString == null) {
+            return null;
+        }
         final char[] isbn = normalizeDashes(isbnString);
         if (isbn == null) {
             return null;

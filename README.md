@@ -50,6 +50,22 @@ You can get different string representations to be used e.g. in your databases:
   isbn.getCheckdigit();      // checkdigit character = '5' 
 ```
 
+----
+
+If you only want to work with Strings instead of the ISBN object you can simply use the `ISBNValidator`
+to check them against the chosen rules. This is one of the 12 combinations of ISBN length (ISBN-10 / ISBN-13 / both)
+and hyphenation style (any / correct / none / correct-or-none). 
+
+```java
+  ISBNValidator validator = ISBNValidator.isbn10().hyphenation(NONE);
+        
+  validator.isValid("978-0-557-50469-5"); // false
+  validator.isValid("9780557504695") // false
+  validator.isValid("0-557-50469-4"); // false
+  validator.isValid("0557504694") // true
+```
+
+
 ## Local development
 
 You can clone this repository locally and build as a standard maven project. 

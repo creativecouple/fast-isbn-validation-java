@@ -104,7 +104,7 @@ class ISBNTest {
 
     @Test
     void testInvalidStrings() {
-        assertThatThrownBy(() -> ISBN.valueOf(null)).isInstanceOf(NullPointerException.class);
+        assertThatThrownBy(() -> ISBN.valueOf(null)).isInstanceOf(NumberFormatException.class);
 
         assertThatThrownBy(() -> ISBN.valueOf("")).isInstanceOf(NumberFormatException.class);
 
