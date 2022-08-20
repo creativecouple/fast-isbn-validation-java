@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ISBNParserTest {
+class ParserTest {
 
     @Test
     void testParsingPerformanceForCorrectEAN13() {
         long start = System.currentTimeMillis();
         long invalid = 0, valid = 0;
         for (long i = 978_000_000_000L; i < 980_000_000_000L; i += 137) {
-            ISBN isbn = ISBNParser.parse("" + i + ISBNParser.calculateCheckDigit(i));
+            ISBN isbn = Parser.parse("" + i + Parser.calculateCheckDigit(i));
             if (isbn == null) {
                 invalid++;
             } else {
@@ -29,7 +29,7 @@ class ISBNParserTest {
         long start = System.currentTimeMillis();
         long invalid = 0, valid = 0;
         for (long i = 978_000_000_000_0L; i < 980_000_000_000_0L; i += 1337) {
-            ISBN isbn = ISBNParser.parse("" + i);
+            ISBN isbn = Parser.parse("" + i);
             if (isbn == null) {
                 invalid++;
             } else {

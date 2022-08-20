@@ -1,6 +1,6 @@
 package de.creativecouple.validation.isbn;
 
-final class ISBNParser {
+final class Parser {
 
     private static final long[] decimals = { 1_000_000_000_000L, 100_000_000_000L, 10_000_000_000L, 1_000_000_000L,
             100_000_000L, 10_000_000L, 1_000_000L, 100_000L, 10_000L, 1_000L, 100L, 10L, 1L };

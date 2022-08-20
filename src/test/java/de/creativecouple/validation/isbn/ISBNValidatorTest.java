@@ -7,6 +7,7 @@ import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.Hyphenation
 import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.CORRECT_OR_NONE;
 import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ISBNValidatorTest {
 
@@ -31,24 +32,49 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.anyIsbn().hyphenation(ANY);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isTrue();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isTrue();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isTrue();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isTrue();
+    }
+
+    @Test
+    void parseAnyIsbnIgnoringHyphenation() {
+        ISBNValidator validator = ISBNValidator.anyIsbn().hyphenation(ANY);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThat(validator.parse(ISBN13_TOO_MANY_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN13_TOO_FEW_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN13_CORRECT_HYPHENATION)).isNotNull();
+        assertThat(validator.parse(ISBN13_WRONG_HYPHENATION)).isNotNull();
+        assertThat(validator.parse(ISBN13_NO_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN13_UNICODE_DASHES)).isNotNull();
+
+        assertThat(validator.parse(ISBN10_TOO_MANY_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN10_TOO_FEW_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN10_CORRECT_HYPHENATION)).isNotNull();
+        assertThat(validator.parse(ISBN10_WRONG_HYPHENATION)).isNotNull();
+        assertThat(validator.parse(ISBN10_NO_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN10_UNICODE_DASHES)).isNotNull();
     }
 
     @Test
@@ -56,24 +82,51 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.anyIsbn().hyphenation(CORRECT);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseAnyIsbnCheckingHyphenation() {
+        ISBNValidator validator = ISBNValidator.anyIsbn().hyphenation(CORRECT);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN13_CORRECT_HYPHENATION)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN10_CORRECT_HYPHENATION)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -81,24 +134,53 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.anyIsbn().hyphenation(NONE);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseAnyIsbnWithoutHyphenation() {
+        ISBNValidator validator = ISBNValidator.anyIsbn().hyphenation(NONE);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN13_NO_HYPHENS)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN10_NO_HYPHENS)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -106,24 +188,51 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.anyIsbn().hyphenation(CORRECT_OR_NONE);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseAnyIsbnCorrectOrNoHyphenation() {
+        ISBNValidator validator = ISBNValidator.anyIsbn().hyphenation(CORRECT_OR_NONE);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN13_CORRECT_HYPHENATION)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN13_NO_HYPHENS)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN10_CORRECT_HYPHENATION)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN10_NO_HYPHENS)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -131,24 +240,51 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.isbn13().hyphenation(ANY);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isTrue();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isTrue();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseIsbn13IgnoringHyphenation() {
+        ISBNValidator validator = ISBNValidator.isbn13().hyphenation(ANY);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThat(validator.parse(ISBN13_TOO_MANY_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN13_TOO_FEW_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN13_CORRECT_HYPHENATION)).isNotNull();
+        assertThat(validator.parse(ISBN13_WRONG_HYPHENATION)).isNotNull();
+        assertThat(validator.parse(ISBN13_NO_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN13_UNICODE_DASHES)).isNotNull();
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -156,24 +292,52 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.isbn13().hyphenation(CORRECT);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseIsbn13CheckingHyphenation() {
+        ISBNValidator validator = ISBNValidator.isbn13().hyphenation(CORRECT);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN13_CORRECT_HYPHENATION)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -181,24 +345,53 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.isbn13().hyphenation(NONE);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseIsbn13WithoutHyphenation() {
+        ISBNValidator validator = ISBNValidator.isbn13().hyphenation(NONE);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN13_NO_HYPHENS)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -206,24 +399,52 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.isbn13().hyphenation(CORRECT_OR_NONE);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseIsbn13CorrectOrNoHyphenation() {
+        ISBNValidator validator = ISBNValidator.isbn13().hyphenation(CORRECT_OR_NONE);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN13_CORRECT_HYPHENATION)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN13_NO_HYPHENS)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -231,24 +452,51 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.isbn10().hyphenation(ANY);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isTrue();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isTrue();
+    }
+
+    @Test
+    void parseIsbn10IgnoringHyphenation() {
+        ISBNValidator validator = ISBNValidator.isbn10().hyphenation(ANY);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThat(validator.parse(ISBN10_TOO_MANY_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN10_TOO_FEW_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN10_CORRECT_HYPHENATION)).isNotNull();
+        assertThat(validator.parse(ISBN10_WRONG_HYPHENATION)).isNotNull();
+        assertThat(validator.parse(ISBN10_NO_HYPHENS)).isNotNull();
+        assertThat(validator.parse(ISBN10_UNICODE_DASHES)).isNotNull();
     }
 
     @Test
@@ -256,24 +504,52 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.isbn10().hyphenation(CORRECT);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseIsbn10CheckingHyphenation() {
+        ISBNValidator validator = ISBNValidator.isbn10().hyphenation(CORRECT);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN10_CORRECT_HYPHENATION)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -281,24 +557,53 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.isbn10().hyphenation(NONE);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseIsbn10WithoutHyphenation() {
+        ISBNValidator validator = ISBNValidator.isbn10().hyphenation(NONE);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN10_NO_HYPHENS)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -306,24 +611,52 @@ class ISBNValidatorTest {
         ISBNValidator validator = ISBNValidator.isbn10().hyphenation(CORRECT_OR_NONE);
 
         assertThat(validator).isNotNull();
-        assertThat(validator.isValid(null)).isFalse();
-        assertThat(validator.isValid(BLANK)).isFalse();
-        assertThat(validator.isValid(TEN_DIGITS_NO_ISBN)).isFalse();
-        assertThat(validator.isValid(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(null)).isFalse();
+        assertThat(validator.test(BLANK)).isFalse();
+        assertThat(validator.test(TEN_DIGITS_NO_ISBN)).isFalse();
+        assertThat(validator.test(THIRTEEN_DIGITS_NO_ISBN)).isFalse();
 
-        assertThat(validator.isValid(ISBN13_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_CORRECT_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN13_NO_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN13_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_CORRECT_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN13_NO_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN13_UNICODE_DASHES)).isFalse();
 
-        assertThat(validator.isValid(ISBN10_TOO_MANY_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_TOO_FEW_HYPHENS)).isFalse();
-        assertThat(validator.isValid(ISBN10_CORRECT_HYPHENATION)).isTrue();
-        assertThat(validator.isValid(ISBN10_WRONG_HYPHENATION)).isFalse();
-        assertThat(validator.isValid(ISBN10_NO_HYPHENS)).isTrue();
-        assertThat(validator.isValid(ISBN10_UNICODE_DASHES)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_MANY_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_TOO_FEW_HYPHENS)).isFalse();
+        assertThat(validator.test(ISBN10_CORRECT_HYPHENATION)).isTrue();
+        assertThat(validator.test(ISBN10_WRONG_HYPHENATION)).isFalse();
+        assertThat(validator.test(ISBN10_NO_HYPHENS)).isTrue();
+        assertThat(validator.test(ISBN10_UNICODE_DASHES)).isFalse();
+    }
+
+    @Test
+    void parseIsbn10CorrectOrNoHyphenation() {
+        ISBNValidator validator = ISBNValidator.isbn10().hyphenation(CORRECT_OR_NONE);
+
+        assertThat(validator).isNotNull();
+        assertThatThrownBy(() -> validator.parse(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(BLANK)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(TEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(THIRTEEN_DIGITS_NO_ISBN)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_CORRECT_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_NO_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN13_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_MANY_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.parse(ISBN10_TOO_FEW_HYPHENS)).isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN10_CORRECT_HYPHENATION)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN10_WRONG_HYPHENATION))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(validator.parse(ISBN10_NO_HYPHENS)).isNotNull();
+        assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }
