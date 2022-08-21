@@ -22,8 +22,8 @@ parsing both ISBN-10 and ISBN-13 numbers into the same object, the `ISBN`.
 
 ## Usage
 
-Once you add the dependency to your project definition,
-you can simply convert your strings into `ISBN` objects via:
+Once you [add this library as dependency](https://search.maven.org/artifact/de.creativecouple.validation/isbn-core)
+to your project definition, you can simply convert your strings into `ISBN` objects via:
 
 ```java
   ISBN isbn = ISBN.valueOf(someString)
@@ -65,6 +65,10 @@ and hyphenation style (any / correct / none / correct-or-none).
   validator.isValid("0557504694") // true
 ```
 
+## Versioning
+
+Our build pipeline checks regularly for new versions of the ISBN range definition provided by the
+International ISBN Agency. When there are changes then a new version of this library will be deployed.
 
 ## Local development
 
