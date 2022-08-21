@@ -2,6 +2,8 @@ package de.creativecouple.validation.isbn;
 
 import org.junit.jupiter.api.Test;
 
+import java.net.URI;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -13,6 +15,7 @@ class ISBNTest {
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-0-6399635-4-9");
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
+        assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9780639963549"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
         assertThat(isbn.getAgencyName()).isEqualTo("International ISBN Agency");
         assertThat(isbn.getGroup()).isEqualTo("0");
@@ -30,6 +33,7 @@ class ISBNTest {
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-0-6399635-4-9");
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
+        assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9780639963549"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
         assertThat(isbn.getAgencyName()).isEqualTo("International ISBN Agency");
         assertThat(isbn.getGroup()).isEqualTo("0");
@@ -47,6 +51,7 @@ class ISBNTest {
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("979-8-4212-2181-4");
         assertThat(isbn.toCompactString()).isEqualTo("9798421221814");
+        assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9798421221814"));
         assertThat(isbn.getPrefix()).isEqualTo("979");
         assertThat(isbn.getAgencyName()).isEqualTo("International ISBN Agency");
         assertThat(isbn.getGroup()).isEqualTo("8");
@@ -64,6 +69,7 @@ class ISBNTest {
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-3-947188-34-5");
         assertThat(isbn.toCompactString()).isEqualTo("9783947188345");
+        assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9783947188345"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
         assertThat(isbn.getAgencyName()).isEqualTo("International ISBN Agency");
         assertThat(isbn.getGroup()).isEqualTo("3");

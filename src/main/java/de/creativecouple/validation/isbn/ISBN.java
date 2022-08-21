@@ -1,6 +1,7 @@
 package de.creativecouple.validation.isbn;
 
 import java.io.Serializable;
+import java.net.URI;
 
 /**
  * Simple domain object, representing a single ISBN identifier. Usage:
@@ -183,6 +184,15 @@ public final class ISBN implements Serializable {
      */
     public String toCompactString() {
         return prefix + group + publisher + title + checkdigit;
+    }
+
+    /**
+     * Returns the URI for this ISBN.
+     *
+     * @return the URI pointing to this ISBN, e.g. "urn:isbn:9780557504695"
+     */
+    public URI toURI() {
+        return URI.create("urn:isbn:" + toCompactString());
     }
 
     /**
