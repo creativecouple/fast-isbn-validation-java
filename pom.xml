@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>ISBN Validation</name>
-    <description>simple and fast ISBN validation</description>
+    <description>parse/format/validate ISBNs with the official ISBN ranges definition</description>
     <url>https://github.com/creativecouple/isbn-validation-java</url>
 
     <licenses>

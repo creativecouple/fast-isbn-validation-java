@@ -17,7 +17,7 @@ Example:
 
 The `ISBN` domain object wraps the ISBN string representation efficiently to be used
 as identifier in your domain-driven code base.
-It normalizes the given string input with respect to dashes and whitespace,
+It normalizes and corrects the given string input with respect to hyphens/dashes,
 parsing both ISBN-10 and ISBN-13 numbers into the same object, the `ISBN`. 
 
 ## Usage
