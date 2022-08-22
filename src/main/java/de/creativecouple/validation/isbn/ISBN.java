@@ -126,8 +126,8 @@ public final class ISBN implements Serializable {
     }
 
     /**
-     * There are local ISBN agencies around the world take care of assigning number ranges for publishers. This is the
-     * third piece of the ISBN.
+     * There are local ISBN agencies around the world who take care of assigning number ranges for publishers. This is
+     * the publisher code third piece of the ISBN.
      *
      * <pre>
      *        ,–––⹁
@@ -150,7 +150,7 @@ public final class ISBN implements Serializable {
      *  `–––––––––´
      * </pre>
      *
-     * @return the group code of the ISBN, e.g. "978-0-557"
+     * @return the publisher's prefix of the ISBN, e.g. "978-0-557"
      */
     public String getPublisherPrefix() {
         return prefix + '-' + group + '-' + publisher;
