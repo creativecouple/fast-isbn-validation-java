@@ -1,5 +1,11 @@
-# ISBN Validation
+Parse/format/validate ISBNs with the official ISBN ranges definition. <br/>
+The parser is optimized for speed, the ISBN class for simplicity.
 
+Quick-Links: – [Javadocs](https://creativecouple.github.io/isbn-validation-java/)
+– [Maven-Repository](https://mvnrepository.com/artifact/de.creativecouple.validation/isbn-core)
+–
+
+# ISBN Validation
 A common issue in digital commerce systems is to validate article identifiers.
 In the publishing business there is the so-called ISBN standard, maintained by the
 [International ISBN Agency](https://www.isbn-international.org/).
@@ -15,15 +21,18 @@ Example:
 - ❌ wrong grouping: 978-05-5750-469-5 or 978-0557504695 (on amazon.com)
 - ✅ correct grouping: 978-0-557-50469-5
 
-The `ISBN` domain object wraps the ISBN string representation efficiently to be used
+The [ISBN domain object](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBN.html)
+wraps the ISBN string representation efficiently to be used
 as identifier in your domain-driven code base.
 It normalizes and corrects the given string input with respect to hyphens/dashes,
-parsing both ISBN-10 and ISBN-13 numbers into the same object, the `ISBN`. 
+parsing both ISBN-10 and ISBN-13 numbers into the same object, the
+[ISBN](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBN.html). 
 
 ## Usage
 
 Once you [add this library as dependency](https://search.maven.org/artifact/de.creativecouple.validation/isbn-core)
-to your project definition, you can simply convert your strings into `ISBN` objects via:
+to your project definition, you can simply convert your strings into
+[ISBN objects](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBN.html) via:
 
 ```java
   ISBN isbn = ISBN.valueOf(someString)
@@ -52,7 +61,8 @@ You can get different string representations to be used e.g. in your databases:
 
 ----
 
-If you only want to work with Strings instead of the ISBN object you can simply use the `ISBNValidator`
+If you only want to work with Strings instead of the ISBN object you can simply use the
+[ISBNValidator](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBNValidator.html)
 to check them against the chosen rules. This is one of the 12 combinations of ISBN length (ISBN-10 / ISBN-13 / both)
 and hyphenation style (any / correct / none / correct-or-none). 
 
@@ -75,9 +85,10 @@ https://creativecouple.github.io/isbn-validation-java/
 Our build pipeline checks regularly for new versions of the ISBN range definition provided by the
 International ISBN Agency. When there are changes then a new version of this library will be deployed.
 
-## Local development
+## Contribute
 
-You can clone this repository locally and build as a standard maven project. 
+You can clone this repository locally and build as a standard maven project.
+Feel free to open issues to this repository or create pull requests.
 
 ### Generate a new ISBN range definition
 
@@ -89,3 +100,25 @@ You can clone this repository locally and build as a standard maven project.
 
 The formatter plugin will auto-format all source files during the maven run.
 So you are able to easily spot the differences since the previous version.
+
+## Disclaimer
+
+The MIT License (MIT)
+Copyright (c) 2022 CreativeCouple
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
