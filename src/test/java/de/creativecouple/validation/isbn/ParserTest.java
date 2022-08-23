@@ -64,4 +64,15 @@ class ParserTest {
         assertThat(duration).isLessThan(10_000L);
     }
 
+    @Test
+    void testUnknownPrefix() {
+        assertThat(Parser.parse("977-012345678-7")).isNull();
+        assertThat(Parser.parse("980-012345678-1")).isNull();
+    }
+
+    @Test
+    void testUnassignedGroupRange() {
+        assertThat(Parser.parse("978-611001122-8")).isNull();
+        assertThat(Parser.parse("979-444444444-5")).isNull();
+    }
 }

@@ -24,6 +24,9 @@ package de.creativecouple.validation.isbn;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.ANY;
 import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.CORRECT;
 import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.CORRECT_OR_NONE;
@@ -34,7 +37,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ISBNValidatorTest {
 
     public static final String BLANK = " ";
-    public static final String TEN_DIGITS_NO_ISBN = "987654321X";
+    public static final String TEN_DIGITS_NO_ISBN = "9X7654321X";
     public static final String THIRTEEN_DIGITS_NO_ISBN = "9876543210987";
     public static final String ISBN13_TOO_MANY_HYPHENS = "9-780-6--399635-4-9--";
     public static final String ISBN13_TOO_FEW_HYPHENS = "978-0639963549";
@@ -681,4 +684,34 @@ class ISBNValidatorTest {
         assertThatThrownBy(() -> validator.parse(ISBN10_UNICODE_DASHES)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void testEqualsAndHashcode() {
+        Set<ISBNValidator> set = new HashSet<>();
+        // first round all different
+        assertThat(set.add(ISBNValidator.anyIsbn().hyphenation(ANY))).isTrue();
+        assertThat(set.add(ISBNValidator.anyIsbn().hyphenation(CORRECT))).isTrue();
+        assertThat(set.add(ISBNValidator.anyIsbn().hyphenation(NONE))).isTrue();
+        assertThat(set.add(ISBNValidator.anyIsbn().hyphenation(CORRECT_OR_NONE))).isTrue();
+        assertThat(set.add(ISBNValidator.isbn13().hyphenation(ANY))).isTrue();
+        assertThat(set.add(ISBNValidator.isbn13().hyphenation(CORRECT))).isTrue();
+        assertThat(set.add(ISBNValidator.isbn13().hyphenation(NONE))).isTrue();
+        assertThat(set.add(ISBNValidator.isbn13().hyphenation(CORRECT_OR_NONE))).isTrue();
+        assertThat(set.add(ISBNValidator.isbn10().hyphenation(ANY))).isTrue();
+        assertThat(set.add(ISBNValidator.isbn10().hyphenation(CORRECT))).isTrue();
+        assertThat(set.add(ISBNValidator.isbn10().hyphenation(NONE))).isTrue();
+        assertThat(set.add(ISBNValidator.isbn10().hyphenation(CORRECT_OR_NONE))).isTrue();
+        // second round all known
+        assertThat(set.add(ISBNValidator.anyIsbn().hyphenation(ANY))).isFalse();
+        assertThat(set.add(ISBNValidator.anyIsbn().hyphenation(CORRECT))).isFalse();
+        assertThat(set.add(ISBNValidator.anyIsbn().hyphenation(NONE))).isFalse();
+        assertThat(set.add(ISBNValidator.anyIsbn().hyphenation(CORRECT_OR_NONE))).isFalse();
+        assertThat(set.add(ISBNValidator.isbn13().hyphenation(ANY))).isFalse();
+        assertThat(set.add(ISBNValidator.isbn13().hyphenation(CORRECT))).isFalse();
+        assertThat(set.add(ISBNValidator.isbn13().hyphenation(NONE))).isFalse();
+        assertThat(set.add(ISBNValidator.isbn13().hyphenation(CORRECT_OR_NONE))).isFalse();
+        assertThat(set.add(ISBNValidator.isbn10().hyphenation(ANY))).isFalse();
+        assertThat(set.add(ISBNValidator.isbn10().hyphenation(CORRECT))).isFalse();
+        assertThat(set.add(ISBNValidator.isbn10().hyphenation(NONE))).isFalse();
+        assertThat(set.add(ISBNValidator.isbn10().hyphenation(CORRECT_OR_NONE))).isFalse();
+    }
 }
