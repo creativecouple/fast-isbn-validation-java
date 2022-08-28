@@ -1,9 +1,8 @@
 Parse/format/validate ISBNs with the official ISBN ranges definition. <br/>
 The parser is optimized for speed, the ISBN class for simplicity.
 
-Quick-Links: – [Javadocs](https://creativecouple.github.io/isbn-validation-java/)
-– [Maven-Repository](https://mvnrepository.com/artifact/de.creativecouple.validation/isbn-core)
-–
+[![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/isbn-core/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/isbn-core)
+[![Javadocs](https://www.javadoc.io/badge/de.creativecouple.validation/isbn-core.svg)](https://creativecouple.github.io/isbn-validation-java/)
 
 # ISBN Validation
 A common issue in digital commerce systems is to validate article identifiers.
@@ -18,8 +17,8 @@ The dashes will be inserted automatically at the correct positions for grouping 
 agency prefix, group code, publisher code, and title code.
 
 Example:
-- ❌ wrong grouping: 978-05-5750-469-5 or 978-0557504695 (on amazon.com)
-- ✅ correct grouping: 978-0-557-50469-5
+- :x: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (on amazon.com)
+- :heavy_check_mark: correct grouping: 978-0-557-50469-5
 
 The [ISBN domain object](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBN.html)
 wraps the ISBN string representation efficiently to be used
