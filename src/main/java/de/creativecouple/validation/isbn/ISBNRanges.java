@@ -30,9 +30,9 @@ import java.util.HashMap;
  *
  * @source International ISBN Agency
  *
- * @serial f9051bd5-2bc0-4f41-aecc-4f4524b1dbd1
+ * @serial 5c7ab960-c515-4ada-a43f-f4d945ad9ccc
  *
- * @version Tue, 18 Oct 2022 10:28:29 BST
+ * @version Sun, 6 Nov 2022 22:14:06 GMT
  *
  * @author Peter Liske (CreativeCouple)
  */
@@ -178,7 +178,7 @@ final class ISBNRanges {
             new Range(3, 978623170000L, 978623499999L), new Range(4, 978623525000L, 978623879999L),
             new Range(5, 978623880000L, 978623999999L), };
     private static final Range[] RULE_978_624 = new Range[] { new Range(2, 978624000000L, 978624049999L),
-            new Range(3, 978624200000L, 978624249999L), new Range(4, 978624500000L, 978624634999L),
+            new Range(3, 978624200000L, 978624249999L), new Range(4, 978624500000L, 978624644999L),
             new Range(5, 978624945000L, 978624999999L), };
     private static final Range[] RULE_978_625 = new Range[] { new Range(2, 978625000000L, 978625009999L),
             new Range(3, 978625365000L, 978625442999L), new Range(5, 978625443000L, 978625444999L),
@@ -403,7 +403,8 @@ final class ISBNRanges {
             new Range(4, 978976800000L, 978976949999L), new Range(5, 978976950000L, 978976999999L), };
     private static final Range[] RULE_978_977 = new Range[] { new Range(2, 978977000000L, 978977199999L),
             new Range(3, 978977200000L, 978977499999L), new Range(4, 978977500000L, 978977699999L),
-            new Range(3, 978977700000L, 978977849999L), new Range(5, 978977850000L, 978977899999L),
+            new Range(3, 978977700000L, 978977849999L), new Range(5, 978977850000L, 978977892999L),
+            new Range(3, 978977893000L, 978977894999L), new Range(4, 978977895000L, 978977899999L),
             new Range(2, 978977900000L, 978977989999L), new Range(3, 978977990000L, 978977999999L), };
     private static final Range[] RULE_978_978 = new Range[] { new Range(3, 978978000000L, 978978199999L),
             new Range(4, 978978200000L, 978978299999L), new Range(5, 978978300000L, 978978789999L),
@@ -444,7 +445,8 @@ final class ISBNRanges {
             new Range(2, 978987300000L, 978987359999L), new Range(4, 978987360000L, 978987419999L),
             new Range(2, 978987420000L, 978987439999L), new Range(4, 978987440000L, 978987449999L),
             new Range(5, 978987450000L, 978987489999L), new Range(4, 978987490000L, 978987499999L),
-            new Range(3, 978987500000L, 978987829999L), new Range(4, 978987830000L, 978987849999L),
+            new Range(3, 978987500000L, 978987824999L), new Range(4, 978987825000L, 978987827999L),
+            new Range(5, 978987828000L, 978987829999L), new Range(4, 978987830000L, 978987849999L),
             new Range(2, 978987850000L, 978987889999L), new Range(4, 978987890000L, 978987949999L),
             new Range(5, 978987950000L, 978987999999L), };
     private static final Range[] RULE_978_988 = new Range[] { new Range(2, 978988000000L, 978988119999L),
@@ -475,8 +477,9 @@ final class ISBNRanges {
     private static final Range[] RULE_978_9918 = new Range[] { new Range(1, 978991800000L, 978991809999L),
             new Range(2, 978991820000L, 978991829999L), new Range(3, 978991860000L, 978991879999L),
             new Range(4, 978991895000L, 978991899999L), };
-    private static final Range[] RULE_978_9919 = new Range[] { new Range(2, 978991920000L, 978991927999L),
-            new Range(3, 978991950000L, 978991959999L), new Range(4, 978991995000L, 978991999999L), };
+    private static final Range[] RULE_978_9919 = new Range[] { new Range(1, 978991900000L, 978991909999L),
+            new Range(2, 978991920000L, 978991929999L), new Range(3, 978991950000L, 978991959999L),
+            new Range(4, 978991995000L, 978991999999L), };
     private static final Range[] RULE_978_9920 = new Range[] { new Range(2, 978992030000L, 978992041999L),
             new Range(3, 978992050000L, 978992079999L), new Range(4, 978992087500L, 978992099999L), };
     private static final Range[] RULE_978_9921 = new Range[] { new Range(1, 978992100000L, 978992109999L),

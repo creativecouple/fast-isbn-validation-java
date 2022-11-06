@@ -17,8 +17,8 @@
 ]>
 <ISBNRangeMessage>
 	<MessageSource>International ISBN Agency</MessageSource>
-	<MessageSerialNumber>f9051bd5-2bc0-4f41-aecc-4f4524b1dbd1</MessageSerialNumber>
-	<MessageDate>Tue, 18 Oct 2022 10:28:29 BST</MessageDate>
+	<MessageSerialNumber>5c7ab960-c515-4ada-a43f-f4d945ad9ccc</MessageSerialNumber>
+	<MessageDate>Sun, 6 Nov 2022 22:14:06 GMT</MessageDate>
 	<EAN.UCCPrefixes>
 		<EAN.UCC>
 			<Prefix>978</Prefix>
@@ -1265,11 +1265,11 @@
 					<Length>0</Length>
 				</Rule>
 				<Rule>
-					<Range>5000000-6349999</Range>
+					<Range>5000000-6449999</Range>
 					<Length>4</Length>
 				</Rule>
 				<Rule>
-					<Range>6350000-9449999</Range>
+					<Range>6450000-9449999</Range>
 					<Length>0</Length>
 				</Rule>
 				<Rule>
@@ -3219,8 +3219,16 @@
 					<Length>3</Length>
 				</Rule>
 				<Rule>
-					<Range>8500000-8999999</Range>
+					<Range>8500000-8929999</Range>
 					<Length>5</Length>
+				</Rule>
+				<Rule>
+					<Range>8930000-8949999</Range>
+					<Length>3</Length>
+				</Rule>
+				<Rule>
+					<Range>8950000-8999999</Range>
+					<Length>4</Length>
 				</Rule>
 				<Rule>
 					<Range>9000000-9899999</Range>
@@ -3551,8 +3559,16 @@
 					<Length>4</Length>
 				</Rule>
 				<Rule>
-					<Range>5000000-8299999</Range>
+					<Range>5000000-8249999</Range>
 					<Length>3</Length>
+				</Rule>
+				<Rule>
+					<Range>8250000-8279999</Range>
+					<Length>4</Length>
+				</Rule>
+				<Rule>
+					<Range>8280000-8299999</Range>
+					<Length>5</Length>
 				</Rule>
 				<Rule>
 					<Range>8300000-8499999</Range>
@@ -3889,15 +3905,19 @@
 			<Agency>Mongolia</Agency>
 			<Rules>
 				<Rule>
-					<Range>0000000-1999999</Range>
+					<Range>0000000-0999999</Range>
+					<Length>1</Length>
+				</Rule>
+				<Rule>
+					<Range>1000000-1999999</Range>
 					<Length>0</Length>
 				</Rule>
 				<Rule>
-					<Range>2000000-2799999</Range>
+					<Range>2000000-2999999</Range>
 					<Length>2</Length>
 				</Rule>
 				<Rule>
-					<Range>2800000-4999999</Range>
+					<Range>3000000-4999999</Range>
 					<Length>0</Length>
 				</Rule>
 				<Rule>
