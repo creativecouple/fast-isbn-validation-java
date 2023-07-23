@@ -17,8 +17,8 @@
         ]>
 <ISBNRangeMessage>
     <MessageSource>International ISBN Agency</MessageSource>
-    <MessageSerialNumber>2c097ee6-7736-4ac1-8e3d-cf221a02cb25</MessageSerialNumber>
-    <MessageDate>Sun, 11 Jun 2023 08:29:45 BST</MessageDate>
+    <MessageSerialNumber>70bcb40a-2119-46e7-8333-900e3f892fc5</MessageSerialNumber>
+    <MessageDate>Sun, 23 Jul 2023 09:05:52 BST</MessageDate>
     <EAN.UCCPrefixes>
         <EAN.UCC>
             <Prefix>978</Prefix>
@@ -3755,6 +3755,28 @@
             </Rules>
         </Group>
         <Group>
+            <Prefix>978-9910</Prefix>
+            <Agency>Uzbekistan</Agency>
+            <Rules>
+                <Rule>
+                    <Range>0000000-7299999</Range>
+                    <Length>0</Length>
+                </Rule>
+                <Rule>
+                    <Range>7300000-7499999</Range>
+                    <Length>3</Length>
+                </Rule>
+                <Rule>
+                    <Range>7500000-9649999</Range>
+                    <Length>0</Length>
+                </Rule>
+                <Rule>
+                    <Range>9650000-9999999</Range>
+                    <Length>4</Length>
+                </Rule>
+            </Rules>
+        </Group>
+        <Group>
             <Prefix>978-9911</Prefix>
             <Agency>Montenegro</Agency>
             <Rules>
@@ -4045,11 +4067,11 @@
                     <Length>0</Length>
                 </Rule>
                 <Rule>
-                    <Range>3000000-4199999</Range>
+                    <Range>3000000-4299999</Range>
                     <Length>2</Length>
                 </Rule>
                 <Rule>
-                    <Range>4200000-4999999</Range>
+                    <Range>4300000-4999999</Range>
                     <Length>0</Length>
                 </Rule>
                 <Rule>
@@ -7341,15 +7363,11 @@
                     <Length>2</Length>
                 </Rule>
                 <Rule>
-                    <Range>6000000-7999999</Range>
+                    <Range>6000000-8199999</Range>
                     <Length>3</Length>
                 </Rule>
                 <Rule>
-                    <Range>8000000-8499999</Range>
-                    <Length>0</Length>
-                </Rule>
-                <Rule>
-                    <Range>8500000-8999999</Range>
+                    <Range>8200000-8999999</Range>
                     <Length>2</Length>
                 </Rule>
                 <Rule>
@@ -7379,11 +7397,11 @@
                     <Length>3</Length>
                 </Rule>
                 <Rule>
-                    <Range>8000000-9949999</Range>
+                    <Range>8000000-9749999</Range>
                     <Length>0</Length>
                 </Rule>
                 <Rule>
-                    <Range>9950000-9999999</Range>
+                    <Range>9750000-9999999</Range>
                     <Length>3</Length>
                 </Rule>
             </Rules>
@@ -7720,6 +7738,32 @@
                 </Rule>
                 <Rule>
                     <Range>9500000-9999999</Range>
+                    <Length>3</Length>
+                </Rule>
+            </Rules>
+        </Group>
+        <Group>
+            <Prefix>978-99993</Prefix>
+            <Agency>Mauritius</Agency>
+            <Rules>
+                <Rule>
+                    <Range>0000000-0999999</Range>
+                    <Length>1</Length>
+                </Rule>
+                <Rule>
+                    <Range>1000000-4999999</Range>
+                    <Length>0</Length>
+                </Rule>
+                <Rule>
+                    <Range>5000000-5499999</Range>
+                    <Length>2</Length>
+                </Rule>
+                <Rule>
+                    <Range>5500000-9799999</Range>
+                    <Length>0</Length>
+                </Rule>
+                <Rule>
+                    <Range>9800000-9999999</Range>
                     <Length>3</Length>
                 </Rule>
             </Rules>

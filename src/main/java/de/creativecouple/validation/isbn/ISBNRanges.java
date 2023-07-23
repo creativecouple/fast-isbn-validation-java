@@ -30,9 +30,9 @@ import java.util.HashMap;
  *
  * @source International ISBN Agency
  *
- * @serial 2c097ee6-7736-4ac1-8e3d-cf221a02cb25
+ * @serial 70bcb40a-2119-46e7-8333-900e3f892fc5
  *
- * @version Sun, 11 Jun 2023 08:29:45 BST
+ * @version Sun, 23 Jul 2023 09:05:52 BST
  *
  * @author Peter Liske (CreativeCouple)
  */
@@ -470,6 +470,8 @@ final class ISBNRanges {
             new Range(2, 978989370000L, 978989529999L), new Range(5, 978989530000L, 978989549999L),
             new Range(3, 978989550000L, 978989799999L), new Range(4, 978989800000L, 978989949999L),
             new Range(5, 978989950000L, 978989999999L), };
+    private static final Range[] RULE_978_9910 = new Range[] { new Range(3, 978991073000L, 978991074999L),
+            new Range(4, 978991096500L, 978991099999L), };
     private static final Range[] RULE_978_9911 = new Range[] { new Range(2, 978991120000L, 978991124999L),
             new Range(3, 978991155000L, 978991174999L), };
     private static final Range[] RULE_978_9912 = new Range[] { new Range(2, 978991240000L, 978991244999L),
@@ -493,7 +495,7 @@ final class ISBNRanges {
     private static final Range[] RULE_978_9919 = new Range[] { new Range(1, 978991900000L, 978991909999L),
             new Range(2, 978991920000L, 978991929999L), new Range(3, 978991950000L, 978991959999L),
             new Range(4, 978991990000L, 978991999999L), };
-    private static final Range[] RULE_978_9920 = new Range[] { new Range(2, 978992030000L, 978992041999L),
+    private static final Range[] RULE_978_9920 = new Range[] { new Range(2, 978992030000L, 978992042999L),
             new Range(3, 978992050000L, 978992079999L), new Range(4, 978992087500L, 978992099999L), };
     private static final Range[] RULE_978_9921 = new Range[] { new Range(1, 978992100000L, 978992109999L),
             new Range(2, 978992130000L, 978992139999L), new Range(3, 978992170000L, 978992189999L),
@@ -882,11 +884,11 @@ final class ISBNRanges {
             new Range(3, 978999758000L, 978999759999L), };
     private static final Range[] RULE_978_99976 = new Range[] { new Range(1, 978999760000L, 978999760999L),
             new Range(2, 978999761000L, 978999761599L), new Range(3, 978999761600L, 978999761999L),
-            new Range(2, 978999762000L, 978999765999L), new Range(3, 978999766000L, 978999767999L),
-            new Range(2, 978999768500L, 978999768999L), new Range(3, 978999769000L, 978999769999L), };
+            new Range(2, 978999762000L, 978999765999L), new Range(3, 978999766000L, 978999768199L),
+            new Range(2, 978999768200L, 978999768999L), new Range(3, 978999769000L, 978999769999L), };
     private static final Range[] RULE_978_99977 = new Range[] { new Range(1, 978999770000L, 978999771999L),
             new Range(2, 978999774000L, 978999776999L), new Range(3, 978999777000L, 978999777999L),
-            new Range(3, 978999779950L, 978999779999L), };
+            new Range(3, 978999779750L, 978999779999L), };
     private static final Range[] RULE_978_99978 = new Range[] { new Range(1, 978999780000L, 978999784999L),
             new Range(2, 978999785000L, 978999786999L), new Range(3, 978999787000L, 978999789999L), };
     private static final Range[] RULE_978_99979 = new Range[] { new Range(1, 978999790000L, 978999793999L),
@@ -914,6 +916,8 @@ final class ISBNRanges {
             new Range(2, 978999905000L, 978999905499L), new Range(3, 978999909750L, 978999909999L), };
     private static final Range[] RULE_978_99992 = new Range[] { new Range(1, 978999920000L, 978999921999L),
             new Range(2, 978999925000L, 978999926499L), new Range(3, 978999929500L, 978999929999L), };
+    private static final Range[] RULE_978_99993 = new Range[] { new Range(1, 978999930000L, 978999930999L),
+            new Range(2, 978999935000L, 978999935499L), new Range(3, 978999939800L, 978999939999L), };
     private static final Range[] RULE_979_10 = new Range[] { new Range(2, 979100000000L, 979101999999L),
             new Range(3, 979102000000L, 979106999999L), new Range(4, 979107000000L, 979108999999L),
             new Range(5, 979109000000L, 979109759999L), new Range(6, 979109760000L, 979109999999L), };
@@ -948,21 +952,21 @@ final class ISBNRanges {
                     RULE_978_975, RULE_978_976, RULE_978_977, RULE_978_978, RULE_978_979, RULE_978_980, RULE_978_981,
                     RULE_978_982, RULE_978_983, RULE_978_984, RULE_978_985, RULE_978_986, RULE_978_987, RULE_978_988,
                     RULE_978_989),
-            new Range(4, 978990000000L, 978998999999L, null, null, null, null, null, null, null, null, null, null, null,
-                    RULE_978_9911, RULE_978_9912, RULE_978_9913, RULE_978_9914, RULE_978_9915, RULE_978_9916,
-                    RULE_978_9917, RULE_978_9918, RULE_978_9919, RULE_978_9920, RULE_978_9921, RULE_978_9922,
-                    RULE_978_9923, RULE_978_9924, RULE_978_9925, RULE_978_9926, RULE_978_9927, RULE_978_9928,
-                    RULE_978_9929, RULE_978_9930, RULE_978_9931, RULE_978_9932, RULE_978_9933, RULE_978_9934,
-                    RULE_978_9935, RULE_978_9936, RULE_978_9937, RULE_978_9938, RULE_978_9939, RULE_978_9940,
-                    RULE_978_9941, RULE_978_9942, RULE_978_9943, RULE_978_9944, RULE_978_9945, RULE_978_9946,
-                    RULE_978_9947, RULE_978_9948, RULE_978_9949, RULE_978_9950, RULE_978_9951, RULE_978_9952,
-                    RULE_978_9953, RULE_978_9954, RULE_978_9955, RULE_978_9956, RULE_978_9957, RULE_978_9958,
-                    RULE_978_9959, RULE_978_9960, RULE_978_9961, RULE_978_9962, RULE_978_9963, RULE_978_9964,
-                    RULE_978_9965, RULE_978_9966, RULE_978_9967, RULE_978_9968, RULE_978_9969, RULE_978_9970,
-                    RULE_978_9971, RULE_978_9972, RULE_978_9973, RULE_978_9974, RULE_978_9975, RULE_978_9976,
-                    RULE_978_9977, RULE_978_9978, RULE_978_9979, RULE_978_9980, RULE_978_9981, RULE_978_9982,
-                    RULE_978_9983, RULE_978_9984, RULE_978_9985, RULE_978_9986, RULE_978_9987, RULE_978_9988,
-                    RULE_978_9989),
+            new Range(4, 978990000000L, 978998999999L, null, null, null, null, null, null, null, null, null, null,
+                    RULE_978_9910, RULE_978_9911, RULE_978_9912, RULE_978_9913, RULE_978_9914, RULE_978_9915,
+                    RULE_978_9916, RULE_978_9917, RULE_978_9918, RULE_978_9919, RULE_978_9920, RULE_978_9921,
+                    RULE_978_9922, RULE_978_9923, RULE_978_9924, RULE_978_9925, RULE_978_9926, RULE_978_9927,
+                    RULE_978_9928, RULE_978_9929, RULE_978_9930, RULE_978_9931, RULE_978_9932, RULE_978_9933,
+                    RULE_978_9934, RULE_978_9935, RULE_978_9936, RULE_978_9937, RULE_978_9938, RULE_978_9939,
+                    RULE_978_9940, RULE_978_9941, RULE_978_9942, RULE_978_9943, RULE_978_9944, RULE_978_9945,
+                    RULE_978_9946, RULE_978_9947, RULE_978_9948, RULE_978_9949, RULE_978_9950, RULE_978_9951,
+                    RULE_978_9952, RULE_978_9953, RULE_978_9954, RULE_978_9955, RULE_978_9956, RULE_978_9957,
+                    RULE_978_9958, RULE_978_9959, RULE_978_9960, RULE_978_9961, RULE_978_9962, RULE_978_9963,
+                    RULE_978_9964, RULE_978_9965, RULE_978_9966, RULE_978_9967, RULE_978_9968, RULE_978_9969,
+                    RULE_978_9970, RULE_978_9971, RULE_978_9972, RULE_978_9973, RULE_978_9974, RULE_978_9975,
+                    RULE_978_9976, RULE_978_9977, RULE_978_9978, RULE_978_9979, RULE_978_9980, RULE_978_9981,
+                    RULE_978_9982, RULE_978_9983, RULE_978_9984, RULE_978_9985, RULE_978_9986, RULE_978_9987,
+                    RULE_978_9988, RULE_978_9989),
             new Range(5, 978999000000L, 978999999999L, null, RULE_978_99901, RULE_978_99902, RULE_978_99903,
                     RULE_978_99904, RULE_978_99905, RULE_978_99906, null, RULE_978_99908, RULE_978_99909,
                     RULE_978_99910, RULE_978_99911, RULE_978_99912, RULE_978_99913, RULE_978_99914, RULE_978_99915,
@@ -978,8 +982,8 @@ final class ISBNRanges {
                     RULE_978_99970, RULE_978_99971, RULE_978_99972, RULE_978_99973, RULE_978_99974, RULE_978_99975,
                     RULE_978_99976, RULE_978_99977, RULE_978_99978, RULE_978_99979, RULE_978_99980, RULE_978_99981,
                     RULE_978_99982, RULE_978_99983, RULE_978_99984, RULE_978_99985, RULE_978_99986, RULE_978_99987,
-                    RULE_978_99988, RULE_978_99989, RULE_978_99990, null, RULE_978_99992, null, null, null, null, null,
-                    null, null), };
+                    RULE_978_99988, RULE_978_99989, RULE_978_99990, null, RULE_978_99992, RULE_978_99993, null, null,
+                    null, null, null, null), };
     private static final Range[] RULE_979 = new Range[] {
             new Range(2, 979100000000L, 979129999999L, RULE_979_10, RULE_979_11, RULE_979_12),
             new Range(1, 979800000000L, 979899999999L, RULE_979_8), };
@@ -1082,6 +1086,7 @@ final class ISBNRanges {
         AGENCIES.put("978-987", "Argentina");
         AGENCIES.put("978-988", "Hong Kong, China");
         AGENCIES.put("978-989", "Portugal");
+        AGENCIES.put("978-9910", "Uzbekistan");
         AGENCIES.put("978-9911", "Montenegro");
         AGENCIES.put("978-9912", "Tanzania");
         AGENCIES.put("978-9913", "Uganda");
@@ -1251,6 +1256,7 @@ final class ISBNRanges {
         AGENCIES.put("978-99989", "Paraguay");
         AGENCIES.put("978-99990", "Ethiopia");
         AGENCIES.put("978-99992", "Oman");
+        AGENCIES.put("978-99993", "Mauritius");
         AGENCIES.put("979-10", "France");
         AGENCIES.put("979-11", "Korea, Republic");
         AGENCIES.put("979-12", "Italy");
