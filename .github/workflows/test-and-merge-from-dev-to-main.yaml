@@ -22,5 +22,5 @@ jobs:
 
       - name: Commit formatted changes
         run: |
-          git commit -a --amend --no-edit
+          git -c "user.name=Jenkins" -c "user.email=jenkins@creativecouple.de" commit -a --amend --no-edit
           git push origin HEAD:main
