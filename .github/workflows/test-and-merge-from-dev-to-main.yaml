@@ -15,9 +15,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: maven
 
       - name: Test and format the changes
-        run: mvn --batch-mode verify
+        run: mvn --batch-mode clean verify -Dgpg.skip=true
 
       - name: Commit formatted changes
         run: |
