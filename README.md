@@ -1,4 +1,4 @@
-Parse/format/validate ISBNs with the official ISBN ranges definition. <br/>
+Parse/format/validate ISBNs with the **official ISBN ranges** definition. <br/>
 The parser is optimized for speed, the ISBN class for simplicity.
 
 [![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/isbn-core/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/isbn-core)
@@ -17,7 +17,7 @@ The dashes will be inserted automatically at the correct positions for grouping 
 agency prefix, group code, publisher code, and title code.
 
 Example:
-- :x: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (on amazon.com)
+- :x: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (e.g. on amazon.com)
 - :heavy_check_mark: correct grouping: 978-0-557-50469-5
 
 The [ISBN domain object](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBN.html)
@@ -88,17 +88,6 @@ International ISBN Agency. When there are changes then a new version of this lib
 
 You can clone this repository locally and build as a standard maven project.
 Feel free to open issues to this repository or create pull requests.
-
-### Generate a new ISBN range definition
-
-1. Download the ISBN ranges as XML file from: https://www.isbn-international.org/range_file_generation.
-1. Name the downloaded file `RangeMessage.xml` and put it into the local directory `generate`.
-1. From within `generate` directory, run the shell command:
-`java GenerateIsbnRanges.java < RangeMessage.xml > ../src/main/java/de/creativecouple/validation/isbn/ISBNRanges.java`
-1. From the project directory run `mvn clean test`
-
-The formatter plugin will auto-format all source files during the maven run.
-So you are able to easily spot the differences since the previous version.
 
 ## Disclaimer
 

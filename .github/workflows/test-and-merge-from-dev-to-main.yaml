@@ -1,0 +1,25 @@
+name: test, format, and push
+on:
+  push:
+    branches: [dev]
+permissions:
+  contents: write
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Test and format the changes
+        run: mvn --batch-mode verify
+
+      - name: Commit formatted changes
+        run: |
+          git commit -a --amend --no-edit
+          git push origin HEAD:main
