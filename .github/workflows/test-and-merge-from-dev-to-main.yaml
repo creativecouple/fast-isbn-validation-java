@@ -2,6 +2,7 @@ name: test, format, and push
 on:
   push:
     branches: [dev]
+    paths: ['**.java']
 permissions:
   contents: write
 jobs:
@@ -9,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Checkout current changes
+        run: git rebase $GITHUB_SHA
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -20,7 +26,8 @@ jobs:
       - name: Test and format the changes
         run: mvn --batch-mode clean verify -Dgpg.skip=true
 
-      - name: Commit formatted changes
+      - name: Commit and push changes
         run: |
-          git -c "user.name=Jenkins" -c "user.email=jenkins@creativecouple.de" commit -a --amend --no-edit
+          git -c "user.name=Jenkins" -c "user.email=jenkins@creativecouple.de" commit -a --amend --no-edit --allow-empty
+          git rebase --no-keep-empty --empty=drop --force-rebase origin/main
           git push origin HEAD:main
