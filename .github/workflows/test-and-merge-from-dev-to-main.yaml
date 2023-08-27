@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: main
+          fetch-depth: 0
 
       - name: Checkout current changes
         run: git rebase $GITHUB_SHA
