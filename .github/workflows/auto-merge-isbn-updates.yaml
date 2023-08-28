@@ -1,15 +1,15 @@
-name: test, format, and push
+name: merge automated ISBN updates into main
 on:
   push:
-    branches: [dev]
-    paths: ['**.java']
+    branches: ['update-isbn-ranges/JENKINS-**']
 permissions:
   contents: write
 jobs:
-  report:
+  Test_And_Merge:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout main branch
+        uses: actions/checkout@v3
         with:
           ref: main
           fetch-depth: 0
@@ -30,8 +30,11 @@ jobs:
       - name: Test and format the changes
         run: mvn --batch-mode clean verify -Dgpg.skip=true
 
-      - name: Commit and push changes
+      - name: Merge changes
         run: |
           git commit -a --amend --no-edit --allow-empty
           git rebase --no-keep-empty --empty=drop --force-rebase origin/main
           git push
+
+      - name: Remove obsolete branch
+        run: git push origin --delete $GITHUB_REF_NAME

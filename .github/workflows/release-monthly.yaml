@@ -1,0 +1,63 @@
+name: release new version to Maven Central
+on:
+  schedule:
+    # twice per month, always on the 3rd and 17th at 17:17 UTC
+    - cron: '17 17 3,17 * *'
+permissions:
+  contents: write
+jobs:
+  Monthly_Release:
+    runs-on: ubuntu-latest
+    env:
+      changes_found: ''
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Identify release-relevant changes
+        run: |
+          git config --global user.email "jenkins@creativecouple.de"
+          git config --global user.name "Jenkins"
+          echo "changes_found=$(git diff --name-only release-latest..main src/main/java | head -n 1)" >> $GITHUB_ENV
+
+      - name: Install gpg secret key
+        run: |
+          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG
+
+      - name: Set up JDK 17
+        if: env.changes_found != ''
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Prepare new release
+        if: env.changes_found != ''
+        run: |
+          mvn build-helper:parse-version versions:set '-DnewVersion=${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}'
+          NEW_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          git add pom.xml
+          git commit -m "release new version $NEW_VERSION"
+          git tag "release-$NEW_VERSION"
+
+      - name: Publish to Central Repository
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+        run: |
+          mvn \
+            --no-transfer-progress \
+            --batch-mode \
+            -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \
+            clean deploy
+
+      - name: Update tags
+        run: |
+          git tag -f release-latest
+          git push -f --tags
+          git push
