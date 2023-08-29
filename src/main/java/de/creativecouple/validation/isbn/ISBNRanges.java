@@ -30,9 +30,9 @@ import java.util.HashMap;
  *
  * @source International ISBN Agency
  *
- * @serial 3c2dcaff-3656-496e-95e8-d9ae47c6dd9d
+ * @serial 17779dfa-8f8f-4c51-9c4d-3ebcc89524e8
  *
- * @version Sun, 27 Aug 2023 19:36:42 BST
+ * @version Tue, 29 Aug 2023 19:56:09 BST
  *
  * @author Peter Liske (CreativeCouple)
  */
@@ -928,9 +928,9 @@ final class ISBNRanges {
     private static final Range[] RULE_979_12 = new Range[] { new Range(3, 979122000000L, 979122999999L),
             new Range(4, 979125450000L, 979125999999L), new Range(5, 979128000000L, 979128499999L), };
     private static final Range[] RULE_979_8 = new Range[] { new Range(3, 979820000000L, 979822999999L),
-            new Range(4, 979835000000L, 979839999999L), new Range(4, 979840000000L, 979884999999L),
-            new Range(4, 979885000000L, 979888499999L), new Range(5, 979888500000L, 979889999999L),
-            new Range(7, 979898500000L, 979898999999L), };
+            new Range(4, 979832000000L, 979834999999L), new Range(4, 979835000000L, 979888499999L),
+            new Range(5, 979888500000L, 979889999999L), new Range(5, 979890000000L, 979890999999L),
+            new Range(7, 979898500000L, 979898999999L), new Range(7, 979899000000L, 979899299999L), };
     private static final Range[] RULE_978 = new Range[] {
             new Range(1, 978000000000L, 978599999999L, RULE_978_0, RULE_978_1, RULE_978_2, RULE_978_3, RULE_978_4,
                     RULE_978_5),
