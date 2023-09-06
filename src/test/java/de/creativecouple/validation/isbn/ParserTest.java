@@ -24,33 +24,50 @@ package de.creativecouple.validation.isbn;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ParserTest {
 
     @Test
     void testParsingPerformanceForCorrectEAN13() {
+        int step = 37;
+        long from = 978_000_000_000L;
+        long to = 980_000_000_000L;
+        final int nr = (int) (to - from) / step + 1;
+        byte[] checkdigits = new byte[nr];
+        {
+            int i = 0;
+            for (long l = from; l < to; l += step) {
+                checkdigits[i++] = (byte) calculateCheckDigit(l);
+            }
+        }
         long start = System.currentTimeMillis();
         long invalid = 0, valid = 0;
-        for (long i = 978_000_000_000L; i < 980_000_000_000L; i += 137) {
-            ISBN isbn = Parser.parse("" + i + Parser.calculateCheckDigit(i));
+        int i = 0;
+        for (long l = from; l < to; l += step) {
+            ISBN isbn = Parser.parse("" + l + checkdigits[i++]);
             if (isbn == null) {
                 invalid++;
             } else {
                 valid++;
             }
         }
-        long duration = System.currentTimeMillis() - start;
-        System.out.println(
-                "valid: " + valid + ", invalid: " + invalid + ", => " + ((invalid + valid) / duration) + " ops/ms");
-        assertThat(duration).isLessThan(10_000L);
+        long duration = System.currentTimeMillis() - start + 1;
+        System.out.printf("valid: %d, invalid: %d, => %d ops/ms%n", valid, invalid, (invalid + valid) / duration);
+        assertThat(duration).isLessThan(20_000L);
     }
 
     @Test
     void testParsingPerformanceForWrongCheckdigit() {
         long start = System.currentTimeMillis();
         long invalid = 0, valid = 0;
-        for (long i = 978_000_000_000_0L; i < 980_000_000_000_0L; i += 1337) {
+        for (long i = 978_000_000_000_0L; i < 980_000_000_000_0L; i += 371) {
             ISBN isbn = Parser.parse("" + i);
             if (isbn == null) {
                 invalid++;
@@ -59,9 +76,8 @@ class ParserTest {
             }
         }
         long duration = System.currentTimeMillis() - start;
-        System.out.println(
-                "valid: " + valid + ", invalid: " + invalid + ", => " + ((invalid + valid) / duration) + " ops/ms");
-        assertThat(duration).isLessThan(10_000L);
+        System.out.printf("valid: %d, invalid: %d, => %d ops/ms%n", valid, invalid, (invalid + valid) / duration);
+        assertThat(duration).isLessThan(20_000L);
     }
 
     @Test
@@ -74,5 +90,13 @@ class ParserTest {
     void testUnassignedGroupRange() {
         assertThat(Parser.parse("978-611001122-8")).isNull();
         assertThat(Parser.parse("979-444444444-5")).isNull();
+    }
+
+    private int calculateCheckDigit(long value) {
+        int sum = 0;
+        for (int i = 0, weight = 3; i < 12; i++, weight ^= 2, value /= 10) {
+            sum += weight * (int) (value % 10L);
+        }
+        return (10 - (sum % 10)) % 10;
     }
 }

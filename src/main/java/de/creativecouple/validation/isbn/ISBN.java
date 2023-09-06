@@ -40,23 +40,14 @@ import java.net.URI;
  *
  * @author Peter Liske (CreativeCouple)
  */
-public final class ISBN implements Serializable {
+public final class ISBN implements Serializable, Comparable<ISBN> {
 
-    private final String prefix;
-    private final String group;
-    private final String publisher;
-    private final String title;
-    private final char checkdigit;
+    private final String isbn;
+    private final Hyphenation hyphenation;
 
-    private final String isbn13String;
-
-    ISBN(String prefix, String group, String publisher, String title, char checkdigit) {
-        this.prefix = prefix;
-        this.group = group;
-        this.publisher = publisher;
-        this.title = title;
-        this.checkdigit = checkdigit;
-        this.isbn13String = prefix + '-' + group + '-' + publisher + '-' + title + '-' + checkdigit;
+    ISBN(String isbn, Hyphenation hyphenation) {
+        this.isbn = isbn;
+        this.hyphenation = hyphenation;
     }
 
     /**
@@ -72,7 +63,7 @@ public final class ISBN implements Serializable {
      * @return the ISBN prefix, e.g. "978" or "979"
      */
     public String getPrefix() {
-        return prefix;
+        return isbn.substring(0, hyphenation.eanPrefixLength);
     }
 
     /**
@@ -82,7 +73,7 @@ public final class ISBN implements Serializable {
      * @return the agency's name associated with the ISBN prefix
      */
     public String getAgencyName() {
-        return ISBNRanges.AGENCIES.get(prefix);
+        return ISBNRanges.agencies.get(getPrefix());
     }
 
     /**
@@ -98,7 +89,7 @@ public final class ISBN implements Serializable {
      * @return the group code of the ISBN, e.g. "0" or "610"
      */
     public String getGroup() {
-        return group;
+        return isbn.substring(hyphenation.eanPrefixLength, hyphenation.groupPrefixLength);
     }
 
     /**
@@ -113,7 +104,7 @@ public final class ISBN implements Serializable {
      * @return the group code of the ISBN, e.g. "978-0"
      */
     public String getGroupPrefix() {
-        return prefix + '-' + group;
+        return getPrefix() + '-' + getGroup();
     }
 
     /**
@@ -122,12 +113,12 @@ public final class ISBN implements Serializable {
      * @return the agency's name associated with the group prefix, e.g. "English language" or "Turkey"
      */
     public String getGroupName() {
-        return ISBNRanges.AGENCIES.get(getGroupPrefix());
+        return ISBNRanges.agencies.get(getGroupPrefix());
     }
 
     /**
-     * There are local ISBN agencies around the world who take care of assigning number ranges for publishers. This is
-     * the publisher code third piece of the ISBN.
+     * There are local ISBN agencies around the world who take care of assigning number ranges for publishers. This
+     * publisher code is the third piece of the ISBN.
      *
      * <pre>
      *        ,–––⹁
@@ -138,7 +129,7 @@ public final class ISBN implements Serializable {
      * @return the publisher code of the ISBN, e.g. "557"
      */
     public String getPublisher() {
-        return publisher;
+        return isbn.substring(hyphenation.groupPrefixLength, hyphenation.publisherPrefixLength);
     }
 
     /**
@@ -153,7 +144,7 @@ public final class ISBN implements Serializable {
      * @return the publisher's prefix of the ISBN, e.g. "978-0-557"
      */
     public String getPublisherPrefix() {
-        return prefix + '-' + group + '-' + publisher;
+        return getPrefix() + '-' + getGroup() + '-' + getPublisher();
     }
 
     /**
@@ -169,7 +160,7 @@ public final class ISBN implements Serializable {
      * @return the title code of the ISBN, e.g. "50469"
      */
     public String getTitle() {
-        return title;
+        return isbn.substring(hyphenation.publisherPrefixLength, 12);
     }
 
     /**
@@ -186,7 +177,7 @@ public final class ISBN implements Serializable {
      * @return the checkdigit of the ISBN, e.g. '5'
      */
     public char getCheckdigit() {
-        return checkdigit;
+        return isbn.charAt(12);
     }
 
     /**
@@ -196,7 +187,7 @@ public final class ISBN implements Serializable {
      */
     @Override
     public String toString() {
-        return isbn13String;
+        return getPrefix() + '-' + getGroup() + '-' + getPublisher() + '-' + getTitle() + '-' + getCheckdigit();
     }
 
     /**
@@ -205,7 +196,7 @@ public final class ISBN implements Serializable {
      * @return the compact ISBN-13 representation, e.g. "9780557504695"
      */
     public String toCompactString() {
-        return prefix + group + publisher + title + checkdigit;
+        return isbn;
     }
 
     /**
@@ -224,7 +215,7 @@ public final class ISBN implements Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof ISBN && ((ISBN) obj).isbn13String.equals(isbn13String);
+        return obj instanceof ISBN && ((ISBN) obj).isbn.equals(isbn);
     }
 
     /**
@@ -232,7 +223,15 @@ public final class ISBN implements Serializable {
      */
     @Override
     public int hashCode() {
-        return isbn13String.hashCode();
+        return isbn.hashCode();
+    }
+
+    /**
+     * @see Comparable#compareTo(Object)
+     */
+    @Override
+    public int compareTo(ISBN isbn) {
+        return this.isbn.compareTo(isbn.isbn);
     }
 
     /**
@@ -249,6 +248,41 @@ public final class ISBN implements Serializable {
             throw new NumberFormatException("ISBN invalid: '" + isbn + "'");
         }
         return parsed;
+    }
+
+    static final class Hyphenation {
+        final int eanPrefixLength;
+        final int groupPrefixLength;
+        final int publisherPrefixLength;
+
+        Hyphenation(int eanPrefixLength, int groupPrefixLength, int publisherPrefixLength) {
+            this.eanPrefixLength = eanPrefixLength;
+            this.groupPrefixLength = groupPrefixLength;
+            this.publisherPrefixLength = publisherPrefixLength;
+        }
+
+        @Override
+        public int hashCode() {
+            return eanPrefixLength + 13 * groupPrefixLength + 1331 * publisherPrefixLength;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+
+            Hyphenation that = (Hyphenation) o;
+            return (eanPrefixLength == that.eanPrefixLength) && (groupPrefixLength == that.groupPrefixLength)
+                    && (publisherPrefixLength == that.publisherPrefixLength);
+        }
+    }
+
+    public static void updateRangeDefinition() {
+        ISBNRanges.updateRangeDefinition();
     }
 
 }

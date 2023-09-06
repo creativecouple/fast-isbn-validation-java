@@ -22,22 +22,25 @@
  */
 package de.creativecouple.validation.isbn;
 
-class Range {
+import org.junit.jupiter.api.Test;
 
-    final int width;
-    final long lower;
-    final long upper;
-    final Range[][] rules;
+import static org.assertj.core.api.Assertions.assertThat;
 
-    Range(int width, long lower, long upper) {
-        this(width, lower, upper, (Range[][]) null);
+class ISBNUpdateIT {
+
+    @Test
+    void updateRangeDefinitionsOnline() {
+        String groupName1 = ISBN.valueOf("9780639963549").getGroupName();
+        assertThat(groupName1).isEqualTo("English language");
+        String groupName2 = ISBN.valueOf("9780639964744").getGroupName();
+        assertThat(groupName2).isSameAs(groupName1);
+
+        ISBN.updateRangeDefinition();
+
+        String groupName3 = ISBN.valueOf("9780639963549").getGroupName();
+        assertThat(groupName3).isEqualTo(groupName1);
+        assertThat(groupName3).isNotSameAs(groupName1);
+        String groupName4 = ISBN.valueOf("9780639964744").getGroupName();
+        assertThat(groupName4).isSameAs(groupName3);
     }
-
-    Range(int width, long lower, long upper, Range[]... rules) {
-        this.width = width;
-        this.lower = lower;
-        this.upper = upper;
-        this.rules = rules;
-    }
-
 }
