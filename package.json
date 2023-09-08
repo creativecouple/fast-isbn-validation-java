@@ -1,0 +1,28 @@
+{
+  "name": "isbn-validation-js",
+  "version": "0.1.0",
+  "description": "Parse/format/validate ISBNs with the official ISBN ranges definition.",
+  "main": "src/parser.js",
+  "scripts": {
+    "benchmark": "./benchmark/run.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/creativecouple.de/isbn-validation-js.git"
+  },
+  "keywords": [
+    "Official",
+    "ISBN",
+    "Validation"
+  ],
+  "author": "Peter Liske (CreativeCouple)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/creativecouple.de/isbn-validation-js/issues"
+  },
+  "homepage": "https://github.com/creativecouple.de/isbn-validation-js#readme",
+  "devDependencies": {
+    "jest": "^29.6.4"
+  }
+}
