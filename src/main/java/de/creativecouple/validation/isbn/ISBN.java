@@ -251,33 +251,14 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
     }
 
     static final class Hyphenation {
-        final int eanPrefixLength;
-        final int groupPrefixLength;
-        final int publisherPrefixLength;
+        private final int eanPrefixLength;
+        private final int groupPrefixLength;
+        private final int publisherPrefixLength;
 
         Hyphenation(int eanPrefixLength, int groupPrefixLength, int publisherPrefixLength) {
             this.eanPrefixLength = eanPrefixLength;
             this.groupPrefixLength = groupPrefixLength;
             this.publisherPrefixLength = publisherPrefixLength;
-        }
-
-        @Override
-        public int hashCode() {
-            return eanPrefixLength + 13 * groupPrefixLength + 1331 * publisherPrefixLength;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-
-            Hyphenation that = (Hyphenation) o;
-            return (eanPrefixLength == that.eanPrefixLength) && (groupPrefixLength == that.groupPrefixLength)
-                    && (publisherPrefixLength == that.publisherPrefixLength);
         }
     }
 
