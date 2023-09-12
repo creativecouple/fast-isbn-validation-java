@@ -25,11 +25,7 @@ package de.creativecouple.validation.isbn;
 
 import de.creativecouple.validation.isbn.ISBN.Hyphenation;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +37,7 @@ import java.util.Map;
  * @author Peter Liske (CreativeCouple)
  */
 final class ISBNRanges {
-    static final Hyphenation[][][][][][][][][][][] ranges = new Hyphenation['9' + 1][][][][][][][][][][];
+    static final Hyphenation[][][][][][][][][][][][][] ranges = new Hyphenation['9' + 1][][][][][][][][][][][][];
     static final Map<String, String> agencies = new HashMap<>();
 
     private static final String LOCAL_RANGES_FILE = "isbn-ranges.data";
@@ -64,108 +60,9 @@ final class ISBNRanges {
     }
 
     private static void loadRangeDefinition(URL url) throws IOException {
-        try (InputStream input = url.openStream()) {
-            ISBNRanges parser = new ISBNRanges(new BufferedReader(new InputStreamReader(input)));
-            agencies.putAll(parser.parseAgencies());
-            System.arraycopy(parser.parseRangeData(), 0, ranges, 0, ranges.length);
-        }
-    }
-
-    private final BufferedReader input;
-
-    private final Map<String, Object> dashes = new HashMap<>();
-
-    private final Class<?>[] elemClasses = {
-            Hyphenation[][][][][][][][][][].class,
-            Hyphenation[][][][][][][][][].class,
-            Hyphenation[][][][][][][][].class,
-            Hyphenation[][][][][][][].class,
-            Hyphenation[][][][][][].class,
-            Hyphenation[][][][][].class,
-            Hyphenation[][][][].class,
-            Hyphenation[][][].class,
-            Hyphenation[][].class,
-            Hyphenation[].class,
-            Hyphenation.class
-    };
-
-    private ISBNRanges(BufferedReader input) throws IOException {
-        this.input = input;
-        this.skipHeader();
-    }
-
-    private void skipHeader() throws IOException {
-        String line;
-        do {
-            line = input.readLine();
-        } while (line != null && !line.isEmpty());
-    }
-
-    private Map<String, String> parseAgencies() throws IOException {
-        Map<String, String> result = new HashMap<>();
-        String line;
-        do {
-            line = input.readLine();
-        } while (line.isEmpty());
-        do {
-            result.put(line.substring(0, line.indexOf(' ')), line.substring(line.indexOf(' ') + 1));
-            line = input.readLine();
-        } while (line != null && !line.isEmpty());
-        return result;
-    }
-
-    private Hyphenation[][][][][][][][][][][] parseRangeData() throws IOException {
-        parseHyphenations();
-        return (Hyphenation[][][][][][][][][][][]) parseRangeData(0);
-    }
-
-    private Object parseRangeData(int depth) throws IOException {
-        Object result = Array.newInstance(elemClasses[depth], '9' + 1);
-        for (int i = '0', data; i <= '9'; ) {
-            if ((data = input.read()) < 0) {
-                throw new IllegalStateException("unexpected EOF");
-            } else if (data <= ' ') {
-                Array.set(result, i++, parseRangeData(depth + 1));
-            } else if (data >= 'A') {
-                Array.set(result, i++, getHyphenationArray("" + (char) data, depth + 1));
-            } else {
-                for (int j = data - '0'; j > 0; j--) {
-                    Array.set(result, i++, getHyphenationArray("null", depth + 1));
-                }
-            }
-        }
-        return result;
-    }
-
-    private void parseHyphenations() throws IOException {
-        dashes.put("null", null);
-        String line;
-        do {
-            line = input.readLine();
-        } while (line.isEmpty());
-        do {
-            String name = line.substring(0, line.indexOf(' '));
-            String value = line.substring(line.indexOf(' ') + 1);
-            String[] split = value.split("-");
-            dashes.put(name, new Hyphenation(Integer.parseInt(split[0]), Integer.parseInt(split[1]),
-                    Integer.parseInt(split[2])));
-            line = input.readLine();
-        } while (line != null && !line.isEmpty());
-    }
-
-    @SuppressWarnings("unchecked")
-    private <T> T getHyphenationArray(String name, int depth) {
-        if (depth == 11) {
-            return (T) dashes.get(name);
-        }
-        Object elem = getHyphenationArray(name, depth + 1);
-        return (T) dashes.computeIfAbsent(name + "_" + depth, ignore -> {
-            Object result = Array.newInstance(elem == null ? Hyphenation.class : elem.getClass(), '9' + 1);
-            for (int i = '0'; i <= '9'; i++) {
-                Array.set(result, i, elem);
-            }
-            return result;
-        });
+        ISBNRangesLoader parser = new ISBNRangesLoader(url);
+        agencies.putAll(parser.getAgencies());
+        System.arraycopy(parser.getRangeData(), 0, ranges, 0, ranges.length);
     }
 
 }

@@ -22,17 +22,18 @@
  */
 package de.creativecouple.validation.isbn;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ParserTest {
+
+    @BeforeAll
+    static void checkRanges() {
+        assertNotNull(ISBNRanges.ranges);
+    }
 
     @Test
     void testParsingPerformanceForCorrectEAN13() {

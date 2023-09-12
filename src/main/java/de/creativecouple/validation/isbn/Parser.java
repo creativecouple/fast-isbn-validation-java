@@ -30,21 +30,15 @@ final class Parser {
         if (isbnString == null || isbnString.isEmpty()) {
             return null;
         }
-        final char[] isbn = getDigits(isbnString);
+        final char[] isbn = get13Digits(isbnString);
         if (isbn == null) {
             return null;
         }
-        if (!(isbn[10] == 0 ? validateChecksum10(isbn) : validateChecksum13(isbn))) {
-            return null;
-        }
-        Hyphenation hyphenation = ISBNRanges.ranges[isbn[0]][isbn[1]][isbn[2]][isbn[3]][isbn[4]][isbn[5]][isbn[6]][isbn[7]][isbn[8]][isbn[9]][isbn[10]];
-        if (hyphenation == null) {
-            return null;
-        }
-        return new ISBN(new String(isbn), hyphenation);
+        Hyphenation hyphenation = ISBNRanges.ranges[isbn[0]][isbn[1]][isbn[2]][isbn[3]][isbn[4]][isbn[5]][isbn[6]][isbn[7]][isbn[8]][isbn[9]][isbn[10]][isbn[11]][isbn[12]];
+        return hyphenation == null ? null : new ISBN(new String(isbn), hyphenation);
     }
 
-    private static char[] getDigits(CharSequence string) {
+    private static char[] get13Digits(CharSequence string) {
         char[] chars = new char[13];
         int to = string.length() - 1;
         char ch = string.charAt(0);
@@ -66,41 +60,30 @@ final class Parser {
             }
         }
         ch = string.charAt(to);
-        if (charsPos == 9) {
-            chars[10] = 0;
-            if (ch == 'x' || ch == 'X') {
-                chars[9] = '9' + 1;
-                return chars;
+        if (charsPos == 12) {
+            if (ch < '0' || ch > '9') {
+                return null;
             }
-            if (ch >= '0' && ch <= '9') {
-                chars[9] = ch;
-                return chars;
-            }
-            return null;
-        }
-        if (charsPos == 12 && ch >= '0' && ch <= '9') {
             chars[12] = ch;
-            return chars;
+        } else {
+            if (charsPos != 9 || ch < '0' || (ch > '9' && ch != 'x' && ch != 'X')) {
+                return null;
+            }
+            chars[9] = (char) Math.min('9' + 1, ch);
+            convertIsbn10To13(chars);
         }
-        return null;
+        return chars;
     }
 
-    private static boolean validateChecksum10(char[] isbn) {
-        if ((10 * isbn[0] + 9 * isbn[1] + 8 * isbn[2] + 7 * isbn[3] + 6 * isbn[4] + 5 * isbn[5] + 4 * isbn[6] + 3 * isbn[7] + 2 * isbn[8] + isbn[9]) % 11 != 0) {
-            return false;
-        }
-        isbn[12] = (char) ('0' + (10 - ('9' + '8' + isbn[1] + isbn[3] + isbn[5] + isbn[7] + '0' + 3 * ('7' + isbn[0] + isbn[2] + isbn[4] + isbn[6] + isbn[8])) % 10) % 10);
+    private static void convertIsbn10To13(char[] isbn) {
+        int checksum10 = (10 * isbn[0] + 9 * isbn[1] + 8 * isbn[2] + 7 * isbn[3] + 6 * isbn[4] + 5 * isbn[5] + 4 * isbn[6] + 3 * isbn[7] + 2 * isbn[8] + isbn[9]) % 11;
+        isbn[12] = (char) ('0' + Math.min(9, checksum10) + (10 - ('9' + '8' + isbn[1] + isbn[3] + isbn[5] + isbn[7] + '0' + 3 * ('7' + isbn[0] + isbn[2] + isbn[4] + isbn[6] + isbn[8])) % 10) % 10);
         for (int x = 8; x >= 0; x--) {
             isbn[x + 3] = isbn[x];
         }
         isbn[2] = '8';
         isbn[1] = '7';
         isbn[0] = '9';
-        return true;
-    }
-
-    private static boolean validateChecksum13(char[] isbn) {
-        return (isbn[0] + isbn[2] + isbn[4] + isbn[6] + isbn[8] + isbn[10] + isbn[12] + 3 * (isbn[1] + isbn[3] + isbn[5] + isbn[7] + isbn[9] + isbn[11])) % 10 == 0;
     }
 
 }

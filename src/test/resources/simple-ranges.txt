@@ -1,0 +1,18 @@
+// comment
+
+978 International ISBN Agency
+979 International ISBN Agency
+978-0 English language
+979-10 France
+
+A 3-4-6
+B 3-4-7
+
+9
+7
+8
+
+AA89
+1
+
+BB8982
