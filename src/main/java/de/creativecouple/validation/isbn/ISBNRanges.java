@@ -30,9 +30,9 @@ import java.util.HashMap;
  *
  * @source International ISBN Agency
  *
- * @serial f03f9d05-8850-4efb-9d68-41eb3afd55b0
+ * @serial e43f78f0-d360-4b0d-92ce-71a9f7d0943c
  *
- * @version Fri, 8 Sep 2023 19:56:12 BST
+ * @version Fri, 22 Sep 2023 19:56:10 BST
  *
  * @author Peter Liske (CreativeCouple)
  */
@@ -46,7 +46,8 @@ final class ISBNRanges {
             new Range(7, 978064800000L, 978064899999L), new Range(3, 978064900000L, 978065499999L),
             new Range(4, 978065500000L, 978065599999L), new Range(3, 978065600000L, 978069999999L),
             new Range(4, 978070000000L, 978084999999L), new Range(5, 978085000000L, 978089999999L),
-            new Range(6, 978090000000L, 978094999999L), new Range(7, 978095000000L, 978099999999L), };
+            new Range(6, 978090000000L, 978090037099L), new Range(7, 978090037100L, 978090037199L),
+            new Range(6, 978090037200L, 978094999999L), new Range(7, 978095000000L, 978099999999L), };
     private static final Range[] RULE_978_1 = new Range[] { new Range(3, 978100000000L, 978100999999L),
             new Range(2, 978101000000L, 978102999999L), new Range(3, 978103000000L, 978103499999L),
             new Range(4, 978103500000L, 978103999999L), new Range(3, 978104000000L, 978104999999L),
@@ -140,9 +141,9 @@ final class ISBNRanges {
             new Range(5, 978606920000L, 978606959999L), new Range(4, 978606960000L, 978606974999L),
             new Range(3, 978606975000L, 978606999999L), };
     private static final Range[] RULE_978_607 = new Range[] { new Range(2, 978607000000L, 978607399999L),
-            new Range(3, 978607400000L, 978607592999L), new Range(5, 978607593000L, 978607599999L),
-            new Range(3, 978607600000L, 978607749999L), new Range(4, 978607750000L, 978607949999L),
-            new Range(5, 978607950000L, 978607999999L), };
+            new Range(3, 978607400000L, 978607588999L), new Range(4, 978607589000L, 978607592999L),
+            new Range(5, 978607593000L, 978607599999L), new Range(3, 978607600000L, 978607749999L),
+            new Range(4, 978607750000L, 978607949999L), new Range(5, 978607950000L, 978607999999L), };
     private static final Range[] RULE_978_608 = new Range[] { new Range(1, 978608000000L, 978608099999L),
             new Range(2, 978608100000L, 978608199999L), new Range(3, 978608200000L, 978608449999L),
             new Range(4, 978608450000L, 978608649999L), new Range(5, 978608650000L, 978608699999L),
