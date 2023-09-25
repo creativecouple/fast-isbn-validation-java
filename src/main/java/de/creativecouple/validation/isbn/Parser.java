@@ -30,49 +30,52 @@ final class Parser {
         if (isbnString == null || isbnString.isEmpty()) {
             return null;
         }
-        final char[] isbn = get13Digits(isbnString);
-        if (isbn == null) {
-            return null;
-        }
-        Hyphenation hyphenation = ISBNRanges.ranges[isbn[0]][isbn[1]][isbn[2]][isbn[3]][isbn[4]][isbn[5]][isbn[6]][isbn[7]][isbn[8]][isbn[9]][isbn[10]][isbn[11]][isbn[12]];
-        return hyphenation == null ? null : new ISBN(new String(isbn), hyphenation);
-    }
-
-    private static char[] get13Digits(CharSequence string) {
-        char[] chars = new char[13];
-        int to = string.length() - 1;
-        char ch = string.charAt(0);
-        if (ch < '0' || ch > '9') {
-            return null;
-        }
-        chars[0] = ch;
-        int charsPos = 1;
-        for (int i = 1; i < to; i++) {
-            if (charsPos >= 13) {
-                return null;
-            }
-            ch = string.charAt(i);
-            if (ch >= '0' && ch <= '9') {
-                chars[charsPos++] = ch;
-            } else if (ch != '-' && ch != '_' && ch != '–' && ch != '—' && ch != '−') {
-                // remove all unicode dashes (0x2d, 0x2013, 0x2014, 0x2212)
-                return null;
-            }
-        }
-        ch = string.charAt(to);
-        if (charsPos == 12) {
+        char[] isbn = new char[13];
+        int to = isbnString.length() - 1;
+        int i = 0;
+        {
+            char ch = isbnString.charAt(i++);
             if (ch < '0' || ch > '9') {
                 return null;
             }
-            chars[12] = ch;
-        } else {
-            if (charsPos != 9 || ch < '0' || (ch > '9' && ch != 'x' && ch != 'X')) {
-                return null;
-            }
-            chars[9] = (char) Math.min('9' + 1, ch);
-            convertIsbn10To13(chars);
+            isbn[0] = ch;
         }
-        return chars;
+        for (int pos = 1; pos < 9; pos++) {
+            char ch = isbnString.charAt(i++);
+            if (ch < '0' || ch > '9') {
+                if (ch == '-' || ch == '_' || ch == '–' || ch == '—' || ch == '−') {
+                    ch = isbnString.charAt(i++);
+                    if (ch < '0' || ch > '9') {
+                        return null;
+                    }
+                } else {
+                    return null;
+                }
+            }
+            isbn[pos] = ch;
+        }
+        int charsPos = 1;
+        for (int i = 1; i < to; i++) {
+            ch = isbnString.charAt(i);
+            isbn[charsPos] = ch > '9' ? 0 : ch;
+            if (ch != '-' && ch != '_' && ch != '–' && ch != '—' && ch != '−') {
+                // remove all unicode dashes (0x2d, 0x2013, 0x2014, 0x2212)
+                if (++charsPos >= 13) {
+                    return null;
+                }
+            }
+        }
+        ch = isbnString.charAt(to);
+        if (charsPos == 12) {
+            isbn[12] = ch > '9' ? 0 : ch;
+        } else if (charsPos != 9 || ch < '0' || (ch > '9' && ch != 'x' && ch != 'X')) {
+            return null;
+        } else {
+            isbn[9] = (char) Math.min('9' + 1, ch);
+            convertIsbn10To13(isbn);
+        }
+        Hyphenation hyphenation = ISBNRanges.ranges[isbn[0]][isbn[1]][isbn[2]][isbn[3]][isbn[4]][isbn[5]][isbn[6]][isbn[7]][isbn[8]][isbn[9]][isbn[10]][isbn[11]][isbn[12]];
+        return hyphenation == null ? null : new ISBN(new String(isbn), hyphenation);
     }
 
     private static void convertIsbn10To13(char[] isbn) {
