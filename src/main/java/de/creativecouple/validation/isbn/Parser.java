@@ -24,7 +24,7 @@ package de.creativecouple.validation.isbn;
 
 import de.creativecouple.validation.isbn.ISBN.Hyphenation;
 
-import static de.creativecouple.validation.isbn.Hyphens.isHyphen;
+import static de.creativecouple.validation.isbn.Hyphens.isUnicodeHyphen;
 
 final class Parser {
 
@@ -47,7 +47,7 @@ final class Parser {
                 return null;
             }
             if (isNoDigit(ch = isbnString.charAt(i++))) {
-                if (isHyphen(ch)) {
+                if (isUnicodeHyphen(ch)) {
                     if (i > to) {
                         return null;
                     }
@@ -61,7 +61,7 @@ final class Parser {
             isbn[pos] = ch;
         }
         if (i + 1 == to) { // ISBN-10
-            if (!isHyphen(isbnString.charAt(i++))) {
+            if (!isUnicodeHyphen(isbnString.charAt(i++))) {
                 return null;
             }
         }
@@ -79,7 +79,7 @@ final class Parser {
                 return null;
             }
             if (isNoDigit(ch = isbnString.charAt(i++))) {
-                if (isHyphen(ch)) {
+                if (isUnicodeHyphen(ch)) {
                     if (i > to) {
                         return null;
                     }
@@ -93,7 +93,7 @@ final class Parser {
             isbn[pos] = ch;
         }
         if (i + 1 == to) { // ISBN-13
-            if (!isHyphen(isbnString.charAt(i++))) {
+            if (!isUnicodeHyphen(isbnString.charAt(i++))) {
                 return null;
             }
         }

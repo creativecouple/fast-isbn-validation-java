@@ -2,7 +2,7 @@ Parse/format/validate ISBNs with the **official ISBN ranges** definition. <br/>
 The parser is optimized for speed, the ISBN class for simplicity.
 
 [![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/isbn-core/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/isbn-core)
-[![Javadocs](https://www.javadoc.io/badge/de.creativecouple.validation/isbn-core.svg)](https://creativecouple.github.io/isbn-validation-java/)
+[![Javadocs](https://javadoc.io/badge2/de.creativecouple.validation/isbn-core/javadoc.svg)](https://javadoc.io/doc/de.creativecouple.validation/isbn-core)
 
 # ISBN Validation
 A common issue in digital commerce systems is to validate article identifiers.
