@@ -24,6 +24,8 @@ package de.creativecouple.validation.isbn;
 
 import de.creativecouple.validation.isbn.ISBN.Hyphenation;
 
+import static de.creativecouple.validation.isbn.Hyphens.isHyphen;
+
 final class Parser {
 
     static ISBN parse(String isbnString) {
@@ -33,19 +35,23 @@ final class Parser {
         char[] isbn = new char[13];
         int to = isbnString.length() - 1;
         int i = 0;
+        char ch;
         {
-            char ch = isbnString.charAt(i++);
-            if (ch < '0' || ch > '9') {
+            if (isNoDigit(ch = isbnString.charAt(i++))) {
                 return null;
             }
             isbn[0] = ch;
         }
         for (int pos = 1; pos < 9; pos++) {
-            char ch = isbnString.charAt(i++);
-            if (ch < '0' || ch > '9') {
-                if (ch == '-' || ch == '_' || ch == '–' || ch == '—' || ch == '−') {
-                    ch = isbnString.charAt(i++);
-                    if (ch < '0' || ch > '9') {
+            if (i > to) {
+                return null;
+            }
+            if (isNoDigit(ch = isbnString.charAt(i++))) {
+                if (isHyphen(ch)) {
+                    if (i > to) {
+                        return null;
+                    }
+                    if (isNoDigit(ch = isbnString.charAt(i++))) {
                         return null;
                     }
                 } else {
@@ -54,28 +60,59 @@ final class Parser {
             }
             isbn[pos] = ch;
         }
-        int charsPos = 1;
-        for (int i = 1; i < to; i++) {
-            ch = isbnString.charAt(i);
-            isbn[charsPos] = ch > '9' ? 0 : ch;
-            if (ch != '-' && ch != '_' && ch != '–' && ch != '—' && ch != '−') {
-                // remove all unicode dashes (0x2d, 0x2013, 0x2014, 0x2212)
-                if (++charsPos >= 13) {
+        if (i + 1 == to) { // ISBN-10
+            if (!isHyphen(isbnString.charAt(i++))) {
+                return null;
+            }
+        }
+        if (i == to) { // ISBN-10
+            if (isNeitherDigitNorX(ch = isbnString.charAt(i))) {
+                return null;
+            }
+            isbn[9] = (char) Math.min('9' + 1, ch);
+            convertIsbn10To13(isbn);
+            return verifyRangeAndChecksum(isbn);
+        }
+
+        for (int pos = 9; pos < 12; pos++) {
+            if (i > to) {
+                return null;
+            }
+            if (isNoDigit(ch = isbnString.charAt(i++))) {
+                if (isHyphen(ch)) {
+                    if (i > to) {
+                        return null;
+                    }
+                    if (isNoDigit(ch = isbnString.charAt(i++))) {
+                        return null;
+                    }
+                } else {
                     return null;
                 }
             }
+            isbn[pos] = ch;
         }
-        ch = isbnString.charAt(to);
-        if (charsPos == 12) {
-            isbn[12] = ch > '9' ? 0 : ch;
-        } else if (charsPos != 9 || ch < '0' || (ch > '9' && ch != 'x' && ch != 'X')) {
-            return null;
-        } else {
-            isbn[9] = (char) Math.min('9' + 1, ch);
-            convertIsbn10To13(isbn);
+        if (i + 1 == to) { // ISBN-13
+            if (!isHyphen(isbnString.charAt(i++))) {
+                return null;
+            }
         }
-        Hyphenation hyphenation = ISBNRanges.ranges[isbn[0]][isbn[1]][isbn[2]][isbn[3]][isbn[4]][isbn[5]][isbn[6]][isbn[7]][isbn[8]][isbn[9]][isbn[10]][isbn[11]][isbn[12]];
-        return hyphenation == null ? null : new ISBN(new String(isbn), hyphenation);
+        if (i == to) { // ISBN-13
+            if (isNoDigit(ch = isbnString.charAt(i))) {
+                return null;
+            }
+            isbn[12] = ch;
+            return verifyRangeAndChecksum(isbn);
+        }
+        return null;
+    }
+
+    private static boolean isNoDigit(char ch) {
+        return ch < '0' || ch > '9';
+    }
+
+    private static boolean isNeitherDigitNorX(char ch) {
+        return ch < '0' || (ch > '9' && ch != 'x' && ch != 'X');
     }
 
     private static void convertIsbn10To13(char[] isbn) {
@@ -87,6 +124,11 @@ final class Parser {
         isbn[2] = '8';
         isbn[1] = '7';
         isbn[0] = '9';
+    }
+
+    private static ISBN verifyRangeAndChecksum(char[] isbn) {
+        Hyphenation hyphenation = ISBNRanges.ranges[isbn[0]][isbn[1]][isbn[2]][isbn[3]][isbn[4]][isbn[5]][isbn[6]][isbn[7]][isbn[8]][isbn[9]][isbn[10]][isbn[11]][isbn[12]];
+        return hyphenation == null ? null : new ISBN(new String(isbn), hyphenation);
     }
 
 }

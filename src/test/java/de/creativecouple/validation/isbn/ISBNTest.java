@@ -33,7 +33,7 @@ class ISBNTest {
 
     @Test
     void testParseISBN_normalizingDashes() {
-        ISBN isbn = ISBN.valueOf("9-780-6--39-96-35-4-9");
+        ISBN isbn = ISBN.valueOf("9-780-6-3-9-96-35-4-9");
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-0-6399635-4-9");
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
@@ -51,7 +51,7 @@ class ISBNTest {
 
     @Test
     void testParseISBN_specialDashes() {
-        ISBN isbn = ISBN.valueOf("9_780-6\u2013\u201439__963-5-4\u22129");
+        ISBN isbn = ISBN.valueOf("9_780-6\u20133\u20149_9_63-5-4\u22129");
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-0-6399635-4-9");
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");

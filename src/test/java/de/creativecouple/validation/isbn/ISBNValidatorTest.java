@@ -39,18 +39,18 @@ class ISBNValidatorTest {
     public static final String BLANK = " ";
     public static final String TEN_DIGITS_NO_ISBN = "9X7654321X";
     public static final String THIRTEEN_DIGITS_NO_ISBN = "9876543210987";
-    public static final String ISBN13_TOO_MANY_HYPHENS = "9-780-6--399--635-4-9";
+    public static final String ISBN13_TOO_MANY_HYPHENS = "9-780-6-3-9-9-635-4-9";
     public static final String ISBN13_TOO_FEW_HYPHENS = "978-0639963549";
     public static final String ISBN13_CORRECT_HYPHENATION = "978-0-6399635-4-9";
     public static final String ISBN13_WRONG_HYPHENATION = "978-0-63996-354-9";
     public static final String ISBN13_NO_HYPHENS = "9780639963549";
-    public static final String ISBN13_UNICODE_DASHES = "978_0-6\u2013\u201439__9635-4\u2212-9";
-    public static final String ISBN10_TOO_MANY_HYPHENS = "3-94--718-83-4-X";
+    public static final String ISBN13_UNICODE_DASHES = "978_0-6\u20133\u20149_9_635-4\u22129";
+    public static final String ISBN10_TOO_MANY_HYPHENS = "3-94-7-1-8-83-4-X";
     public static final String ISBN10_TOO_FEW_HYPHENS = "3-94718834X";
     public static final String ISBN10_CORRECT_HYPHENATION = "3-947188-34-X";
     public static final String ISBN10_WRONG_HYPHENATION = "3-9471-8834-X";
     public static final String ISBN10_NO_HYPHENS = "394718834x";
-    public static final String ISBN10_UNICODE_DASHES = "3_-94\u2013\u2014718__834\u2212-x";
+    public static final String ISBN10_UNICODE_DASHES = "3_9-4\u20137\u20141_8_83-4\u2212x";
 
     @Test
     void testAnyIsbnIgnoringHyphenation() {
