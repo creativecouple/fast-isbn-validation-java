@@ -30,9 +30,9 @@ import java.util.HashMap;
  *
  * @source International ISBN Agency
  *
- * @serial 4dcac1cd-4bb9-4063-9519-e1251d5566fb
+ * @serial 8e6b902e-08c6-4179-83c4-da1b03aac69e
  *
- * @version Tue, 31 Oct 2023 18:56:13 GMT
+ * @version Fri, 10 Nov 2023 18:56:23 GMT
  *
  * @author Peter Liske (CreativeCouple)
  */
@@ -532,8 +532,8 @@ final class ISBNRanges {
     private static final Range[] RULE_978_9932 = new Range[] { new Range(2, 978993200000L, 978993239999L),
             new Range(3, 978993240000L, 978993284999L), new Range(4, 978993285000L, 978993299999L), };
     private static final Range[] RULE_978_9933 = new Range[] { new Range(1, 978993300000L, 978993309999L),
-            new Range(2, 978993310000L, 978993339999L), new Range(3, 978993340000L, 978993389999L),
-            new Range(4, 978993390000L, 978993399999L), };
+            new Range(2, 978993310000L, 978993339999L), new Range(3, 978993340000L, 978993386999L),
+            new Range(2, 978993387000L, 978993389999L), new Range(4, 978993390000L, 978993399999L), };
     private static final Range[] RULE_978_9934 = new Range[] { new Range(1, 978993400000L, 978993409999L),
             new Range(2, 978993410000L, 978993449999L), new Range(3, 978993450000L, 978993479999L),
             new Range(4, 978993480000L, 978993499999L), };
@@ -1008,7 +1008,7 @@ final class ISBNRanges {
         AGENCIES.put("978-602", "Indonesia");
         AGENCIES.put("978-603", "Saudi Arabia");
         AGENCIES.put("978-604", "Vietnam");
-        AGENCIES.put("978-605", "Turkey");
+        AGENCIES.put("978-605", "Türkiye");
         AGENCIES.put("978-606", "Romania");
         AGENCIES.put("978-607", "Mexico");
         AGENCIES.put("978-608", "North Macedonia");
@@ -1027,7 +1027,7 @@ final class ISBNRanges {
         AGENCIES.put("978-622", "Iran");
         AGENCIES.put("978-623", "Indonesia");
         AGENCIES.put("978-624", "Sri Lanka");
-        AGENCIES.put("978-625", "Turkey");
+        AGENCIES.put("978-625", "Türkiye");
         AGENCIES.put("978-626", "Taiwan");
         AGENCIES.put("978-627", "Pakistan");
         AGENCIES.put("978-628", "Colombia");
@@ -1076,7 +1076,7 @@ final class ISBNRanges {
         AGENCIES.put("978-972", "Portugal");
         AGENCIES.put("978-973", "Romania");
         AGENCIES.put("978-974", "Thailand");
-        AGENCIES.put("978-975", "Turkey");
+        AGENCIES.put("978-975", "Türkiye");
         AGENCIES.put("978-976", "Caribbean Community");
         AGENCIES.put("978-977", "Egypt");
         AGENCIES.put("978-978", "Nigeria");
@@ -1125,7 +1125,7 @@ final class ISBNRanges {
         AGENCIES.put("978-9941", "Georgia");
         AGENCIES.put("978-9942", "Ecuador");
         AGENCIES.put("978-9943", "Uzbekistan");
-        AGENCIES.put("978-9944", "Turkey");
+        AGENCIES.put("978-9944", "Türkiye");
         AGENCIES.put("978-9945", "Dominican Republic");
         AGENCIES.put("978-9946", "Korea, P.D.R.");
         AGENCIES.put("978-9947", "Algeria");
