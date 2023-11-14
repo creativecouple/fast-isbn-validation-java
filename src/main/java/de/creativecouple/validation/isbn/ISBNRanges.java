@@ -30,9 +30,9 @@ import java.util.HashMap;
  *
  * @source International ISBN Agency
  *
- * @serial 8e6b902e-08c6-4179-83c4-da1b03aac69e
+ * @serial 11bd68b0-8c1a-4bfe-b186-51dcbbb66226
  *
- * @version Fri, 10 Nov 2023 18:56:23 GMT
+ * @version Tue, 14 Nov 2023 18:56:24 GMT
  *
  * @author Peter Liske (CreativeCouple)
  */
@@ -144,7 +144,8 @@ final class ISBNRanges {
             new Range(3, 978606975000L, 978606999999L), };
     private static final Range[] RULE_978_607 = new Range[] { new Range(2, 978607000000L, 978607399999L),
             new Range(3, 978607400000L, 978607588999L), new Range(4, 978607589000L, 978607592999L),
-            new Range(5, 978607593000L, 978607599999L), new Range(3, 978607600000L, 978607749999L),
+            new Range(5, 978607593000L, 978607599999L), new Range(3, 978607600000L, 978607694999L),
+            new Range(5, 978607695000L, 978607699999L), new Range(3, 978607700000L, 978607749999L),
             new Range(4, 978607750000L, 978607949999L), new Range(5, 978607950000L, 978607999999L), };
     private static final Range[] RULE_978_608 = new Range[] { new Range(1, 978608000000L, 978608099999L),
             new Range(2, 978608100000L, 978608199999L), new Range(3, 978608200000L, 978608449999L),
@@ -482,7 +483,7 @@ final class ISBNRanges {
             new Range(3, 978991275000L, 978991279999L), new Range(4, 978991298000L, 978991299999L), };
     private static final Range[] RULE_978_9913 = new Range[] { new Range(2, 978991300000L, 978991307999L),
             new Range(3, 978991360000L, 978991369999L), new Range(4, 978991395500L, 978991399999L), };
-    private static final Range[] RULE_978_9914 = new Range[] { new Range(2, 978991440000L, 978991452999L),
+    private static final Range[] RULE_978_9914 = new Range[] { new Range(2, 978991440000L, 978991455999L),
             new Range(3, 978991470000L, 978991477499L), new Range(4, 978991496000L, 978991499999L), };
     private static final Range[] RULE_978_9915 = new Range[] { new Range(2, 978991540000L, 978991559999L),
             new Range(3, 978991565000L, 978991579999L), new Range(4, 978991593000L, 978991599999L), };
