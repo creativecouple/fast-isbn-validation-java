@@ -30,9 +30,9 @@ import java.util.HashMap;
  *
  * @source International ISBN Agency
  *
- * @serial 11bd68b0-8c1a-4bfe-b186-51dcbbb66226
+ * @serial 6f97ec40-91ef-4c29-850f-602dfcc4e13b
  *
- * @version Tue, 14 Nov 2023 18:56:24 GMT
+ * @version Fri, 17 Nov 2023 18:56:21 GMT
  *
  * @author Peter Liske (CreativeCouple)
  */
@@ -931,7 +931,8 @@ final class ISBNRanges {
             new Range(3, 979112500000L, 979115499999L), new Range(4, 979115500000L, 979118499999L),
             new Range(5, 979118500000L, 979119499999L), new Range(6, 979119500000L, 979119999999L), };
     private static final Range[] RULE_979_12 = new Range[] { new Range(3, 979122000000L, 979122999999L),
-            new Range(4, 979125450000L, 979125999999L), new Range(5, 979128000000L, 979128499999L), };
+            new Range(4, 979125450000L, 979125999999L), new Range(5, 979128000000L, 979128499999L),
+            new Range(6, 979129850000L, 979129999999L), };
     private static final Range[] RULE_979_8 = new Range[] { new Range(3, 979820000000L, 979822999999L),
             new Range(4, 979832000000L, 979834999999L), new Range(4, 979835000000L, 979888499999L),
             new Range(5, 979888500000L, 979889999999L), new Range(5, 979890000000L, 979890999999L),
