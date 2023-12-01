@@ -30,9 +30,9 @@ import java.util.HashMap;
  *
  * @source International ISBN Agency
  *
- * @serial adc33d0e-a4ee-4dc3-a051-660c8888edda
+ * @serial dae9d6ae-c2cf-441c-851c-fd072605658d
  *
- * @version Fri, 24 Nov 2023 18:56:18 GMT
+ * @version Fri, 1 Dec 2023 18:56:20 GMT
  *
  * @author Peter Liske (CreativeCouple)
  */
@@ -888,10 +888,11 @@ final class ISBNRanges {
     private static final Range[] RULE_978_99975 = new Range[] { new Range(1, 978999750000L, 978999752999L),
             new Range(3, 978999753000L, 978999753999L), new Range(2, 978999754000L, 978999757999L),
             new Range(3, 978999758000L, 978999759999L), };
-    private static final Range[] RULE_978_99976 = new Range[] { new Range(1, 978999760000L, 978999760999L),
-            new Range(2, 978999761000L, 978999761599L), new Range(3, 978999761600L, 978999761999L),
-            new Range(2, 978999762000L, 978999765999L), new Range(3, 978999766000L, 978999768199L),
-            new Range(2, 978999768200L, 978999768999L), new Range(3, 978999769000L, 978999769999L), };
+    private static final Range[] RULE_978_99976 = new Range[] { new Range(2, 978999760000L, 978999760399L),
+            new Range(3, 978999760750L, 978999760999L), new Range(2, 978999761000L, 978999761599L),
+            new Range(3, 978999761600L, 978999761999L), new Range(2, 978999762000L, 978999765999L),
+            new Range(3, 978999766000L, 978999768199L), new Range(2, 978999768200L, 978999768999L),
+            new Range(3, 978999769000L, 978999769999L), };
     private static final Range[] RULE_978_99977 = new Range[] { new Range(1, 978999770000L, 978999771999L),
             new Range(2, 978999774000L, 978999776999L), new Range(3, 978999777000L, 978999777999L),
             new Range(3, 978999779750L, 978999779999L), };
