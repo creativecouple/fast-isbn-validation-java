@@ -108,7 +108,7 @@ final class ISBNRangesLoader {
     private Object parseRangeData(int depth, int weightedSum) throws IOException {
         Object result = Array.newInstance(elemClasses[depth], '9' + 1);
         for (int i = 0, data; i <= 9; ) {
-            int newWeightedSum = (weightedSum + (1 + 2 * (depth % 2)) * i) % 10;
+            int newWeightedSum = (weightedSum + ((depth & 1) << 1 | 1) * i) % 10;
             if ((data = input.read()) < 0) {
                 throw new IllegalStateException("unexpected EOF");
             } else if (data <= ' ') {
@@ -143,7 +143,7 @@ final class ISBNRangesLoader {
         return depth == 13 ? (T) indexMap.get(weightedSum + "_" + name) : (T) getOrFindOrCreateArray(
                 weightedSum + "_" + name + "_" + depth,
                 elemClasses[depth],
-                i -> getHyphenationArray(name, depth + 1, (weightedSum + ((depth % 2) * 2 + 1) * i) % 10)
+                i -> getHyphenationArray(name, depth + 1, (weightedSum + ((depth & 1) << 1 | 1) * i) % 10)
         );
     }
 

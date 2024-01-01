@@ -34,82 +34,33 @@ final class Parser {
         }
         final char[] isbn = new char[13];
         final int to = isbnString.length() - 1;
-        int i = 0;
-        char ch;
-        if (isNoDigit(ch = isbnString.charAt(i++))) {
+        int pos = 0;
+        if (isNoDigit(isbn[0] = isbnString.charAt(pos++))
+            || pos > to || (isNoDigit(isbn[1] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[1]) || pos > to || isNoDigit(isbn[1] = isbnString.charAt(pos++))))
+            || pos > to || (isNoDigit(isbn[2] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[2]) || pos > to || isNoDigit(isbn[2] = isbnString.charAt(pos++))))
+            || pos > to || (isNoDigit(isbn[3] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[3]) || pos > to || isNoDigit(isbn[3] = isbnString.charAt(pos++))))
+            || pos > to || (isNoDigit(isbn[4] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[4]) || pos > to || isNoDigit(isbn[4] = isbnString.charAt(pos++))))
+            || pos > to || (isNoDigit(isbn[5] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[5]) || pos > to || isNoDigit(isbn[5] = isbnString.charAt(pos++))))
+            || pos > to || (isNoDigit(isbn[6] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[6]) || pos > to || isNoDigit(isbn[6] = isbnString.charAt(pos++))))
+            || pos > to || (isNoDigit(isbn[7] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[7]) || pos > to || isNoDigit(isbn[7] = isbnString.charAt(pos++))))
+            || pos > to || (isNoDigit(isbn[8] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[8]) || pos > to || isNoDigit(isbn[8] = isbnString.charAt(pos++))))
+            || (/* ISBN-10 hyphen */ pos + 1 == to && !isUnicodeHyphen(isbnString.charAt(pos++)))) {
             return null;
         }
-        isbn[0] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[1] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[2] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[3] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[4] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[5] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[6] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[7] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[8] = ch;
-        if (i + 1 == to) { // ISBN-10 hyphen
-            if (!isUnicodeHyphen(isbnString.charAt(i++))) {
-                return null;
-            }
-        }
-        if (i == to) { // ISBN-10 last digit
-            if (isNeitherDigitNorX(ch = isbnString.charAt(i))) {
+        if (pos == to) { // ISBN-10 last digit
+            final char ch = isbnString.charAt(pos);
+            if (isNeitherDigitNorX(ch)) {
                 return null;
             }
             isbn[9] = (char) Math.min('9' + 1, ch);
             convertIsbn10To13(isbn);
             return verifyRangeAndChecksum(isbn);
         }
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[9] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[10] = ch;
-        if (i > to || (isNoDigit(ch = isbnString.charAt(i++)) && (!isUnicodeHyphen(ch) || i > to || isNoDigit(ch = isbnString.charAt(i++))))) {
-            return null;
-        }
-        isbn[11] = ch;
-        if (i + 1 == to) { // ISBN-13 hyphen
-            if (!isUnicodeHyphen(isbnString.charAt(i++))) {
-                return null;
-            }
-        }
-        if (i == to) { // ISBN-13 last digit
-            if (isNoDigit(ch = isbnString.charAt(i))) {
-                return null;
-            }
-            isbn[12] = ch;
-            return verifyRangeAndChecksum(isbn);
-        }
-        return null;
+        return pos > to || (isNoDigit(isbn[9] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[9]) || pos > to || isNoDigit(isbn[9] = isbnString.charAt(pos++))))
+               || pos > to || (isNoDigit(isbn[10] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[10]) || pos > to || isNoDigit(isbn[10] = isbnString.charAt(pos++))))
+               || pos > to || (isNoDigit(isbn[11] = isbnString.charAt(pos++)) && (!isUnicodeHyphen(isbn[11]) || pos > to || isNoDigit(isbn[11] = isbnString.charAt(pos++))))
+               || (pos + 1 == to && !isUnicodeHyphen(isbnString.charAt(pos++))) || pos != to || isNoDigit(isbn[12] = isbnString.charAt(pos))
+                ? null : verifyRangeAndChecksum(isbn);
     }
 
     private static boolean isNoDigit(char ch) {
