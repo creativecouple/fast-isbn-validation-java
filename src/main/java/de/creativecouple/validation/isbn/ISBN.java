@@ -237,6 +237,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
     /**
      * Parses a given string input and returns an ISBN object.
      *
+     * @param isbn the ISBN string
      * @return the ISBN object
      *
      * @throws NumberFormatException
@@ -262,6 +263,9 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
         }
     }
 
+    /**
+     * Reload the latest ISBN definition from the latest release at github.com.
+     */
     public static void updateRangeDefinition() {
         ISBNRanges.updateRangeDefinition();
     }
