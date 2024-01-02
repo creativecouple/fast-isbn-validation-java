@@ -41,7 +41,7 @@ final class ISBNRanges {
     static final Map<String, String> agencies = new HashMap<>();
 
     private static final String LOCAL_RANGES_FILE = "isbn-ranges.data";
-    private static final String REMOTE_RANGES_FILE = "https://raw.githubusercontent.com/creativecouple/isbn-validation-java/tmp-compact-tree/src/main/resources/de/creativecouple/validation/isbn/isbn-ranges.data";
+    private static final String REMOTE_RANGES_FILE = "https://raw.githubusercontent.com/creativecouple/isbn-validation-java/release-latest/src/main/resources/de/creativecouple/validation/isbn/isbn-ranges.data";
 
     static {
         try {
