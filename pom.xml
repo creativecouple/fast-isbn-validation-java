@@ -6,7 +6,7 @@
 
     <groupId>de.creativecouple.validation</groupId>
     <artifactId>fast-isbn</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>Fast ISBN-Range Validation</name>
