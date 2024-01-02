@@ -1,10 +1,11 @@
-Parse/format/validate ISBNs with the **official ISBN ranges** definition. <br/>
-The parser is optimized for speed, the ISBN class for simplicity.
+Fastest way to parse/format/validate ISBNs with the **official ISBN ranges** definition. <br/>
+The parser is optimized for speed, the [`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) class for simplicity. <br/>
+This library can evaluate **millions of ISBNs per second**.
 
-[![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/isbn-core/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/isbn-core)
-[![Javadocs](https://javadoc.io/badge2/de.creativecouple.validation/isbn-core/javadoc.svg)](https://javadoc.io/doc/de.creativecouple.validation/isbn-core)
+[![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn)
+[![Javadocs](https://javadoc.io/badge2/de.creativecouple.validation/fast-isbn/javadoc.svg)](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn)
 
-# ISBN Validation
+# Fast ISBN range validation
 A common issue in digital commerce systems is to validate article identifiers.
 In the publishing business there is the so-called ISBN standard, maintained by the
 [International ISBN Agency](https://www.isbn-international.org/).
@@ -20,21 +21,21 @@ Example:
 - :x: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (e.g. on amazon.com)
 - :heavy_check_mark: correct grouping: 978-0-557-50469-5
 
-The [ISBN domain object](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBN.html)
+The [ISBN domain object](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html)
 wraps the ISBN string representation efficiently to be used
 as identifier in your domain-driven code base.
 It normalizes and corrects the given string input with respect to hyphens/dashes,
 parsing both ISBN-10 and ISBN-13 numbers into the same object, the
-[ISBN](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBN.html). 
+[`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html). 
 
 ## Usage
 
-Once you [add this library as dependency](https://search.maven.org/artifact/de.creativecouple.validation/isbn-core)
+Once you [add de.creativecouple.validation:fast-isbn as dependency](https://search.maven.org/artifact/de.creativecouple.validation/fast-isbn)
 to your project definition, you can simply convert your strings into
-[ISBN objects](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBN.html) via:
+[ISBN objects](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) via:
 
 ```java
-  ISBN isbn = ISBN.valueOf(someString)
+  ISBN isbn = ISBN.valueOf(someString);
 ```
 
 This will potentially throw a `NumberFormatException` if the input string is not a valid ISBN.
@@ -61,7 +62,7 @@ You can get different string representations to be used e.g. in your databases:
 ----
 
 If you only want to work with Strings instead of the ISBN object you can simply use the
-[ISBNValidator](https://creativecouple.github.io/isbn-validation-java/de/creativecouple/validation/isbn/ISBNValidator.html)
+[ISBNValidator](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBNValidator.html)
 to check them against the chosen rules. This is one of the 12 combinations of ISBN length (ISBN-10 / ISBN-13 / both)
 and hyphenation style (any / correct / none / correct-or-none). 
 
@@ -69,15 +70,15 @@ and hyphenation style (any / correct / none / correct-or-none).
   ISBNValidator validator = ISBNValidator.isbn10().hyphenation(NONE);
         
   validator.isValid("978-0-557-50469-5"); // false
-  validator.isValid("9780557504695") // false
+  validator.isValid("9780557504695"); // false
   validator.isValid("0-557-50469-4"); // false
-  validator.isValid("0557504694") // true
+  validator.isValid("0557504694"); // true
 ```
 
 ### Javadoc
 
 Read the full Java docs online at
-https://creativecouple.github.io/isbn-validation-java/
+https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/
 
 ## Versioning
 
@@ -92,7 +93,7 @@ Feel free to open issues to this repository or create pull requests.
 ## Disclaimer
 
 The MIT License (MIT)
-Copyright (c) 2022 CreativeCouple
+Copyright (c) 2023 CreativeCouple
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

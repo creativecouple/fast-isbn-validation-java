@@ -5,12 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.creativecouple.validation</groupId>
-    <artifactId>isbn-core</artifactId>
-    <version>1.0.15</version>
+    <artifactId>fast-isbn</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>ISBN Validation</name>
-    <description>parse/format/validate ISBNs with the official ISBN ranges definition</description>
+    <name>Fast ISBN-Range Validation</name>
+    <description>
+        Fastest way to parse/format/validate ISBNs
+        with the official ISBN ranges definition
+        (evaluating millions of ISBNs per second).
+    </description>
     <url>https://github.com/creativecouple/isbn-validation-java</url>
 
     <licenses>
