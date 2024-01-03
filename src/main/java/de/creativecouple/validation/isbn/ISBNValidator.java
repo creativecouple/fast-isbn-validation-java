@@ -66,6 +66,7 @@ public final class ISBNValidator implements Predicate<String> {
     /**
      * Parses a given string input and returns an ISBN object, if it matches this validator's criteria.
      *
+     * @param input the string to evaluate
      * @return the ISBN object
      *
      * @throws IllegalArgumentException

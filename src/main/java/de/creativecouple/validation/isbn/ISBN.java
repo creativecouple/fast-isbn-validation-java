@@ -42,7 +42,14 @@ import java.net.URI;
  */
 public final class ISBN implements Serializable, Comparable<ISBN> {
 
+    /**
+     * the compact ISBN-13 representation
+     */
     private final String isbn;
+
+    /**
+     * the hyphenation pattern for this ISBN
+     */
     private final Hyphenation hyphenation;
 
     ISBN(String isbn, Hyphenation hyphenation) {
@@ -251,7 +258,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
         return parsed;
     }
 
-    static final class Hyphenation {
+    static final class Hyphenation implements Serializable {
         private final int eanPrefixLength;
         private final int groupPrefixLength;
         private final int publisherPrefixLength;
