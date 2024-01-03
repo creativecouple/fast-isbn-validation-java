@@ -244,7 +244,9 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
     /**
      * Parses a given string input and returns an ISBN object.
      *
-     * @param isbn the ISBN string
+     * @param isbn
+     *            the ISBN string
+     *
      * @return the ISBN object
      *
      * @throws NumberFormatException
