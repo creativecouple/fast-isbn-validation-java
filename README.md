@@ -30,9 +30,9 @@ parsing both ISBN-10 and ISBN-13 numbers into the same object, the
 
 ## Usage
 
-Once you [add de.creativecouple.validation:fast-isbn as dependency](https://search.maven.org/artifact/de.creativecouple.validation/fast-isbn)
-to your project definition, you can simply convert your strings into
-[ISBN objects](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) via:
+Once you add [`de.creativecouple.validation:fast-isbn`](https://search.maven.org/artifact/de.creativecouple.validation/fast-isbn)
+as dependency to your project definition, you can simply convert your strings into
+[ISBN](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) objects via:
 
 ```java
   ISBN isbn = ISBN.valueOf(someString);
