@@ -1,23 +1,27 @@
-Fastest way to parse/format/validate ISBNs with the **official ISBN ranges** definition. <br/>
+Fast and simple way to parse/format/validate ISBNs with the **official ISBN ranges** definition. <br/>
 The parser is optimized for speed, the [`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) class for simplicity. <br/>
 This library can evaluate **millions of ISBNs per second**.
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Java Version](https://img.shields.io/badge/Java-1.8%2B-orange)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 [![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn)
 [![Javadocs](https://javadoc.io/badge2/de.creativecouple.validation/fast-isbn/javadoc.svg)](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn)
 
-# Fast ISBN range validation
+# fast-isbn – world's fastest ISBN range validation
 A common issue in digital commerce systems is to validate article identifiers.
 In the publishing business there is the so-called ISBN standard, maintained by the
 [International ISBN Agency](https://www.isbn-international.org/).
 By using its official ISBN range definitions this library offers up-to-date ISBN validation
 beyond simply comparing the EAN-13 checkdigit.
 
+[<img src="https://creativecouple.de/validation/isbn/9789980431929.svg" width="500">](https://creativecouple.de/validation/isbn/)
+
 All number ranges that are not yet assigned to a local ISBN agency or
 which have no group range defined will be treated as invalid.
 The dashes will be inserted automatically at the correct positions for grouping the
 agency prefix, group code, publisher code, and title code.
 
-Example:
+**Example:**
 - :x: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (e.g. on amazon.com)
 - :heavy_check_mark: correct grouping: 978-0-557-50469-5
 
@@ -31,7 +35,7 @@ parsing both ISBN-10 and ISBN-13 numbers into the same object, the
 ## Usage
 
 Once you add [`de.creativecouple.validation:fast-isbn`](https://search.maven.org/artifact/de.creativecouple.validation/fast-isbn)
-as dependency to your project definition, you can simply convert your strings into
+as dependency to your Java/Kotlin/Scala project definition, you can simply convert your strings into
 [ISBN](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) objects via:
 
 ```java

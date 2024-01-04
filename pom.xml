@@ -15,7 +15,7 @@
         with the official ISBN ranges definition
         (evaluating millions of ISBNs per second).
     </description>
-    <url>https://github.com/creativecouple/isbn-validation-java</url>
+    <url>https://github.com/creativecouple/fast-isbn-validation-java</url>
 
     <licenses>
         <license>
@@ -34,9 +34,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/creativecouple/isbn-validation-java.git</connection>
-        <developerConnection>scm:git:ssh://github.com:creativecouple/isbn-validation-java.git</developerConnection>
-        <url>https://github.com/creativecouple/isbn-validation-java</url>
+        <connection>scm:git:git://github.com/creativecouple/fast-isbn-validation-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:creativecouple/fast-isbn-validation-java.git</developerConnection>
+        <url>https://github.com/creativecouple/fast-isbn-validation-java</url>
     </scm>
 
     <properties>
