@@ -79,7 +79,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      *
      * @return the agency's name associated with the ISBN prefix
      */
-    public String getAgencyName() {
+    public String getPrefixName() {
         return ISBNRanges.agencies.get(getPrefix());
     }
 

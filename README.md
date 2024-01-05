@@ -53,7 +53,7 @@ You can get different string representations to be used e.g. in your databases:
   isbn.toCompactString(); // compact representation = "9780557504695"
   
   isbn.getPrefix();          // EAN/UCC prefix = "978" 
-  isbn.getAgencyName();      // EAN/UCC prefix's agency name = "International ISBN Agency" 
+  isbn.getPrefixName();      // EAN/UCC prefix's agency name = "International ISBN Agency" 
   isbn.getGroup();           // group code = "0" 
   isbn.getGroupPrefix();     // group's ISBN prefix = "978-0" 
   isbn.getGroupName();       // group's agency name = "English language" 

@@ -39,7 +39,7 @@ class ISBNTest {
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
         assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9780639963549"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
-        assertThat(isbn.getAgencyName()).isEqualTo("International ISBN Agency");
+        assertThat(isbn.getPrefixName()).isEqualTo("International ISBN Agency");
         assertThat(isbn.getGroup()).isEqualTo("0");
         assertThat(isbn.getGroupPrefix()).isEqualTo("978-0");
         assertThat(isbn.getGroupName()).isEqualTo("English language");
@@ -57,7 +57,7 @@ class ISBNTest {
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
         assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9780639963549"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
-        assertThat(isbn.getAgencyName()).isEqualTo("International ISBN Agency");
+        assertThat(isbn.getPrefixName()).isEqualTo("International ISBN Agency");
         assertThat(isbn.getGroup()).isEqualTo("0");
         assertThat(isbn.getGroupPrefix()).isEqualTo("978-0");
         assertThat(isbn.getGroupName()).isEqualTo("English language");
@@ -75,7 +75,7 @@ class ISBNTest {
         assertThat(isbn.toCompactString()).isEqualTo("9798421221814");
         assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9798421221814"));
         assertThat(isbn.getPrefix()).isEqualTo("979");
-        assertThat(isbn.getAgencyName()).isEqualTo("International ISBN Agency");
+        assertThat(isbn.getPrefixName()).isEqualTo("International ISBN Agency");
         assertThat(isbn.getGroup()).isEqualTo("8");
         assertThat(isbn.getGroupPrefix()).isEqualTo("979-8");
         assertThat(isbn.getGroupName()).isEqualTo("United States");
@@ -93,7 +93,7 @@ class ISBNTest {
         assertThat(isbn.toCompactString()).isEqualTo("9783947188345");
         assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9783947188345"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
-        assertThat(isbn.getAgencyName()).isEqualTo("International ISBN Agency");
+        assertThat(isbn.getPrefixName()).isEqualTo("International ISBN Agency");
         assertThat(isbn.getGroup()).isEqualTo("3");
         assertThat(isbn.getGroupPrefix()).isEqualTo("978-3");
         assertThat(isbn.getGroupName()).isEqualTo("German language");
