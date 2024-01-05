@@ -2,6 +2,8 @@ Fast and simple way to parse/format/validate ISBNs with the **official ISBN rang
 The parser is optimized for speed, the [`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) class for simplicity. <br/>
 This library can evaluate **millions of ISBNs per second**.
 
+[![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/)
+[![ISBN-13](https://creativecouple.de/validation/isbn/9789980431929.banner.svg)](https://creativecouple.de/validation/isbn/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Java Version](https://img.shields.io/badge/Java-1.8%2B-orange)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 [![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn)
@@ -21,9 +23,11 @@ which have no group range defined will be treated as invalid.
 The dashes will be inserted automatically at the correct positions for grouping the
 agency prefix, group code, publisher code, and title code.
 
-**Example:**
-- :x: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (e.g. on amazon.com)
-- :heavy_check_mark: correct grouping: 978-0-557-50469-5
+**Examples:**
+- :cry: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (e.g. on amazon.com)
+- [![ISBN-13](https://creativecouple.de/validation/isbn/9780557504695.banner.svg)](https://creativecouple.de/validation/isbn/) correct grouping: 978-0-557-50469-5
+- [![ISBN-10](https://creativecouple.de/validation/isbn/9980431929.banner.svg)](https://creativecouple.de/validation/isbn/) invalid ISBN-10 checksum: 9980-43-192-9 
+- [![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/) correct ISBN-10 checksum: 9980-43-192-X
 
 The [ISBN domain object](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html)
 wraps the ISBN string representation efficiently to be used
