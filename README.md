@@ -6,7 +6,7 @@ This library can evaluate **millions of ISBNs per second**.
 [![ISBN-13](https://creativecouple.de/validation/isbn/9789980431929.banner.svg)](https://creativecouple.de/validation/isbn/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Java Version](https://img.shields.io/badge/Java-1.8%2B-orange)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
-[![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn/badge.svg) ](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn)
+[![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn)
 [![Javadocs](https://javadoc.io/badge2/de.creativecouple.validation/fast-isbn/javadoc.svg)](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn)
 
 # fast-isbn – world's fastest ISBN range validation
