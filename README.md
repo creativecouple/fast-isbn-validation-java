@@ -130,11 +130,11 @@ to `raw.githubusercontent.com`.
 ### Javadoc
 
 Read the full Java docs online at
-https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/
+[javadoc.io/…/fast-isbn/latest/](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/)
 
 ## Versioning
 
-Our build pipeline checks regularly for new versions of the ISBN range definition provided by the
+Our build pipeline regularly checks for new versions of the ISBN range definition provided by the
 International ISBN Agency. When there are changes then a new version of this library will be deployed.
 
 ## Contribute
