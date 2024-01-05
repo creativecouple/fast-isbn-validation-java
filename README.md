@@ -36,16 +36,46 @@ It normalizes and corrects the given string input with respect to hyphens/dashes
 parsing both ISBN-10 and ISBN-13 numbers into the same object, the
 [`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html). 
 
-## Usage
+## Usage (latest version "1.1.1")
 
-Once you add [`de.creativecouple.validation:fast-isbn`](https://mvnrepository.com/artifact/de.creativecouple.validation/fast-isbn/latest)
-as dependency to your Java/Kotlin/Scala project definition, you can simply convert your strings into
+You only need to install [`de.creativecouple.validation:fast-isbn`](https://mvnrepository.com/artifact/de.creativecouple.validation/fast-isbn/latest)
+as dependency in your Java/Kotlin/Scala project definition,
+
+<details>
+<summary>as Maven dependency in your `pom.xml`,</summary>
+
+```xml
+<dependencies>
+    …
+    <dependency>
+        <groupId>de.creativecouple.validation</groupId>
+        <artifactId>fast-isbn</artifactId>
+        <version>1.1.1</version>
+    </dependency>
+</dependencies>
+```
+</details>
+<details>
+<summary>as Gradle dependency in your `build.gradle`,</summary>
+
+```gradle
+implementation group: 'de.creativecouple.validation', name: 'fast-isbn', version: '1.1.1'
+```
+</details>
+<details>
+<summary>or as Scala dependency in your `build.sbt`.</summary>
+
+```scala
+libraryDependencies += "de.creativecouple.validation" % "fast-isbn" % "1.1.1"
+```
+</details>
+
+Now you can simply convert your strings into
 [ISBN](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) objects via:
 
 ```java
   ISBN isbn = ISBN.valueOf(someString);
 ```
-
 This will potentially throw a `NumberFormatException` if the input string is not a valid ISBN.
 
 You can get different string representations to be used e.g. in your databases:
