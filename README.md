@@ -42,7 +42,7 @@ You only need to install [`de.creativecouple.validation:fast-isbn`](https://mvnr
 as dependency in your Java/Kotlin/Scala project definition,
 
 <details>
-<summary>as Maven dependency in your `pom.xml`,</summary>
+<summary>as Maven dependency in your <code>pom.xml</code>,</summary>
 
 ```xml
 <dependencies>
@@ -56,14 +56,14 @@ as dependency in your Java/Kotlin/Scala project definition,
 ```
 </details>
 <details>
-<summary>as Gradle dependency in your `build.gradle`,</summary>
+<summary>as Gradle dependency in your <code>build.gradle</code>,</summary>
 
 ```gradle
 implementation group: 'de.creativecouple.validation', name: 'fast-isbn', version: '1.1.1'
 ```
 </details>
 <details>
-<summary>or as Scala dependency in your `build.sbt`.</summary>
+<summary>or as Scala dependency in your <code>build.sbt</code>.</summary>
 
 ```scala
 libraryDependencies += "de.creativecouple.validation" % "fast-isbn" % "1.1.1"
