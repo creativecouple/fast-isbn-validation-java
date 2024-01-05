@@ -70,6 +70,8 @@ libraryDependencies += "de.creativecouple.validation" % "fast-isbn" % "1.1.1"
 ```
 </details>
 
+### Parsing
+
 Now you can simply convert your strings into
 [ISBN](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) objects via:
 
@@ -97,7 +99,7 @@ You can get different string representations to be used e.g. in your databases:
   isbn.getCheckdigit();      // checkdigit character = '5' 
 ```
 
-----
+### Validating
 
 If you only want to work with Strings instead of the ISBN object you can simply use the
 [ISBNValidator](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBNValidator.html)
@@ -112,6 +114,18 @@ and hyphenation style (any / correct / none / correct-or-none).
   validator.isValid("0-557-50469-4"); // false
   validator.isValid("0557504694"); // true
 ```
+
+### Runtime updates
+
+Since version 1.1.* you can call the static method
+
+```java
+ISBN.updateRangeDefinition();
+```
+
+to replace the built-in ISBN range definition with the latest version online.
+For that your application must be able to make outgoing https calls
+to `raw.githubusercontent.com`.
 
 ### Javadoc
 
@@ -131,7 +145,7 @@ Feel free to open issues to this repository or create pull requests.
 ## Disclaimer
 
 The MIT License (MIT)
-Copyright (c) 2023 CreativeCouple
+Copyright (c) 2024 CreativeCouple
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
