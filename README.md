@@ -13,13 +13,13 @@ This library can evaluate **millions of ISBNs per second** on a single CPU core.
 A common issue in digital commerce systems is to validate article identifiers.
 In the publishing business there is the so-called ISBN standard, maintained by the
 [International ISBN Agency](https://www.isbn-international.org/).
-By using its official ISBN range definitions this library offers up-to-date ISBN validation
+By using their official ISBN range definitions this library offers up-to-date ISBN validation
 beyond simply comparing the EAN-13 checkdigit.
 
 [<img src="https://creativecouple.de/validation/isbn/9789980431929.svg" width="500">](https://creativecouple.de/validation/isbn/)
 
-All number ranges that are not yet assigned to a local ISBN agency or
-which have no group range defined will be treated as invalid.
+All number ranges that are not yet assigned to a local ISBN agency group or
+whose publisher range is not defined will be treated as invalid.
 The dashes will be inserted automatically at the correct positions for grouping the
 agency prefix, group code, publisher code, and title code.
 
