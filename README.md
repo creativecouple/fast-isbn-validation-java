@@ -1,6 +1,6 @@
 Fast and simple way to parse/format/validate ISBNs with the **official ISBN ranges** definition.
 The parser is optimized for speed, the [`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) class for simplicity. <br/>
-This library can evaluate **millions of ISBNs per second** on a single-threaded CPU core.
+This library can evaluate **millions of ISBNs per second** on a single CPU core.
 
 [![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/)
 [![ISBN-13](https://creativecouple.de/validation/isbn/9789980431929.banner.svg)](https://creativecouple.de/validation/isbn/)
@@ -136,6 +136,10 @@ Read the full Java docs online at
 
 Our build pipeline regularly checks for new versions of the ISBN range definition provided by the
 International ISBN Agency. When there are changes then a new version of this library will be deployed.
+
+## Demo
+
+You can find an online service using this validation at https://creativecouple.de/validation/isbn/ .
 
 ## Contribute
 
