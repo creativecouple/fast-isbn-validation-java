@@ -113,59 +113,42 @@ public final class ISBNValidatorBuilder {
         }
     }
 
-    private static final BiFunction<String, ISBN, Boolean> ANY_ISBN = (string, isbn) -> {
-        return true;
-    };
+    private static final BiFunction<String, ISBN, Boolean> ANY_ISBN = (string, isbn) -> true;
 
-    private static final BiFunction<String, ISBN, Boolean> ANY_ISBN_HYPHENATED = (string, isbn) -> {
-        if (string.length() == 17) {
-            return isbn.toString().equals(string);
-        }
-        return string.length() == 13 && isbn.getPrefix().equals("978")
-               && string.startsWith(isbn.getGroup() + "-" + isbn.getPublisher() + "-" + isbn.getTitle() + "-");
-    };
+    private static final BiFunction<String, ISBN, Boolean> ANY_ISBN_HYPHENATED =
+            (string, isbn) -> string.length() == 17 ? isbn.toString().equals(string) :
+                    string.length() == 13 && isbn.getPrefix().equals("978")
+                    && string.startsWith(isbn.getGroup() + "-" + isbn.getPublisher() + "-" + isbn.getTitle() + "-");
 
-    private static final BiFunction<String, ISBN, Boolean> ANY_ISBN_COMPACT = (string, isbn) -> {
-        if (string.length() == 13) {
-            return isbn.toCompactString().equals(string);
-        }
-        return string.length() == 10 && isbn.getPrefix().equals("978")
-               && string.startsWith(isbn.getGroup() + isbn.getPublisher() + isbn.getTitle());
-    };
-    private static final BiFunction<String, ISBN, Boolean> ANY_ISBN_HYPHENATED_OR_COMPACT = (string, isbn) -> {
-        return ANY_ISBN_HYPHENATED.apply(string, isbn) || ANY_ISBN_COMPACT.apply(string, isbn);
-    };
+    private static final BiFunction<String, ISBN, Boolean> ANY_ISBN_COMPACT = (string, isbn) ->
+            string.length() == 13 ? isbn.toCompactString().equals(string) :
+                    string.length() == 10 && isbn.getPrefix().equals("978")
+                    && string.startsWith(isbn.getGroup() + isbn.getPublisher() + isbn.getTitle());
+    private static final BiFunction<String, ISBN, Boolean> ANY_ISBN_HYPHENATED_OR_COMPACT = (string, isbn) ->
+            ANY_ISBN_HYPHENATED.apply(string, isbn) || ANY_ISBN_COMPACT.apply(string, isbn);
 
-    private static final BiFunction<String, ISBN, Boolean> ISBN13 = (string, isbn) -> {
-        return countDigits(string) == 13;
-    };
+    private static final BiFunction<String, ISBN, Boolean> ISBN13 = (string, isbn) ->
+            countDigits(string) == 13;
 
-    private static final BiFunction<String, ISBN, Boolean> ISBN13_HYPHENATED = (string, isbn) -> {
-        return isbn.toString().equals(string);
-    };
+    private static final BiFunction<String, ISBN, Boolean> ISBN13_HYPHENATED = (string, isbn) ->
+            isbn.toString().equals(string);
 
-    private static final BiFunction<String, ISBN, Boolean> ISBN13_COMPACT = (string, isbn) -> {
-        return isbn.toCompactString().equals(string);
-    };
-    private static final BiFunction<String, ISBN, Boolean> ISBN13_HYPHENATED_OR_COMPACT = (string, isbn) -> {
-        return ISBN13_HYPHENATED.apply(string, isbn) || ISBN13_COMPACT.apply(string, isbn);
-    };
+    private static final BiFunction<String, ISBN, Boolean> ISBN13_COMPACT = (string, isbn) ->
+            isbn.toCompactString().equals(string);
+    private static final BiFunction<String, ISBN, Boolean> ISBN13_HYPHENATED_OR_COMPACT = (string, isbn) ->
+            ISBN13_HYPHENATED.apply(string, isbn) || ISBN13_COMPACT.apply(string, isbn);
 
-    private static final BiFunction<String, ISBN, Boolean> ISBN10 = (string, isbn) -> {
-        return countDigits(string) == 10;
-    };
+    private static final BiFunction<String, ISBN, Boolean> ISBN10 = (string, isbn) ->
+            countDigits(string) == 10;
 
-    private static final BiFunction<String, ISBN, Boolean> ISBN10_HYPHENATED = (string, isbn) -> {
-        return string.length() == 13 && isbn.getPrefix().equals("978")
-               && string.startsWith(isbn.getGroup() + "-" + isbn.getPublisher() + "-" + isbn.getTitle() + "-");
-    };
+    private static final BiFunction<String, ISBN, Boolean> ISBN10_HYPHENATED = (string, isbn) ->
+            string.length() == 13 && isbn.getPrefix().equals("978")
+            && string.startsWith(isbn.getGroup() + "-" + isbn.getPublisher() + "-" + isbn.getTitle() + "-");
 
-    private static final BiFunction<String, ISBN, Boolean> ISBN10_COMPACT = (string, isbn) -> {
-        return string.length() == 10;
-    };
-    private static final BiFunction<String, ISBN, Boolean> ISBN10_HYPHENATED_OR_COMPACT = (string, isbn) -> {
-        return ISBN10_HYPHENATED.apply(string, isbn) || ISBN10_COMPACT.apply(string, isbn);
-    };
+    private static final BiFunction<String, ISBN, Boolean> ISBN10_COMPACT = (string, isbn) ->
+            string.length() == 10;
+    private static final BiFunction<String, ISBN, Boolean> ISBN10_HYPHENATED_OR_COMPACT = (string, isbn) ->
+            ISBN10_HYPHENATED.apply(string, isbn) || ISBN10_COMPACT.apply(string, isbn);
 
     private static int countDigits(CharSequence input) {
         int result = 0;

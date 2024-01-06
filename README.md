@@ -96,7 +96,9 @@ You can get different string representations to be used e.g. in your databases:
   isbn.getPublisher();       // publisher code = "557" 
   isbn.getPublisherPrefix(); // publisher's ISBN prefix = "978-0-557" 
   isbn.getTitle();           // title code = "50469" 
-  isbn.getCheckdigit();      // checkdigit character = '5' 
+  isbn.getCheckdigit();      // checkdigit character = '5'
+
+  isbn.toUri();              // URI("urn:isbn:9780557504695")
 ```
 
 ### Validating
