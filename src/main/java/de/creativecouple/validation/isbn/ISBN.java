@@ -244,13 +244,9 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
     /**
      * Parses a given string input and returns an ISBN object.
      *
-     * @param isbn
-     *            the ISBN string
-     *
+     * @param isbn the ISBN string
      * @return the ISBN object
-     *
-     * @throws NumberFormatException
-     *             if the input is not an ISBN
+     * @throws NumberFormatException if the input is not an ISBN
      */
     public static ISBN valueOf(String isbn) throws IllegalArgumentException {
         ISBN parsed = Parser.parse(isbn);
@@ -273,7 +269,13 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
     }
 
     /**
-     * Reload the latest ISBN definition from the latest release at github.com.
+     * Load the ISBN definition from the latest release at github.com.
+     * On success this will overwrite the current (built-in) ISBN range definition.
+     * <br/>
+     * To use this your application must be able to make outgoing https requests
+     * towards <code>raw.githubusercontent.com</code>.
+     *
+     * @since 1.1.0
      */
     public static void updateRangeDefinition() {
         ISBNRanges.updateRangeDefinition();

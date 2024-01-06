@@ -48,11 +48,11 @@ final class ISBNRangesLoader {
     private final Map<String, Object> indexMap = new HashMap<>();
     private final Map<Object, String> reverseMap = new HashMap<>();
 
-    private final Class<?>[] elemClasses = { Hyphenation[][][][][][][][][][][][].class,
+    private final Class<?>[] elemClasses = {Hyphenation[][][][][][][][][][][][].class,
             Hyphenation[][][][][][][][][][][].class, Hyphenation[][][][][][][][][][].class,
             Hyphenation[][][][][][][][][].class, Hyphenation[][][][][][][][].class, Hyphenation[][][][][][][].class,
             Hyphenation[][][][][][].class, Hyphenation[][][][][].class, Hyphenation[][][][].class,
-            Hyphenation[][][].class, Hyphenation[][].class, Hyphenation[].class, Hyphenation.class };
+            Hyphenation[][][].class, Hyphenation[][].class, Hyphenation[].class, Hyphenation.class};
 
     private final Map<String, String> agencies;
     private final Hyphenation[][][][][][][][][][][][][] rangeData;
@@ -97,7 +97,7 @@ final class ISBNRangesLoader {
 
     private Object parseRangeData(int depth, int weightedSum) throws IOException {
         Object result = Array.newInstance(elemClasses[depth], '9' + 1);
-        for (int i = 0, data; i <= 9;) {
+        for (int i = 0, data; i <= 9; ) {
             int newWeightedSum = (weightedSum + ((depth & 1) << 1 | 1) * i) % 10;
             if ((data = input.read()) < 0) {
                 throw new IllegalStateException("unexpected EOF");
@@ -133,7 +133,7 @@ final class ISBNRangesLoader {
     private <T> T getHyphenationArray(String name, int depth, int weightedSum) {
         return depth == 13 ? (T) indexMap.get(weightedSum + "_" + name)
                 : (T) getOrFindOrCreateArray(weightedSum + "_" + name + "_" + depth, elemClasses[depth],
-                        i -> getHyphenationArray(name, depth + 1, (weightedSum + ((depth & 1) << 1 | 1) * i) % 10));
+                i -> getHyphenationArray(name, depth + 1, (weightedSum + ((depth & 1) << 1 | 1) * i) % 10));
     }
 
     @SuppressWarnings("unchecked")

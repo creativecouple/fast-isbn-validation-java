@@ -36,30 +36,30 @@ final class Parser {
         final int to = isbnString.length() - 1;
         int pos = 0;
         if (isNoDigit(isbn[0] = isbnString.charAt(pos++)) || pos > to
-                || (isNoDigit(isbn[1] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[1]) || pos > to || isNoDigit(isbn[1] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[2] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[2]) || pos > to || isNoDigit(isbn[2] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[3] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[3]) || pos > to || isNoDigit(isbn[3] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[4] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[4]) || pos > to || isNoDigit(isbn[4] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[5] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[5]) || pos > to || isNoDigit(isbn[5] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[6] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[6]) || pos > to || isNoDigit(isbn[6] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[7] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[7]) || pos > to || isNoDigit(isbn[7] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[8] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[8]) || pos > to || isNoDigit(isbn[8] = isbnString.charAt(pos++))))
-                || (/* ISBN-10 hyphen */ pos + 1 == to && !isUnicodeHyphen(isbnString.charAt(pos++)))) {
+            || (isNoDigit(isbn[1] = isbnString.charAt(pos++))
+                && (!isUnicodeHyphen(isbn[1]) || pos > to || isNoDigit(isbn[1] = isbnString.charAt(pos++))))
+            || pos > to
+            || (isNoDigit(isbn[2] = isbnString.charAt(pos++))
+                && (!isUnicodeHyphen(isbn[2]) || pos > to || isNoDigit(isbn[2] = isbnString.charAt(pos++))))
+            || pos > to
+            || (isNoDigit(isbn[3] = isbnString.charAt(pos++))
+                && (!isUnicodeHyphen(isbn[3]) || pos > to || isNoDigit(isbn[3] = isbnString.charAt(pos++))))
+            || pos > to
+            || (isNoDigit(isbn[4] = isbnString.charAt(pos++))
+                && (!isUnicodeHyphen(isbn[4]) || pos > to || isNoDigit(isbn[4] = isbnString.charAt(pos++))))
+            || pos > to
+            || (isNoDigit(isbn[5] = isbnString.charAt(pos++))
+                && (!isUnicodeHyphen(isbn[5]) || pos > to || isNoDigit(isbn[5] = isbnString.charAt(pos++))))
+            || pos > to
+            || (isNoDigit(isbn[6] = isbnString.charAt(pos++))
+                && (!isUnicodeHyphen(isbn[6]) || pos > to || isNoDigit(isbn[6] = isbnString.charAt(pos++))))
+            || pos > to
+            || (isNoDigit(isbn[7] = isbnString.charAt(pos++))
+                && (!isUnicodeHyphen(isbn[7]) || pos > to || isNoDigit(isbn[7] = isbnString.charAt(pos++))))
+            || pos > to
+            || (isNoDigit(isbn[8] = isbnString.charAt(pos++))
+                && (!isUnicodeHyphen(isbn[8]) || pos > to || isNoDigit(isbn[8] = isbnString.charAt(pos++))))
+            || (/* ISBN-10 hyphen */ pos + 1 == to && !isUnicodeHyphen(isbnString.charAt(pos++)))) {
             return null;
         }
         if (pos == to) { // ISBN-10 last digit
@@ -72,16 +72,16 @@ final class Parser {
             return verifyRangeAndChecksum(isbn);
         }
         return pos > to
-                || (isNoDigit(isbn[9] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[9]) || pos > to || isNoDigit(isbn[9] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[10] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[10]) || pos > to || isNoDigit(isbn[10] = isbnString.charAt(pos++))))
-                || pos > to
-                || (isNoDigit(isbn[11] = isbnString.charAt(pos++))
-                        && (!isUnicodeHyphen(isbn[11]) || pos > to || isNoDigit(isbn[11] = isbnString.charAt(pos++))))
-                || (pos + 1 == to && !isUnicodeHyphen(isbnString.charAt(pos++))) || pos != to
-                || isNoDigit(isbn[12] = isbnString.charAt(pos)) ? null : verifyRangeAndChecksum(isbn);
+               || (isNoDigit(isbn[9] = isbnString.charAt(pos++))
+                   && (!isUnicodeHyphen(isbn[9]) || pos > to || isNoDigit(isbn[9] = isbnString.charAt(pos++))))
+               || pos > to
+               || (isNoDigit(isbn[10] = isbnString.charAt(pos++))
+                   && (!isUnicodeHyphen(isbn[10]) || pos > to || isNoDigit(isbn[10] = isbnString.charAt(pos++))))
+               || pos > to
+               || (isNoDigit(isbn[11] = isbnString.charAt(pos++))
+                   && (!isUnicodeHyphen(isbn[11]) || pos > to || isNoDigit(isbn[11] = isbnString.charAt(pos++))))
+               || (pos + 1 == to && !isUnicodeHyphen(isbnString.charAt(pos++))) || pos != to
+               || isNoDigit(isbn[12] = isbnString.charAt(pos)) ? null : verifyRangeAndChecksum(isbn);
     }
 
     private static boolean isNoDigit(char ch) {
@@ -94,9 +94,9 @@ final class Parser {
 
     private static void convertIsbn10To13(char[] isbn) {
         int checksum10 = (10 * isbn[0] + 9 * isbn[1] + 8 * isbn[2] + 7 * isbn[3] + 6 * isbn[4] + 5 * isbn[5]
-                + 4 * isbn[6] + 3 * isbn[7] + 2 * isbn[8] + isbn[9]) % 11;
+                          + 4 * isbn[6] + 3 * isbn[7] + 2 * isbn[8] + isbn[9]) % 11;
         isbn[12] = (char) ('0' + Math.min(9, checksum10) + (10 - ('9' + '8' + isbn[1] + isbn[3] + isbn[5] + isbn[7]
-                + '0' + 3 * ('7' + isbn[0] + isbn[2] + isbn[4] + isbn[6] + isbn[8])) % 10) % 10);
+                                                                  + '0' + 3 * ('7' + isbn[0] + isbn[2] + isbn[4] + isbn[6] + isbn[8])) % 10) % 10);
         for (int x = 8; x >= 0; x--) {
             isbn[x + 3] = isbn[x];
         }

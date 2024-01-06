@@ -69,49 +69,47 @@ public final class ISBNValidatorBuilder {
     /**
      * Builds an ISBNValidation object with the given hyphenation style.
      *
-     * @param option
-     *            the hyphenation style to validate for
-     *
+     * @param option the hyphenation style to validate for
      * @return the ISBN validator object
      */
     public ISBNValidator hyphenation(HyphenationOption option) {
         switch (option) {
-        case CORRECT:
-            switch (isbnLength) {
-            case 13:
-                return new ISBNValidator(ISBN13_HYPHENATED);
-            case 10:
-                return new ISBNValidator(ISBN10_HYPHENATED);
+            case CORRECT:
+                switch (isbnLength) {
+                    case 13:
+                        return new ISBNValidator(ISBN13_HYPHENATED);
+                    case 10:
+                        return new ISBNValidator(ISBN10_HYPHENATED);
+                    default:
+                        return new ISBNValidator(ANY_ISBN_HYPHENATED);
+                }
+            case NONE:
+                switch (isbnLength) {
+                    case 13:
+                        return new ISBNValidator(ISBN13_COMPACT);
+                    case 10:
+                        return new ISBNValidator(ISBN10_COMPACT);
+                    default:
+                        return new ISBNValidator(ANY_ISBN_COMPACT);
+                }
+            case CORRECT_OR_NONE:
+                switch (isbnLength) {
+                    case 13:
+                        return new ISBNValidator(ISBN13_HYPHENATED_OR_COMPACT);
+                    case 10:
+                        return new ISBNValidator(ISBN10_HYPHENATED_OR_COMPACT);
+                    default:
+                        return new ISBNValidator(ANY_ISBN_HYPHENATED_OR_COMPACT);
+                }
             default:
-                return new ISBNValidator(ANY_ISBN_HYPHENATED);
-            }
-        case NONE:
-            switch (isbnLength) {
-            case 13:
-                return new ISBNValidator(ISBN13_COMPACT);
-            case 10:
-                return new ISBNValidator(ISBN10_COMPACT);
-            default:
-                return new ISBNValidator(ANY_ISBN_COMPACT);
-            }
-        case CORRECT_OR_NONE:
-            switch (isbnLength) {
-            case 13:
-                return new ISBNValidator(ISBN13_HYPHENATED_OR_COMPACT);
-            case 10:
-                return new ISBNValidator(ISBN10_HYPHENATED_OR_COMPACT);
-            default:
-                return new ISBNValidator(ANY_ISBN_HYPHENATED_OR_COMPACT);
-            }
-        default:
-            switch (isbnLength) {
-            case 13:
-                return new ISBNValidator(ISBN13);
-            case 10:
-                return new ISBNValidator(ISBN10);
-            default:
-                return new ISBNValidator(ANY_ISBN);
-            }
+                switch (isbnLength) {
+                    case 13:
+                        return new ISBNValidator(ISBN13);
+                    case 10:
+                        return new ISBNValidator(ISBN10);
+                    default:
+                        return new ISBNValidator(ANY_ISBN);
+                }
         }
     }
 
@@ -124,7 +122,7 @@ public final class ISBNValidatorBuilder {
             return isbn.toString().equals(string);
         }
         return string.length() == 13 && isbn.getPrefix().equals("978")
-                && string.startsWith(isbn.getGroup() + "-" + isbn.getPublisher() + "-" + isbn.getTitle() + "-");
+               && string.startsWith(isbn.getGroup() + "-" + isbn.getPublisher() + "-" + isbn.getTitle() + "-");
     };
 
     private static final BiFunction<String, ISBN, Boolean> ANY_ISBN_COMPACT = (string, isbn) -> {
@@ -132,7 +130,7 @@ public final class ISBNValidatorBuilder {
             return isbn.toCompactString().equals(string);
         }
         return string.length() == 10 && isbn.getPrefix().equals("978")
-                && string.startsWith(isbn.getGroup() + isbn.getPublisher() + isbn.getTitle());
+               && string.startsWith(isbn.getGroup() + isbn.getPublisher() + isbn.getTitle());
     };
     private static final BiFunction<String, ISBN, Boolean> ANY_ISBN_HYPHENATED_OR_COMPACT = (string, isbn) -> {
         return ANY_ISBN_HYPHENATED.apply(string, isbn) || ANY_ISBN_COMPACT.apply(string, isbn);
@@ -159,7 +157,7 @@ public final class ISBNValidatorBuilder {
 
     private static final BiFunction<String, ISBN, Boolean> ISBN10_HYPHENATED = (string, isbn) -> {
         return string.length() == 13 && isbn.getPrefix().equals("978")
-                && string.startsWith(isbn.getGroup() + "-" + isbn.getPublisher() + "-" + isbn.getTitle() + "-");
+               && string.startsWith(isbn.getGroup() + "-" + isbn.getPublisher() + "-" + isbn.getTitle() + "-");
     };
 
     private static final BiFunction<String, ISBN, Boolean> ISBN10_COMPACT = (string, isbn) -> {

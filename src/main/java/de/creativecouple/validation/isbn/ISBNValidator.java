@@ -30,9 +30,8 @@ import java.util.function.Predicate;
  * style (any, none, correct, correct-or-none), for checking input strings. <br/>
  * E.g. {@code myValidator = ISBNValidator.isbn13().hyphenation(NONE)} to validate compact ISBN-13 string only.
  *
- * @see ISBNValidatorBuilder.HyphenationOption
- *
  * @author Peter Liske (CreativeCouple)
+ * @see ISBNValidatorBuilder.HyphenationOption
  */
 public final class ISBNValidator implements Predicate<String> {
 
@@ -66,13 +65,9 @@ public final class ISBNValidator implements Predicate<String> {
     /**
      * Parses a given string input and returns an ISBN object, if it matches this validator's criteria.
      *
-     * @param input
-     *            the string to evaluate
-     *
+     * @param input the string to evaluate
      * @return the ISBN object
-     *
-     * @throws IllegalArgumentException
-     *             if the input is invalid according to this validator
+     * @throws IllegalArgumentException if the input is invalid according to this validator
      */
     public ISBN parse(String input) {
         ISBN isbn = Parser.parse(input);
