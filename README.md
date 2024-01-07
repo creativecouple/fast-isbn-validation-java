@@ -2,8 +2,8 @@ Fast and simple way to parse/format/validate ISBNs with the **official ISBN rang
 The parser is optimized for speed, the [`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) class for simplicity. <br/>
 This library can evaluate **millions of ISBNs per second** on a single CPU core.
 
-[![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/)
-[![ISBN-13](https://creativecouple.de/validation/isbn/9789980431929.banner.svg)](https://creativecouple.de/validation/isbn/)
+[![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/#?998043192X)
+[![ISBN-13](https://creativecouple.de/validation/isbn/9789980431929.banner.svg)](https://creativecouple.de/validation/isbn/#?9789980431929)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Java Version](https://img.shields.io/badge/Java-1.8%2B-orange)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 [![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn)
@@ -16,7 +16,7 @@ In the publishing business there is the so-called ISBN standard, maintained by t
 By using their official ISBN range definitions this library offers up-to-date ISBN validation
 beyond simply comparing the EAN-13 checkdigit.
 
-[<img src="https://creativecouple.de/validation/isbn/9789980431929.svg" width="500">](https://creativecouple.de/validation/isbn/)
+[<img src="https://creativecouple.de/validation/isbn/9789980431929.svg" width="500">](https://creativecouple.de/validation/isbn/#?9789980431929)
 
 All number ranges that are not yet assigned to a local ISBN agency group or
 whose publisher range is not defined will be treated as invalid.
@@ -25,9 +25,9 @@ agency prefix, group code, publisher code, and title code.
 
 **Examples:**
 - :cry: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (e.g. on amazon.com)
-- [![ISBN-13](https://creativecouple.de/validation/isbn/9780557504695.banner.svg)](https://creativecouple.de/validation/isbn/) correct grouping: 978-0-557-50469-5
-- [![ISBN-10](https://creativecouple.de/validation/isbn/9980431929.banner.svg)](https://creativecouple.de/validation/isbn/) invalid ISBN-10 checksum: 9980-43-192-9 
-- [![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/) correct ISBN-10 checksum: 9980-43-192-X
+- [![ISBN-13](https://creativecouple.de/validation/isbn/9780557504695.banner.svg)](https://creativecouple.de/validation/isbn/#?9780557504695) correct grouping: 978-0-557-50469-5
+- [![ISBN-10](https://creativecouple.de/validation/isbn/9980431929.banner.svg)](https://creativecouple.de/validation/isbn/#?9980431929) invalid ISBN-10 checksum: 9980-43-192-9 
+- [![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/#?998043192X) correct ISBN-10 checksum: 9980-43-192-X
 
 The [ISBN domain object](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html)
 wraps the ISBN string representation efficiently to be used
