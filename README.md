@@ -29,7 +29,7 @@ isbn prefix[^1], agency group code[^2], publisher code[^3], title code[^4], and 
 [^3]: **Registrant element**, length-varying third part of the ISBN, also known as publisher, allocated by the Registration Group (local agency)
 [^4]: **Publication element**, length-varying fourth part of the ISBN, also known as book title number, assigned by the Registrant (publisher)
 [^5]: **Checkdigit**, last digit of the ISBN, calculated using the "modulus 10" algorithm
-[^6]: **International Standard Book Number** (ISBN) [ISO 2108:2017](https://www.google.com/search?q=%22iso+2108%22+type%253Apdf)
+[^6]: **International Standard Book Number** (ISBN) [ISO 2108:2017](https://www.google.com/search?q=%22iso+2108%22+type%3Apdf)
 [^7]: **Human readable form** of the ISBN uses the correct grouping together with the word "ISBN", example `ISBN 978-90-70002-34-3`
 [^8]: **Alternative compact form** of the ISBN, for data processing purposes, example `9789070002343`
 
