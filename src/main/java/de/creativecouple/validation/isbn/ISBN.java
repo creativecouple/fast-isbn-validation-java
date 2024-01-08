@@ -208,9 +208,10 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
     /**
      * Returns the human-readable ISO-2108 standard representation of this ISBN.
      *
+     * @since 1.1.2
      * @return the official human-readable ISO-2108 standard representation, e.g. "ISBN 978-0-557-50469-5"
      */
-    public String iso2108() {
+    public String toIso2108() {
         return "ISBN " + this;
     }
 
