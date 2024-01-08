@@ -36,6 +36,7 @@ class ISBNTest {
         ISBN isbn = ISBN.valueOf("9-780-6-3-9-96-35-4-9");
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-0-6399635-4-9");
+        assertThat(isbn.iso2108()).isEqualTo("ISBN 978-0-6399635-4-9");
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
         assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9780639963549"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
@@ -54,6 +55,7 @@ class ISBNTest {
         ISBN isbn = ISBN.valueOf("9_780-6\u20133\u20149_9_63-5-4\u22129");
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-0-6399635-4-9");
+        assertThat(isbn.iso2108()).isEqualTo("ISBN 978-0-6399635-4-9");
         assertThat(isbn.toCompactString()).isEqualTo("9780639963549");
         assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9780639963549"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
@@ -72,6 +74,7 @@ class ISBNTest {
         ISBN isbn = ISBN.valueOf("979-8421221814");
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("979-8-4212-2181-4");
+        assertThat(isbn.iso2108()).isEqualTo("ISBN 979-8-4212-2181-4");
         assertThat(isbn.toCompactString()).isEqualTo("9798421221814");
         assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9798421221814"));
         assertThat(isbn.getPrefix()).isEqualTo("979");
@@ -90,6 +93,7 @@ class ISBNTest {
         ISBN isbn = ISBN.valueOf("394718834-X");
         assertThat(isbn).isNotNull();
         assertThat(isbn.toString()).isEqualTo("978-3-947188-34-5");
+        assertThat(isbn.iso2108()).isEqualTo("ISBN 978-3-947188-34-5");
         assertThat(isbn.toCompactString()).isEqualTo("9783947188345");
         assertThat(isbn.toURI()).isEqualTo(URI.create("urn:isbn:9783947188345"));
         assertThat(isbn.getPrefix()).isEqualTo("978");
