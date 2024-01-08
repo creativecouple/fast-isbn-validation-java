@@ -11,24 +11,27 @@ This library can evaluate **millions of ISBNs per second** on a single CPU core.
 
 # fast-isbn – world's fastest ISBN range validation
 A common issue in digital commerce systems is to validate article identifiers.
-In the publishing business there is the so-called ISBN standard, maintained by the
-[International ISBN Agency](https://www.isbn-international.org/).
+In the publishing business there is the so-called ISBN standard[^6], maintained by the
+International ISBN Agency.
 By using their official ISBN range definitions this library offers up-to-date ISBN validation
-beyond simply comparing the EAN-13 checkdigit, and adds ISO 2108[^1] conform formatting.
+beyond simply comparing the EAN-13 checkdigit, and adds ISO 2108[^6] conform formatting
+for the extended[^7] and compact form[^8].
 
 [<img src="https://creativecouple.de/validation/isbn/9789980431929.svg" width="500">](https://creativecouple.de/validation/isbn/#?9789980431929)
 
-All number ranges that are not yet assigned to a local ISBN agency group[^3] or
-whose publisher range[^4] is not defined will be treated as invalid.
+All number ranges that are not yet assigned to a local ISBN agency group[^2] or
+whose publisher range[^3] is not defined will be treated as invalid.
 The dashes will be inserted automatically at the correct positions for grouping the
-isbn prefix[^2], agency group code[^3], publisher code[^4], title code[^5], and checkdigit[^6].
+isbn prefix[^1], agency group code[^2], publisher code[^3], title code[^4], and checkdigit[^5].
 
-[^1]: [**International Standard Book Number** (ISBN), ISO 2108:2017](https://www.google.com/search?q=%22iso+2108%22+type%253Apdf)
-[^2]: **Three-digit GS1 prefix** (formerly known as EAN/UCC prefix), first part of the ISBN, defined by the [Registration Authority](https://www.isbn-international.org/)
-[^3]: **Registration group element**, length-varying second part of the ISBN, also known as local agency group, allocated by the [Registration Authority](https://www.isbn-international.org/)
-[^4]: **Registrant element**, length-varying third part of the ISBN, also known as publisher, allocated by the Registration Group (local agency)
-[^5]: **Publication element**, length-varying fourth part of the ISBN, also known as book title number, assigned by the Registrant (publisher)
-[^6]: **Checkdigit**, last character of the ISBN, calculated using the "modulus 10" algorithm
+[^1]: **GS1 prefix** (formerly known as EAN/UCC prefix), first three digits of the ISBN, defined by the [Registration Authority](https://www.isbn-international.org/)
+[^2]: **Registration group element**, length-varying second part of the ISBN, also known as local agency group, allocated by the [Registration Authority](https://www.isbn-international.org/)
+[^3]: **Registrant element**, length-varying third part of the ISBN, also known as publisher, allocated by the Registration Group (local agency)
+[^4]: **Publication element**, length-varying fourth part of the ISBN, also known as book title number, assigned by the Registrant (publisher)
+[^5]: **Checkdigit**, last digit of the ISBN, calculated using the "modulus 10" algorithm
+[^6]: **International Standard Book Number** (ISBN) [ISO 2108:2017](https://www.google.com/search?q=%22iso+2108%22+type%253Apdf)
+[^7]: **Human readable form** of the ISBN uses the correct grouping together with the word "ISBN", example `ISBN 978-90-70002-34-3`
+[^8]: **Alternative compact form** of the ISBN, for data processing purposes, example `9789070002343`
 
 **Examples:**
 - :cry: wrong grouping: 978-05-5750-469-5 or 978-0557504695 (e.g. on amazon.com)
