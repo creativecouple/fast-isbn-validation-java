@@ -97,6 +97,7 @@ You can get different string representations to be used e.g. in your databases:
 
   isbn.toString();        // standard representation = "978-0-557-50469-5"
   isbn.toCompactString(); // compact representation = "9780557504695"
+  isbn.toIso2108();       // ISO-2108 representation = "ISBN 978-0-557-50469-5"
   
   isbn.getPrefix();          // EAN/UCC prefix = "978" 
   isbn.getPrefixName();      // EAN/UCC prefix's agency name = "International ISBN Agency" 

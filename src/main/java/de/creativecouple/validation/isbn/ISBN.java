@@ -26,8 +26,16 @@ import java.io.Serializable;
 import java.net.URI;
 
 /**
- * Simple domain object, representing a single ISBN identifier. Usage:
- *
+ * Simple domain object, representing a single ISBN identifier.<br/>
+ * It consists of five parts, conformant with the ISO&nbsp;2108 standard:
+ * <ul>
+ *     <li>GS1/EAN/UCC prefix,</li>
+ *     <li>agency/registration group code,</li>
+ *     <li>publisher code,</li>
+ *     <li>book title number,</li>
+ *     <li>check digit.</li>
+ * </ul>
+ * <h2>Usage:</h2>
  * <pre>{@code
  * ISBN isbn1 = ISBN.valueOf("978-0557504695");
  * isbn1.toString(); // "978-0-557-50469-5"
@@ -68,7 +76,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      *
      * <pre>
      *  ,–––⹁
-     *   978-0-557-50469-5
+     *   <b>978</b>-0-557-50469-5
      *  `–––´
      * </pre>
      *
@@ -94,7 +102,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      *
      * <pre>
      *      ,–⹁
-     *   978-0-557-50469-5
+     *   978-<b>0</b>-557-50469-5
      *      `–´
      * </pre>
      *
@@ -109,14 +117,14 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      *
      * <pre>
      *  ,–––––⹁
-     *   978-0-557-50469-5
+     *   <b>978-0</b>-557-50469-5
      *  `–––––´
      * </pre>
      *
      * @return the group code of the ISBN, e.g. "978-0"
      */
     public String getGroupPrefix() {
-        return getPrefix() + '-' + getGroup();
+        return toString().substring(0, hyphenation.groupPrefixLength + 1);
     }
 
     /**
@@ -134,7 +142,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      *
      * <pre>
      *        ,–––⹁
-     *   978-0-557-50469-5
+     *   978-0-<b>557</b>-50469-5
      *        `–––´
      * </pre>
      *
@@ -149,14 +157,14 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      *
      * <pre>
      *  ,–––––––––⹁
-     *   978-0-557-50469-5
+     *   <b>978-0-557</b>-50469-5
      *  `–––––––––´
      * </pre>
      *
      * @return the publisher's prefix of the ISBN, e.g. "978-0-557"
      */
     public String getPublisherPrefix() {
-        return getPrefix() + '-' + getGroup() + '-' + getPublisher();
+        return toString().substring(0, hyphenation.publisherPrefixLength + 2);
     }
 
     /**
@@ -165,7 +173,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      *
      * <pre>
      *            ,–––––⹁
-     *   978-0-557-50469-5
+     *   978-0-557-<b>50469</b>-5
      *            `–––––´
      * </pre>
      *
@@ -182,7 +190,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      *
      * <pre>
      *                  ,–⹁
-     *   978-0-557-50469-5
+     *   978-0-557-50469-<b>5</b>
      *                  `–´
      * </pre>
      *
