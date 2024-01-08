@@ -124,7 +124,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      * @return the group code of the ISBN, e.g. "978-0"
      */
     public String getGroupPrefix() {
-        return getPrefix() + '-' + getGroup();
+        return toString().substring(0, hyphenation.groupPrefixLength + 1);
     }
 
     /**
@@ -164,7 +164,7 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      * @return the publisher's prefix of the ISBN, e.g. "978-0-557"
      */
     public String getPublisherPrefix() {
-        return getPrefix() + '-' + getGroup() + '-' + getPublisher();
+        return toString().substring(0, hyphenation.publisherPrefixLength + 2);
     }
 
     /**
