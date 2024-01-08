@@ -52,6 +52,11 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      */
     private final Hyphenation hyphenation;
 
+    /**
+     * lazy-loaded hyphenated representation of this ISBN
+     */
+    private String hyphenated;
+
     ISBN(String isbn, Hyphenation hyphenation) {
         this.isbn = isbn;
         this.hyphenation = hyphenation;
@@ -194,7 +199,20 @@ public final class ISBN implements Serializable, Comparable<ISBN> {
      */
     @Override
     public String toString() {
-        return getPrefix() + '-' + getGroup() + '-' + getPublisher() + '-' + getTitle() + '-' + getCheckdigit();
+        if (hyphenated == null) {
+            hyphenated = getPrefix() + '-' + getGroup() + '-' + getPublisher() + '-' + getTitle() + '-' + getCheckdigit();
+        }
+        return hyphenated;
+    }
+
+    /**
+     * Returns the human-readable ISO-2108 standard representation of this ISBN.
+     *
+     * @since 1.1.2
+     * @return the official human-readable ISO-2108 standard representation, e.g. "ISBN 978-0-557-50469-5"
+     */
+    public String toIso2108() {
+        return "ISBN " + this;
     }
 
     /**
