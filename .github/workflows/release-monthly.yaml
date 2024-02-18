@@ -22,7 +22,7 @@ jobs:
         run: |
           git config --global user.email "jenkins@creativecouple.de"
           git config --global user.name "Jenkins"
-          echo "changes_found=$(git diff --name-only release-latest..main src/main/java | head -n 1)" >> $GITHUB_ENV
+          echo "changes_found=$(git diff --name-only release-latest..main src/main | head -n 1)" >> $GITHUB_ENV
 
       - name: Install gpg secret key
         if: env.changes_found != ''
