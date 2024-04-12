@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial f59d98be-9bd5-4883-b3a7-424eb15f4192
- * @version Fri, 22 Mar 2024 18:56:24 GMT
+ * @serial bc0d0780-89d4-4227-aac3-432b1df32a42
+ * @version Fri, 12 Apr 2024 19:56:21 BST
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -299,6 +299,7 @@
 978-99992 Oman
 978-99993 Mauritius
 978-99994 Haiti
+978-99995 Seychelles
 979-10 France
 979-11 Korea, Republic
 979-12 Italy
@@ -1173,7 +1174,11 @@ WWWWW53
 V4
 WWW73
 8
-5XXXXXX5
+5XXXXXX
+5
+WWW73
+7
+5XXXXXXX4
 1
 
 HHIIIIIJJ
