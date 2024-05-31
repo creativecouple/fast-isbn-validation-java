@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial f97be5ea-ec16-444d-a40b-9f63b72e64f8
- * @version Tue, 21 May 2024 20:05:17 BST
+ * @serial b844b555-42e6-481f-b3ef-ae85d967714a
+ * @version Fri, 31 May 2024 19:56:23 BST
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -303,6 +303,7 @@
 979-10 France
 979-11 Korea, Republic
 979-12 Italy
+979-13 Spain
 979-8 United States
 
 A 3-4-6
@@ -1195,7 +1196,16 @@ KKKKKLLLLL
 5JJJJJJJJJJ2
 KKKKK5
 8
-5LLLLLL76
+5LLLLLL
+
+H95
+
+IIIII59
+JJJ
+JJJJJ56
+7
+5KKKKKKK
+9L66
 2
 BBB7
 2CCCCCCCCCCCC
