@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial 741d1c5f-a2a2-45c8-81b0-a03083948473
- * @version Fri, 19 Jul 2024 19:56:24 BST
+ * @serial b388c261-e03f-4394-80d7-8890e5947d42
+ * @version Fri, 26 Jul 2024 19:56:21 BST
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -127,6 +127,7 @@
 978-987 Argentina
 978-988 Hong Kong, China
 978-989 Portugal
+978-9909 Tunisia
 978-9910 Uzbekistan
 978-9911 Montenegro
 978-9912 Tanzania
@@ -827,7 +828,12 @@ MMN
 NNNNNQQNNNN
 NNNQQOOOOOOOP
 PPPPPQQQQQ
-1
+
+9
+SS5
+5TTTTT
+TTTTT5
+8UU
 
 
 1SSSSSSSSS5
@@ -1151,8 +1157,10 @@ V
 4XWWWWW
 XXWWWWWWWWWWWW
 WWWWWXXXXXXX
-VV3W
-WWWWWWWWW12X
+VV3WW
+WW8
+8
+5XXXXXXX
 V2
 5WWWWWWWW2X
 V4WW2
@@ -1175,7 +1183,7 @@ WWWWW53
 VV3W
 WWWWW52
 5XXXXX
-VV3
+VVV2
 WWWWW53
 8XX
 V4
