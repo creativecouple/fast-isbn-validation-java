@@ -46,7 +46,7 @@ It normalizes and corrects the given string input with respect to hyphens/dashes
 parsing both ISBN-10 and ISBN-13 numbers into the same object, the
 [`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html). 
 
-## Usage (latest version "1.1.10")
+## Usage (latest version "1.1.11")
 
 You only need to install [`de.creativecouple.validation:fast-isbn`](https://mvnrepository.com/artifact/de.creativecouple.validation/fast-isbn/latest)
 as dependency in your Java/Kotlin/Scala project definition,
@@ -60,7 +60,7 @@ as dependency in your Java/Kotlin/Scala project definition,
     <dependency>
         <groupId>de.creativecouple.validation</groupId>
         <artifactId>fast-isbn</artifactId>
-        <version>1.1.10</version>
+        <version>1.1.11</version>
     </dependency>
 </dependencies>
 ```
@@ -69,14 +69,14 @@ as dependency in your Java/Kotlin/Scala project definition,
 <summary>as Gradle dependency in your <code>build.gradle</code>,</summary>
 
 ```gradle
-implementation group: 'de.creativecouple.validation', name: 'fast-isbn', version: '1.1.10'
+implementation group: 'de.creativecouple.validation', name: 'fast-isbn', version: '1.1.11'
 ```
 </details>
 <details>
 <summary>or as Scala dependency in your <code>build.sbt</code>.</summary>
 
 ```scala
-libraryDependencies += "de.creativecouple.validation" % "fast-isbn" % "1.1.10"
+libraryDependencies += "de.creativecouple.validation" % "fast-isbn" % "1.1.11"
 ```
 </details>
 
