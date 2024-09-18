@@ -1,4 +1,4 @@
-package de.creativecouple.validation.isbn;
+package net.creativecouple.validation.isbn;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

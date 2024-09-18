@@ -4,4 +4,4 @@
  *
  * @since 0.1.0
  */
-package de.creativecouple.validation.isbn;
+package net.creativecouple.validation.isbn;

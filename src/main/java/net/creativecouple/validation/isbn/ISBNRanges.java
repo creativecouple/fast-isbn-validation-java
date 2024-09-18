@@ -21,9 +21,9 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package de.creativecouple.validation.isbn;
+package net.creativecouple.validation.isbn;
 
-import de.creativecouple.validation.isbn.ISBN.Hyphenation;
+import net.creativecouple.validation.isbn.ISBN.Hyphenation;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +41,7 @@ final class ISBNRanges {
     static final Map<String, String> agencies = new HashMap<>();
 
     private static final String LOCAL_RANGES_FILE = "isbn-ranges.data";
-    private static final String REMOTE_RANGES_FILE = "https://raw.githubusercontent.com/creativecouple/fast-isbn-validation-java/release-latest/src/main/resources/de/creativecouple/validation/isbn/isbn-ranges.data";
+    private static final String REMOTE_RANGES_FILE = "https://raw.githubusercontent.com/creativecouple/fast-isbn-validation-java/release-latest/src/main/resources/net/creativecouple/validation/isbn/isbn-ranges.data";
 
     static {
         try {

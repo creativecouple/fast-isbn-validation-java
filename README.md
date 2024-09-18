@@ -1,13 +1,13 @@
 Fast and simple way to parse/format/validate ISBNs with the **official ISBN ranges** definition.
-The parser is optimized for speed, the [`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) class for simplicity. <br/>
+The parser is optimized for speed, the [`ISBN`](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) class for simplicity. <br/>
 This library can evaluate **millions of ISBNs per second** on a single CPU core.
 
 [![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/#?998043192X)
 [![ISBN-13](https://creativecouple.de/validation/isbn/9789980431929.banner.svg)](https://creativecouple.de/validation/isbn/#?9789980431929)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Java Version](https://img.shields.io/badge/Java-1.8%2B-orange)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
-[![Download](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.creativecouple.validation/fast-isbn)
-[![Javadocs](https://javadoc.io/badge2/de.creativecouple.validation/fast-isbn/javadoc.svg)](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn)
+[![Download](https://maven-badges.herokuapp.com/maven-central/net.creativecouple.validation/fast-isbn/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.creativecouple.validation/fast-isbn)
+[![Javadocs](https://javadoc.io/badge2/net.creativecouple.validation/fast-isbn/javadoc.svg)](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn)
 
 # fast-isbn – world's fastest ISBN range validation
 A common issue in digital commerce systems is to validate article identifiers.
@@ -39,16 +39,16 @@ isbn prefix[^1], agency group code[^2], publisher code[^3], title code[^4], and 
 - [![ISBN-10](https://creativecouple.de/validation/isbn/9980431929.banner.svg)](https://creativecouple.de/validation/isbn/#?9980431929) invalid ISBN-10 checksum: 9980-43-192-9 
 - [![ISBN-10](https://creativecouple.de/validation/isbn/998043192X.banner.svg)](https://creativecouple.de/validation/isbn/#?998043192X) correct ISBN-10 checksum: 9980-43-192-X
 
-The [ISBN domain object](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html)
+The [ISBN domain object](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html)
 wraps the ISBN string representation efficiently to be used
 as identifier in your domain-driven code base.
 It normalizes and corrects the given string input with respect to hyphens/dashes,
 parsing both ISBN-10 and ISBN-13 numbers into the same object, the
-[`ISBN`](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html). 
+[`ISBN`](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html). 
 
-## Usage (latest version "1.1.11")
+## Usage (latest version "1.2.0")
 
-You only need to install [`de.creativecouple.validation:fast-isbn`](https://mvnrepository.com/artifact/de.creativecouple.validation/fast-isbn/latest)
+You only need to install [`net.creativecouple.validation:fast-isbn`](https://mvnrepository.com/artifact/net.creativecouple.validation/fast-isbn/latest)
 as dependency in your Java/Kotlin/Scala project definition,
 
 <details>
@@ -58,9 +58,9 @@ as dependency in your Java/Kotlin/Scala project definition,
 <dependencies>
     …
     <dependency>
-        <groupId>de.creativecouple.validation</groupId>
+        <groupId>net.creativecouple.validation</groupId>
         <artifactId>fast-isbn</artifactId>
-        <version>1.1.11</version>
+        <version>1.2.0</version>
     </dependency>
 </dependencies>
 ```
@@ -69,21 +69,21 @@ as dependency in your Java/Kotlin/Scala project definition,
 <summary>as Gradle dependency in your <code>build.gradle</code>,</summary>
 
 ```gradle
-implementation group: 'de.creativecouple.validation', name: 'fast-isbn', version: '1.1.11'
+implementation group: 'net.creativecouple.validation', name: 'fast-isbn', version: '1.2.0'
 ```
 </details>
 <details>
 <summary>or as Scala dependency in your <code>build.sbt</code>.</summary>
 
 ```scala
-libraryDependencies += "de.creativecouple.validation" % "fast-isbn" % "1.1.11"
+libraryDependencies += "net.creativecouple.validation" % "fast-isbn" % "1.2.0"
 ```
 </details>
 
 ### Parsing
 
 Now you can simply convert your strings into
-[ISBN](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) objects via:
+[ISBN](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html) objects via:
 
 ```java
   ISBN isbn = ISBN.valueOf(someString);
@@ -115,7 +115,7 @@ You can get different string representations to be used e.g. in your databases:
 ### Validating
 
 If you only want to work with Strings instead of the ISBN object you can simply use the
-[ISBNValidator](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBNValidator.html)
+[ISBNValidator](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBNValidator.html)
 to check them against the chosen rules. This is one of the 12 combinations of ISBN length (ISBN-10 / ISBN-13 / both)
 and hyphenation style (any / correct / none / correct-or-none). 
 
@@ -143,7 +143,7 @@ to `raw.githubusercontent.com`.
 ### Javadoc
 
 Read the full Java docs online at
-[javadoc.io/…/fast-isbn/latest/](https://javadoc.io/doc/de.creativecouple.validation/fast-isbn/latest/).
+[javadoc.io/…/fast-isbn/latest/](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn/latest/).
 
 ## Versioning
 

@@ -21,9 +21,9 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package de.creativecouple.validation.isbn;
+package net.creativecouple.validation.isbn;
 
-import de.creativecouple.validation.isbn.ISBN.Hyphenation;
+import net.creativecouple.validation.isbn.ISBN.Hyphenation;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package de.creativecouple.validation.isbn;
+package net.creativecouple.validation.isbn;
 
 import java.util.regex.Pattern;
 

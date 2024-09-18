@@ -20,17 +20,17 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.creativecouple.validation.isbn;
+package net.creativecouple.validation.isbn;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.ANY;
-import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.CORRECT;
-import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.CORRECT_OR_NONE;
-import static de.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.NONE;
+import static net.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.ANY;
+import static net.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.CORRECT;
+import static net.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.CORRECT_OR_NONE;
+import static net.creativecouple.validation.isbn.ISBNValidatorBuilder.HyphenationOption.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

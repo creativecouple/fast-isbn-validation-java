@@ -20,11 +20,11 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.creativecouple.validation.isbn;
+package net.creativecouple.validation.isbn;
 
-import de.creativecouple.validation.isbn.ISBN.Hyphenation;
+import net.creativecouple.validation.isbn.ISBN.Hyphenation;
 
-import static de.creativecouple.validation.isbn.Hyphens.isUnicodeHyphen;
+import static net.creativecouple.validation.isbn.Hyphens.isUnicodeHyphen;
 
 final class Parser {
 
