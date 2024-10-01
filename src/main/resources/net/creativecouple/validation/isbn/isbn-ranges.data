@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial 12d9bc5e-3935-4126-9b8b-d3c59c46388a
- * @version Tue, 17 Sep 2024 19:58:24 BST
+ * @serial 094877f5-c7ca-4592-9dd0-86244aec9236
+ * @version Tue, 1 Oct 2024 19:58:10 BST
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -70,6 +70,7 @@
 978-630 Romania
 978-631 Argentina
 978-632 Vietnam
+978-633 Egypt
 978-65 Brazil
 978-7 China, People's Republic
 978-80 former Czechoslovakia
@@ -563,7 +564,14 @@ N2O2
 PPPPP51Q
 N
 NN84
-OOOOOOOO2371
+OOOOOOOO23
+
+NN82
+OOOOO54
+2
+5PPPPPPPPPPPP
+9
+5QQQQQ61
 
 HH81
 5IIIII
