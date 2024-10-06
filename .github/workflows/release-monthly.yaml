@@ -24,12 +24,6 @@ jobs:
           git config --global user.name "Jenkins"
           echo "changes_found=$(git diff --name-only release-latest..main src/main | head -n 1)" >> $GITHUB_ENV
 
-      - name: Install gpg secret key
-        if: env.changes_found != ''
-        run: |
-          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
-          gpg --list-secret-keys --keyid-format LONG
-
       - name: Set up JDK 17
         if: env.changes_found != ''
         uses: actions/setup-java@v4
@@ -40,6 +34,12 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
           cache: maven
+
+      - name: Install gpg secret key
+        if: env.changes_found != ''
+        run: |
+          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG
 
       - name: Prepare new release
         if: env.changes_found != ''
