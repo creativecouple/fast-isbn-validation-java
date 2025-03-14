@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial 88a7cce3-da2e-4667-bc96-e09f62e16295
- * @version Tue, 11 Mar 2025 18:58:09 GMT
+ * @serial 5125d5d3-383d-42bd-8d2a-8e856cf162b3
+ * @version Fri, 14 Mar 2025 18:56:23 GMT
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -304,6 +304,7 @@
 978-99993 Mauritius
 978-99994 Haiti
 978-99995 Seychelles
+978-99996 Macau
 979-10 France
 979-11 Korea, Republic
 979-12 Italy
@@ -1222,7 +1223,8 @@ WWW73
 5
 WWWWWW43
 7
-5XXXXXXX4
+5XXXXXXX
+VV2WW3X3
 1
 
 HHIIIIIJJ
