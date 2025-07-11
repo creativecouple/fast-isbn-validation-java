@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial 7d684c39-4ea2-4e66-b7f6-2d189064d394
- * @version Tue, 8 Jul 2025 19:58:40 BST
+ * @serial e80a73c6-03e4-4db3-9cd7-032959626de3
+ * @version Fri, 11 Jul 2025 19:56:19 BST
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -515,7 +515,7 @@ M
 NNN1OO2P
 5QQQQQ
 N
-N9OO
+NOOPPPPP2OO
 OOOOOOPPPPPPP
 PPPPPPP
 PPPPPQQQQQQQQ
