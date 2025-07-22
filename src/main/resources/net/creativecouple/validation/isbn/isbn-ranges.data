@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial e80a73c6-03e4-4db3-9cd7-032959626de3
- * @version Fri, 11 Jul 2025 19:56:19 BST
+ * @serial 22fb30e2-f679-4303-93ae-95ea5ed0a7a7
+ * @version Tue, 22 Jul 2025 19:58:21 BST
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -301,6 +301,7 @@
 978-99988 Sudan
 978-99989 Paraguay
 978-99990 Ethiopia
+978-99991 Burkina Faso
 978-99992 Oman
 978-99993 Mauritius
 978-99994 Haiti
@@ -1222,7 +1223,10 @@ VV3WWW1X
 
 V4
 WWWWWWWW23
-6XXXX1
+6XXXX
+V4
+WW83
+9X
 VV3W
 WWWWW52
 5XXXXX
@@ -1267,11 +1271,11 @@ JJJJJ56
 5KKKKKKK
 9L66
 2
-BBBB4CC
+BBBB2CCCC
 CCCCCCCCCCCCCC
 CCCCCCCC
 CCCCCDDDDDD
 D7
 5FFFFF
-FFF5
+FFFFFF2
 5FFFFFF12
