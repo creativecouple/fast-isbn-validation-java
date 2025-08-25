@@ -6,8 +6,8 @@ This library can evaluate **millions of ISBNs per second** on a single CPU core.
 [![ISBN-13](https://creativecouple.de/validation/isbn/9789980431929.banner.svg)](https://creativecouple.de/validation/isbn/#?9789980431929)
 [![Java Version](https://img.shields.io/badge/Java-1.8%2B-orange)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Download](https://img.shields.io/maven-central/v/net.creativecouple.validation/fast-isbn)](https://central.sonatype.com/artifact/net.creativecouple.validation/fast-isbn)
-[![Javadocs](https://javadoc.io/badge2/net.creativecouple.validation/fast-isbn/javadoc.svg)](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn)
+[![Download](https://img.shields.io/maven-central/v/net.creativecouple.validation/fast-isbn?version=1.2.22)](https://central.sonatype.com/artifact/net.creativecouple.validation/fast-isbn)
+[![Javadocs](https://javadoc.io/badge2/net.creativecouple.validation/fast-isbn/javadoc.svg?version=1.2.22)](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn)
 
 # fast-isbn – world's fastest ISBN range validation
 A common issue in digital commerce systems is to validate article identifiers.
