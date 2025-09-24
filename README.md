@@ -11,18 +11,18 @@ This library can evaluate **millions of ISBNs per second** on a single CPU core.
 
 # fast-isbn – world's fastest ISBN range validation
 A common issue in digital commerce systems is to validate article identifiers.
-In the publishing business there is the so-called ISBN standard[^6], maintained by the
+In the publishing business there is the so-called ISBN standard [^6], maintained by the
 International ISBN Agency.
 By using their official ISBN range definitions this library offers up-to-date ISBN validation
-beyond simply comparing the EAN-13 checkdigit, and adds ISO 2108[^6] conform formatting
-for the extended[^7] and compact form[^8].
+beyond simply comparing the EAN-13 checkdigit, and adds ISO 2108 [^6] conform formatting
+for the extended [^7] and compact form [^8].
 
 [<img src="https://creativecouple.de/validation/isbn/9789980431929.svg" width="500">](https://creativecouple.de/validation/isbn/#?9789980431929)
 
-All number ranges that are not yet assigned to a local ISBN agency group[^2] or
-whose publisher range[^3] is not defined will be treated as invalid.
+All number ranges that are not yet assigned to a local ISBN agency group [^2] or
+whose publisher range [^3] is not defined will be treated as invalid.
 The dashes will be inserted automatically at the correct positions for grouping the
-isbn prefix[^1], agency group code[^2], publisher code[^3], title code[^4], and checkdigit[^5].
+isbn prefix [^1], agency group code [^2], publisher code [^3], title code [^4], and checkdigit [^5].
 
 [^1]: **GS1 prefix** (formerly known as EAN/UCC prefix), first three digits of the ISBN, defined by the [Registration Authority](https://www.isbn-international.org/)
 [^2]: **Registration group element**, length-varying second part of the ISBN, also known as local agency group, allocated by the [Registration Authority](https://www.isbn-international.org/)
