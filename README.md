@@ -6,8 +6,8 @@ This library can evaluate **millions of ISBNs per second** on a single CPU core.
 [![ISBN-13](https://creativecouple.de/validation/isbn/9789980431929.banner.svg)](https://creativecouple.de/validation/isbn/#?9789980431929)
 [![Java Version](https://img.shields.io/badge/Java-1.8%2B-orange)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Download](https://img.shields.io/maven-central/v/net.creativecouple.validation/fast-isbn?version=1.2.24)](https://central.sonatype.com/artifact/net.creativecouple.validation/fast-isbn)
-[![Javadocs](https://javadoc.io/badge2/net.creativecouple.validation/fast-isbn/javadoc.svg?version=1.2.24)](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn)
+[![Download](https://img.shields.io/maven-central/v/net.creativecouple.validation/fast-isbn?version=1.2.25)](https://central.sonatype.com/artifact/net.creativecouple.validation/fast-isbn)
+[![Javadocs](https://javadoc.io/badge2/net.creativecouple.validation/fast-isbn/javadoc.svg?version=1.2.25)](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn)
 
 # fast-isbn – world's fastest ISBN range validation
 A common issue in digital commerce systems is to validate article identifiers.
@@ -46,7 +46,7 @@ It normalizes and corrects the given string input with respect to hyphens/dashes
 parsing both ISBN-10 and ISBN-13 numbers into the same object, the
 [`ISBN`](https://javadoc.io/doc/net.creativecouple.validation/fast-isbn/latest/de/creativecouple/validation/isbn/ISBN.html). 
 
-## Usage (latest version "1.2.24")
+## Usage (latest version "1.2.25")
 
 You only need to install [`net.creativecouple.validation:fast-isbn`](https://mvnrepository.com/artifact/net.creativecouple.validation/fast-isbn/latest)
 as dependency in your Java/Kotlin/Scala project definition,
@@ -60,7 +60,7 @@ as dependency in your Java/Kotlin/Scala project definition,
     <dependency>
         <groupId>net.creativecouple.validation</groupId>
         <artifactId>fast-isbn</artifactId>
-        <version>1.2.24</version>
+        <version>1.2.25</version>
     </dependency>
 </dependencies>
 ```
@@ -69,14 +69,14 @@ as dependency in your Java/Kotlin/Scala project definition,
 <summary>as Gradle dependency in your <code>build.gradle</code>,</summary>
 
 ```gradle
-implementation group: 'net.creativecouple.validation', name: 'fast-isbn', version: '1.2.24'
+implementation group: 'net.creativecouple.validation', name: 'fast-isbn', version: '1.2.25'
 ```
 </details>
 <details>
 <summary>or as Scala dependency in your <code>build.sbt</code>.</summary>
 
 ```scala
-libraryDependencies += "net.creativecouple.validation" % "fast-isbn" % "1.2.24"
+libraryDependencies += "net.creativecouple.validation" % "fast-isbn" % "1.2.25"
 ```
 </details>
 
