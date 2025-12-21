@@ -6,7 +6,7 @@
 
     <groupId>net.creativecouple.validation</groupId>
     <artifactId>fast-isbn</artifactId>
-    <version>1.2.27</version>
+    <version>1.2.28</version>
     <packaging>jar</packaging>
 
     <name>Fast ISBN-Range Validation</name>
