@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial 62adf07a-3faf-4645-a27e-efafc83e4e24
- * @version Fri, 27 Feb 2026 09:06:31 GMT
+ * @serial cd39c413-b76e-4e20-9162-150f93695982
+ * @version Tue, 10 Mar 2026 07:59:21 GMT
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -73,6 +73,7 @@
 978-633 Egypt
 978-634 Indonesia
 978-65 Brazil
+978-69990 Zambia registration group
 978-7 China, People's Republic
 978-80 former Czechoslovakia
 978-81 India
@@ -572,7 +573,7 @@ NNN73
 5
 5OOOOOOOOO2
 5PPPPP1
-4QQQQQQ
+2QQQQQQQQ
 
 3O2
 5PPP
@@ -596,23 +597,29 @@ NNNNN51O
 OOOOO53P1
 6QQQQ51
 
-HH81
+HHH71
 5IIIII
 
 III791J
-JJ81
+JJJ
+JJJJJ561
 K
 KKKKKKKK
 KK
-KKKKK571
-6
-5KKKKKKKKKKKKKKK
+KKKKK571KKKKKKKK
 
 LL
 LLLL
 LLLLL5576
-8
-5LLLLLLLL4
+5
+5LLLLLLLLLLL3
+9
+9
+
+5
+W93
+9
+7XXX9
 ABBBBCCCDE
 
 HHIII
