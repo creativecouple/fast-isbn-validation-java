@@ -25,8 +25,8 @@
  * Its compact text format represents a digit-by-digit decision tree.
  *
  * @source International ISBN Agency
- * @serial 1d24b3a2-9249-4eca-9960-dafc308e8c0d
- * @version Tue, 17 Mar 2026 07:59:15 GMT
+ * @serial 72cc66fa-06c5-4e26-8ed2-f518718472c0
+ * @version Tue, 24 Mar 2026 07:59:13 GMT
  * @author Peter Liske (CreativeCouple)
  */
 
@@ -130,6 +130,7 @@
 978-987 Argentina
 978-988 Hong Kong, China
 978-989 Portugal
+978-9905 Nepal
 978-9906 Tajikistan
 978-9907 Ecuador
 978-9908 Estonia
@@ -878,7 +879,12 @@ NNNNNNNNNQ
 NNNQQOOOOOOOP
 PPPPPQQQQQ
 
-6
+5
+R1
+SSSS63
+TT
+TTTTT572
+9U
 2
 S94
 TT
@@ -919,8 +925,7 @@ T91
 2
 7SSSSS
 SSSSSS41T1
-3
-5UUUUUUUUUUU
+3UUUUUUU
 4SS
 5TTTTTT1
 3UUUUUUU
@@ -1303,7 +1308,9 @@ JJJJJ56
 7
 5KKKKKKK
 9L66
-2
+1
+9
+5CCCCC
 BBBBCCCCCC
 CCCCCCCCCCCCCC
 CCCCCCCC
