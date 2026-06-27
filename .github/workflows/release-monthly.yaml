@@ -13,7 +13,7 @@ jobs:
       changes_found: ''
     steps:
       - name: Checkout main branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: 0
@@ -24,11 +24,11 @@ jobs:
           git config --global user.name "Jenkins"
           echo "changes_found=$(git diff --name-only release-latest..main src/main | head -n 1)" >> $GITHUB_ENV
 
-      - name: Set up JDK 17
+      - name: Set up JDK 25
         if: env.changes_found != ''
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
-          java-version: '17'
+          java-version: '25'
           distribution: 'temurin'
           server-id: central
           server-username: MAVEN_USERNAME
